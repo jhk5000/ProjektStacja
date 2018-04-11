@@ -8,3 +8,4 @@
 	else {
 		//echo '<h2>Stacja</h2><hr class="style-one"></hr>';
 	}
+?>
