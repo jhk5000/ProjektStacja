@@ -1,8 +1,9 @@
 <?php
 	$var = $db->select_single('SELECT * FROM users WHERE id = '.(int)$_GET['id']);
 	if($var) {
+	    //Do dostosowania!!!
 		echo '<h2>Edycja Użytkownika</h2><hr class="style-one"></hr>';
-		if($user['group_id'] == 3) {
+		if($user['group_id'] == 3 || $user['group_id'] == 4) {
 			if(!empty($_POST['send'])) {
 				if(!empty($_POST['name']) && !empty($_POST['login']) && !empty($_POST['lastname'])) {
 					$check = $db->select_single("SELECT * FROM users WHERE UPPER(login) = UPPER('".$_POST['login']."') AND id != ".$var['id']);

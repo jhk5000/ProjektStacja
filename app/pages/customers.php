@@ -1,8 +1,8 @@
 <?php
 	echo '<h2>Studenci</h2><hr class="style-one"></hr>';
-	if($user['group_id'] == 1) {
-		$group = $db->select_single('SELECT * FROM studies_groups_students WHERE student_id = '.$user['id']);
-		$students = $db->select_multi("SELECT u.*, t.topic FROM users u LEFT JOIN theses_topics t ON t.student_id = u.id WHERE u.id IN (SELECT student_id FROM studies_groups_students WHERE group_id = ".$group['group_id'].")");
+	if($user['group_id'] == 3 || $user['group_id'] == 4 ) {
+	    // do sprawdzenia
+		$customers = $db->select_multi("SELECT u.* FROM users u WHERE u.id =1");
 		echo '<table class="table table-bordered table-hover"><thead><tr>
 					<th>Imie</th>
 					<th>Nazwisko</th>

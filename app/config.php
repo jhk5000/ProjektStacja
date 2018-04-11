@@ -2,7 +2,7 @@
 
 $config = array();
 
-$config['title'] = 'Stacje paliw u Bolka';
+$config['title'] = 'Stacje paliw u Romana';
 
 $config['db']['host']     = 'localhost';
 $config['db']['username'] = 'root';
