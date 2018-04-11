@@ -108,46 +108,23 @@
 		global $page;
 		//Konfiguracja dla klienta biznesowego
 		if($group == 1) {
-			if($page == 'mysubjects')
-				echo '<a href="'.$config['page_url'].'?page=mysubjects" class="list-group-item active">Moje Przedmioty</a>';
+			if($page == 'myprices')
+				echo '<a href="'.$config['page_url'].'?page=myprices" class="list-group-item active">Moje Stacje</a>';
 			else
-				echo '<a href="'.$config['page_url'].'?page=mysubjects" class="list-group-item">Moje Przedmioty</a>';
-			if($page == 'mytopic')
-				echo '<a href="'.$config['page_url'].'?page=mytopic" class="list-group-item active">Praca Dyplomowa</a>';
-			else
-				echo '<a href="'.$config['page_url'].'?page=mytopic" class="list-group-item">Praca Dyplomowa</a>';
-			if($page == 'myworks')
-				echo '<a href="'.$config['page_url'].'?page=myworks" class="list-group-item active">Moje prace uczelniane</a>';
-			else
-				echo '<a href="'.$config['page_url'].'?page=myworks" class="list-group-item">Moje prace uczelniane</a>';
-			if($page == 'students')
-				echo '<a href="'.$config['page_url'].'?page=students" class="list-group-item active">Moja Grupa</a>';
-			else
-				echo '<a href="'.$config['page_url'].'?page=students" class="list-group-item">Moja Grupa</a>';
+				echo '<a href="'.$config['page_url'].'?page=myprices" class="list-group-item">Moje Stacje</a>';
+
 		}
 
 		// Konfiguracja dla kierownika
 		elseif($group == 2) {
-			if($page == 'students')
-				echo '<a href="'.$config['page_url'].'?page=students" class="list-group-item active">Studenci</a>';
+			if($page == 'mystation')
+				echo '<a href="'.$config['page_url'].'?page=mystation" class="list-group-item active">Moja stacja</a>';
 			else
-				echo '<a href="'.$config['page_url'].'?page=students" class="list-group-item">Studenci</a>';
+				echo '<a href="'.$config['page_url'].'?page=mystation" class="list-group-item">Moja stacja</a>';
 			if($page == 'archive')
-				echo '<a href="'.$config['page_url'].'?page=archive" class="list-group-item active">Archiwum</a>';
+				echo '<a href="'.$config['page_url'].'?page=archive" class="list-group-item active">Archiwum stacji</a>';
 			else
-				echo '<a href="'.$config['page_url'].'?page=archive" class="list-group-item">Archiwum</a>';
-			if($page == 'works')
-				echo '<a href="'.$config['page_url'].'?page=works" class="list-group-item active">Moje Tematy</a>';
-			else
-				echo '<a href="'.$config['page_url'].'?page=works" class="list-group-item">Moje Tematy</a>';
-			if($page == 'topics')
-				echo '<a href="'.$config['page_url'].'?page=topics" class="list-group-item active">Prace Dyplomowe</a>';
-			else
-				echo '<a href="'.$config['page_url'].'?page=topics" class="list-group-item">Prace Dyplomowe</a>';
-			if($page == 'studies')
-				echo '<a href="'.$config['page_url'].'?page=studies" class="list-group-item active">Moje kierunki</a>';
-			else
-				echo '<a href="'.$config['page_url'].'?page=studies" class="list-group-item">Moje kierunki</a>';
+				echo '<a href="'.$config['page_url'].'?page=archive" class="list-group-item">Archiwum stacji</a>';
 		}
 
 		//konfiguracja dla własciciela
