@@ -11,7 +11,7 @@ $config['db']['database'] = 'baza';
 
 define('TIME_NOW', time());
 
-$config['page_url']      = 'http://localhost/station/';
+$config['page_url']      = 'http://localhost/ProjektStacja/index.php';
 $config['logo_title']    = 'Bolek Stations';
 $config['account_types'] = array(1 => 'Klient', 2 => 'Kierownik', 3 => "Wlasciciel", 4 => 'Administrator');
 
