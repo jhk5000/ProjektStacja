@@ -8,92 +8,107 @@ class Stations
     /**
      * @Id @Column(type="integer") @GeneratedValue
      */
-    protected $id;
-    /**
-     * @Column(type="string")
-     */
-    protected $description;
-    /**
-     * @Column(type="datetime")
-     */
-    protected $created;
-    /**
-     * @Column(type="string")
-     */
-    protected $status;
-    /**
-     * @ManyToOne(targetEntity="User", inversedBy="assignedBugs")
-     */
-    protected $engineer;
-    /**
-     * @ManyToOne(targetEntity="User", inversedBy="reportedBugs")
-     */
-    protected $reporter;
-    /**
-     * @ManyToMany(targetEntity="Eventlog")
-     */
-    protected $products;
+    protected $station_id;
+    protected $name;
+    protected $voivodeship;
+    protected $city;
+    protected $street;
 
-    public function __construct()
+    /**
+     * Stations constructor.
+     * @param $station_id
+     * @param $name
+     * @param $voivodeship
+     * @param $city
+     * @param $street
+     */
+    public function __construct($station_id, $name, $voivodeship, $city, $street)
     {
-        $this->products = new ArrayCollection();
+        $this->station_id = $station_id;
+        $this->name = $name;
+        $this->voivodeship = $voivodeship;
+        $this->city = $city;
+        $this->street = $street;
     }
-    public function getId()
+
+    /**
+     * @return mixed
+     */
+    public function getStationId()
     {
-        return $this->id;
+        return $this->station_id;
     }
-    public function getDescription()
+
+    /**
+     * @param mixed $station_id
+     */
+    public function setStationId($station_id)
     {
-        return $this->description;
+        $this->station_id = $station_id;
     }
-    public function setDescription($description)
+
+    /**
+     * @return mixed
+     */
+    public function getName()
     {
-        $this->description = $description;
+        return $this->name;
     }
-    public function setCreated(DateTime $created)
+
+    /**
+     * @param mixed $name
+     */
+    public function setName($name)
     {
-        $this->created = $created;
+        $this->name = $name;
     }
-    public function getCreated()
+
+    /**
+     * @return mixed
+     */
+    public function getVoivodeship()
     {
-        return $this->created;
+        return $this->voivodeship;
     }
-    public function setStatus($status)
+
+    /**
+     * @param mixed $voivodeship
+     */
+    public function setVoivodeship($voivodeship)
     {
-        $this->status = $status;
+        $this->voivodeship = $voivodeship;
     }
-    public function getStatus()
+
+    /**
+     * @return mixed
+     */
+    public function getCity()
     {
-        return $this->status;
+        return $this->city;
     }
-    public function setEngineer($engineer)
+
+    /**
+     * @param mixed $city
+     */
+    public function setCity($city)
     {
-        $engineer->assignedToBug($this);
-        $this->engineer = $engineer;
+        $this->city = $city;
     }
-    public function setReporter($reporter)
+
+    /**
+     * @return mixed
+     */
+    public function getStreet()
     {
-        $reporter->addReportedBug($this);
-        $this->reporter = $reporter;
+        return $this->street;
     }
-    public function getEngineer()
+
+    /**
+     * @param mixed $street
+     */
+    public function setStreet($street)
     {
-        return $this->engineer;
+        $this->street = $street;
     }
-    public function getReporter()
-    {
-        return $this->reporter;
-    }
-    public function assignToProduct($product)
-    {
-        $this->products[] = $product;
-    }
-    public function getProducts()
-    {
-        return $this->products;
-    }
-    public function close()
-    {
-        $this->status = "CLOSE";
-    }
+
 }
