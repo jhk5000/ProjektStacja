@@ -17,6 +17,8 @@ class User
     protected $register_date;
     protected $group_id;
     protected $info;
+    protected $token;
+    protected $company;
 
     /**
      * User constructor.
@@ -29,7 +31,7 @@ class User
      * @param $group_id
      * @param $info
      */
-    public function __construct($user_id, $login, array $passwd, $name, $mail, $register_date, $group_id, $info)
+    public function __construct($user_id, $login, array $passwd, $name, $mail, $register_date, $group_id, $info, $token, $company)
     {
         $this->user_id = $user_id;
         $this->login = $login;
@@ -39,6 +41,40 @@ class User
         $this->register_date = $register_date;
         $this->group_id = $group_id;
         $this->info = $info;
+        $this->token = $token;
+        $this->company = $company;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getToken()
+    {
+        return $this->token;
+    }
+
+    /**
+     * @param mixed $token
+     */
+    public function setToken($token)
+    {
+        $this->token = $token;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCompany()
+    {
+        return $this->company;
+    }
+
+    /**
+     * @param mixed $company
+     */
+    public function setCompany($company)
+    {
+        $this->company = $company;
     }
 
     /**
