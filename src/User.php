@@ -50,6 +50,7 @@ class User
      * @var string
      */
     protected $token;
+
     /**
      * @OneToMany(targetEntity="Bug", mappedBy="reporter")
      * @var Bug[]
@@ -60,12 +61,12 @@ class User
      * @var Bug[]
      */
     protected $assignedBugs = null;
-
     public function __construct()
     {
         $this->reportedBugs = new ArrayCollection();
         $this->assignedBugs = new ArrayCollection();
     }
+
     /**
      * @return string
      */
@@ -73,6 +74,7 @@ class User
     {
         return $this->user_id;
     }
+
     /**
      * @param string $user_id
      */
@@ -80,6 +82,7 @@ class User
     {
         $this->user_id = $user_id;
     }
+
     /**
      * @return string
      */
@@ -87,6 +90,7 @@ class User
     {
         return $this->login;
     }
+
     /**
      * @param string $login
      */
@@ -94,6 +98,7 @@ class User
     {
         $this->login = $login;
     }
+
     /**
      * @return string
      */
@@ -101,6 +106,7 @@ class User
     {
         return $this->passwd;
     }
+
     /**
      * @param string $passwd
      */
@@ -108,6 +114,7 @@ class User
     {
         $this->passwd = $passwd;
     }
+
     /**
      * @return string
      */
@@ -115,6 +122,7 @@ class User
     {
         return $this->name;
     }
+
     /**
      * @param string $name
      */
@@ -122,6 +130,7 @@ class User
     {
         $this->name = $name;
     }
+
     /**
      * @return string
      */
@@ -129,6 +138,7 @@ class User
     {
         return $this->mail;
     }
+
     /**
      * @param string $mail
      */
@@ -136,6 +146,7 @@ class User
     {
         $this->mail = $mail;
     }
+
     /**
      * @return string
      */
@@ -143,6 +154,7 @@ class User
     {
         return $this->register_date;
     }
+
     /**
      * @param string $register_date
      */
@@ -150,6 +162,7 @@ class User
     {
         $this->register_date = $register_date;
     }
+
     /**
      * @return string
      */
@@ -157,6 +170,7 @@ class User
     {
         return $this->group_id;
     }
+
     /**
      * @param string $group_id
      */
@@ -164,6 +178,7 @@ class User
     {
         $this->group_id = $group_id;
     }
+
     /**
      * @return string
      */
@@ -171,6 +186,7 @@ class User
     {
         return $this->info;
     }
+
     /**
      * @param string $info
      */
@@ -194,4 +210,6 @@ class User
     {
         $this->token = $token;
     }
+
+
 }

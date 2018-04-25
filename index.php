@@ -1,9 +1,4 @@
 <?php
-echo "dziaa";
-
-echo "25.04.2018  dziaaa ??";
-
-echo "11.04.2018  dziaa ??";
 
 session_start();
 error_reporting(E_ALL);
@@ -16,28 +11,26 @@ require('app/functions.php');
 
 $time_now = time();
 $group = 0;
-//$db = new DB($config['db']['host'], $config['db']['username'], $config['db']['password'], $config['db']['database']);
-//
-//if(!empty($_SESSION['user'])) {
-//	if(empty($_SESSION['token'])) {
-//		session_destroy();
-//		$_SESSION = array();
-//		header('Location: '.$config['page_url']);
-//		die;
-//	}
+
+if(!empty($_SESSION['user'])) {
+	if(empty($_SESSION['token'])) {
+		session_destroy();
+		$_SESSION = array();
+		header('Location: '.$config['page_url']);
+		die;
+	}
 //	$user = $db->select_single('SELECT * FROM users WHERE id = '.(int)$_SESSION['user']);
-//	if(!$user || $user['token'] != $_SESSION['token']) {
-//		session_destroy();
-//		$_SESSION = array();
-//		header('Location: '.$config['page_url']);
-//		die;
-//	}
-//	$group = $user['group_id'];
-//}
+    $user = $entityManager->find('User', $_SESSION['user']);
+	if($user === null || $user->getToken() != $_SESSION['token']) {
+		session_destroy();
+		$_SESSION = array();
+		header('Location: '.$config['page_url']);
+		die;
+	}
+	$group = $user->getGroupId();
+}
 
-echo "dziaaa ?";
-
-    $title = $config['title'];
+$title = $config['title'];
 $option = 0;
 if(!empty($_GET['option'])) $option = $_GET['option'];
 $page = 'main';

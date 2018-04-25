@@ -13,6 +13,17 @@ var app = {
 			}
 		});
 	},
+    logout: function() {
+        $.ajax({ type: 'POST', url: app.server, data: {task: 4} })
+            .done(function(msg) {
+                if(parseInt(msg) == 1) {
+                    location.reload();
+                } else {
+                    app.modalAlert(msg);
+                }
+                // location.reload();
+            });
+    },
 	userTypeChange: function() {
 		var type = document.getElementById('user_type').value;
 		if(type == 1) {
@@ -61,33 +72,20 @@ var app = {
 		});
 	},
 	register: function() {
-		var name         = document.getElementById('register_name').value;
-		var lastname     = document.getElementById('register_lastname').value;
 		var login        = document.getElementById('register_login').value;
-		var mail         = document.getElementById('register_mail').value;
 		var pass1        = document.getElementById('register_pass1').value;
 		var pass2        = document.getElementById('register_pass2').value;
-		var account_type = document.getElementById('user_type').value;
-		var subjects     = document.getElementById('subject').value;
-		var indeks       = document.getElementById('indeks').value;
+        var mail         = document.getElementById('register_mail').value;
+        var name         = document.getElementById('register_name').value;
+		var group		 = document.getElementById('user_type').value;
 
-		if (parseInt(account_type) > 1) {
-			subjects = document.getElementById('p_subject').value;
-		}
-
-		$.ajax({ type: 'POST', url: app.server, data: {task: 1, name: name, lastname: lastname, login: login, mail:mail, pass1: pass1, pass2: pass2, type: account_type, subjects: subjects, indeks: indeks} })
+		$.ajax({ type: 'POST', url: app.server, data: {task: 1, name: name, login: login, mail:mail, pass1: pass1, pass2: pass2, type: group} })
 		.done(function(msg) {
 			if(parseInt(msg) == 1) {
 				location.reload();
 			} else {
 				app.modalAlert(msg);
 			}
-		});
-	},
-	logout: function() {
-		$.ajax({ type: 'POST', url: app.server, data: {task: 4} })
-		.done(function(msg) {
-			location.reload();
 		});
 	},
 	modalAlert: function(t) {

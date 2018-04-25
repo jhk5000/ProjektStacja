@@ -12,7 +12,7 @@ class BugRepository extends EntityRepository
     }
     public function getRecentBugsArray($number = 30)
     {
-        $dql = "SELECT b, e, r, p FROM Bug b JOIN b.engineer e " .
+        $dql = "SELECT b, e, r, p FROM Bug b JOIN b.engineer e ".
             "JOIN b.reporter r JOIN b.stations p ORDER BY b.created DESC";
         $query = $this->getEntityManager()->createQuery($dql);
         $query->setMaxResults($number);
@@ -20,17 +20,16 @@ class BugRepository extends EntityRepository
     }
     public function getUsersBugs($userId, $number = 15)
     {
-        $dql = "SELECT b, e, r FROM Bug b JOIN b.engineer e JOIN b.reporter r " .
+        $dql = "SELECT b, e, r FROM Bug b JOIN b.engineer e JOIN b.reporter r ".
             "WHERE b.status = 'OPEN' AND e.id = ?1 OR r.id = ?1 ORDER BY b.created DESC";
         return $this->getEntityManager()->createQuery($dql)
             ->setParameter(1, $userId)
             ->setMaxResults($number)
             ->getResult();
     }
-
     public function getOpenBugsByStations()
     {
-        $dql = "SELECT p.id, p.name, count(b.id) AS openBugs FROM Bug b " .
+        $dql = "SELECT p.id, p.name, count(b.id) AS openBugs FROM Bug b ".
             "JOIN b.stations p WHERE b.status = 'OPEN' GROUP BY p.id";
         return $this->getEntityManager()->createQuery($dql)->getScalarResult();
     }
