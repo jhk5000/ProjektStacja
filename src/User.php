@@ -10,7 +10,7 @@ class User
      * @var string
      */
     protected $user_id;
-    protected $login;
+    public $login;
     protected $passwd;
     protected $name;
     protected $mail;
@@ -24,14 +24,14 @@ class User
      * User constructor.
      * @param string $user_id
      * @param string $login
-     * @param Stations[] $passwd
+     * @param $passwd
      * @param $name
      * @param $mail
      * @param $register_date
      * @param $group_id
      * @param $info
      */
-    public function __construct($user_id, $login, array $passwd, $name, $mail, $register_date, $group_id, $info, $token, $company)
+    public function __construct($user_id, $login, $passwd, $name, $mail, $register_date, $group_id, $info, $token, $company)
     {
         $this->user_id = $user_id;
         $this->login = $login;
