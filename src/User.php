@@ -41,27 +41,134 @@ class User
         $this->info = $info;
     }
 
-    public function getId()
+    /**
+     * @return string
+     */
+    public function getUserId()
     {
         return $this->user_id;
     }
+
+    /**
+     * @param string $user_id
+     */
+    public function setUserId($user_id)
+    {
+        $this->user_id = $user_id;
+    }
+
+    /**
+     * @return string
+     */
     public function getLogin()
     {
         return $this->login;
     }
+
+    /**
+     * @param string $login
+     */
     public function setLogin($login)
     {
         $this->login = $login;
     }
 
-    public function getPasswd($passwd)
+    /**
+     * @return array|Stations[]
+     */
+    public function getPasswd()
     {
         return $this->passwd;
     }
 
+    /**
+     * @param array|Stations[] $passwd
+     */
     public function setPasswd($passwd)
     {
         $this->passwd = $passwd;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * @param mixed $name
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getMail()
+    {
+        return $this->mail;
+    }
+
+    /**
+     * @param mixed $mail
+     */
+    public function setMail($mail)
+    {
+        $this->mail = $mail;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getRegisterDate()
+    {
+        return $this->register_date;
+    }
+
+    /**
+     * @param mixed $register_date
+     */
+    public function setRegisterDate($register_date)
+    {
+        $this->register_date = $register_date;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getGroupId()
+    {
+        return $this->group_id;
+    }
+
+    /**
+     * @param mixed $group_id
+     */
+    public function setGroupId($group_id)
+    {
+        $this->group_id = $group_id;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getInfo()
+    {
+        return $this->info;
+    }
+
+    /**
+     * @param mixed $info
+     */
+    public function setInfo($info)
+    {
+        $this->info = $info;
+    }
+
+
 
 }
