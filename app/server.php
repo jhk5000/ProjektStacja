@@ -18,8 +18,8 @@
 				$_SESSION = array();
 				die();
 			}
-			$user = $db->select_single('SELECT * FROM users WHERE id = '.(int)$_SESSION['user']);
-			if(!$user || $user['token'] != $_SESSION['token']) {
+            $user = $entityManager->find('User', $_SESSION['user']);
+			if($user === null || $user->getToken() != $_SESSION['token']) {
 				session_destroy();
 				$_SESSION = array();
 				die();
@@ -45,12 +45,21 @@
                             echo 'Podany mail jest już zajęty!';
                         } else {
 							$password = password_hash($_POST['pass1'], PASSWORD_BCRYPT);
+                            $data = date("y-m-d");
 
                             $user = new User();
                             $user->setLogin($_POST['login']);
+                            $user->setPasswd($password);
+                            $user->setName($_POST['name']);
+                            $user->setMail($_POST['mail']);
+                            $user->setRegisterDate($data);
+//                            $user->setGroupId($_POST['group']);
+                            $user->setGroupId('1');
+                            $user->setToken('123');
+                            $user->setInfo('');
 
                             $entityManager->persist($user);
-
+                            $entityManager->flush();
                             echo 1;
 //							$db->query("INSERT INTO `users` (`login`, `password`, `name`, `lastname`, `mail`, `register_date`, `group_id`, `token`, `subject_ids`, `indeks`) VALUES ('".$_POST['login']."', '".sha1($_POST['pass1'])."', '".$_POST['name']."', '".$_POST['lastname']."', '".$_POST['mail']."', '".$time_now."', '".$_POST['type']."', '".$token."', '".$_POST['subjects']."', '".$_POST['indeks']."');");
 						}
@@ -100,6 +109,7 @@
 			case 4:
 				session_destroy();
 				$_SESSION = array();
+				echo 1;
 				break;
 			default:
 				break;

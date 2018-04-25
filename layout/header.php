@@ -18,7 +18,7 @@
 					<?php if(empty($user)) { ?>
 						<span class="top pointer" onClick="app.openWindow(1);">Zaloguj</span> | <span class="top pointer" onClick="app.openWindow(2);">Rejestracja</span>
 					<?php } else { ?>
-						<?php echo $user->getName(); echo $_SESSION['user'];?> <small>(<?php echo $config['account_types'][$user->getGroupId()];?>)</small> | <a href="<?php echo $config['page_url'];?>?page=myaccount"><span class="top pointer">Moje Konto</a></span> | <span class="top pointer" onClick="app.logout();">Wyloguj</span>
+						<?php echo $user->getName(); ?> <small>(<?php echo $config['account_types'][$user->getGroupId()];?>)</small> | <a href="<?php echo $config['page_url'];?>?page=myaccount"><span class="top pointer">Moje Konto</a></span> | <span class="top pointer" onClick="app.logout();">Wyloguj</span>
 					<?php } ?>
 					</div>
 				</div>

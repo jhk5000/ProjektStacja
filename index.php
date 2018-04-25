@@ -21,7 +21,7 @@ if(!empty($_SESSION['user'])) {
 	}
 //	$user = $db->select_single('SELECT * FROM users WHERE id = '.(int)$_SESSION['user']);
     $user = $entityManager->find('User', $_SESSION['user']);
-	if($user->getToken() != $_SESSION['token']) {
+	if($user === null || $user->getToken() != $_SESSION['token']) {
 		session_destroy();
 		$_SESSION = array();
 		header('Location: '.$config['page_url']);
