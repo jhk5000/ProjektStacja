@@ -124,7 +124,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`user_id`, `login`, `passwd`, `name`, `mail`, `register_date`, `group_id`, `token`, `info`) VALUES
-(1, 'a', 'a', 'a', 'a', '2018-04-09', 1, 'a', 'a');
+(1, 'a', '$2y$10$pfdm9ssnDrQdXlVSSQ0U1OxfSA9fdUYgcP2qB/f0pV68hofjbjdMK', 'a', 'a', '2018-04-09', 1, 'a', 'a');
 
 --
 -- Indeksy dla zrzutów tabel
