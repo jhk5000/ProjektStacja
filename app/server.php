@@ -3,13 +3,14 @@
 	error_reporting(E_ALL);
 	ini_set('display_errors',1);
 
+    require_once('../bootstrap.php');
+
 	require('config.php');
-	require('db.php');
 	require('functions.php');
 
 	if(!empty($_POST['task'])) {
 		$time_now = time();
-		$db = new DB($config['db']['host'], $config['db']['username'], $config['db']['password'], $config['db']['database']);
+		//$db = new DB($config['db']['host'], $config['db']['username'], $config['db']['password'], $config['db']['database']);
 		
 		if(!empty($_SESSION['user'])) {
 			if(empty($_SESSION['token'])) {
@@ -51,15 +52,21 @@
 				break;
 			case 2:
 				if(!empty($_POST['login']) && !empty($_POST['password'])) {
-					$check = $db->select_single("SELECT id FROM users WHERE (UPPER(login) = UPPER('".$_POST['login']."') OR UPPER(mail) = UPPER('".$_POST['login']."')) AND password = '".sha1($_POST['password'])."';");
-					if($check) {
-						echo 1;
-						$_SESSION['user']  = $check['id'];
-						$_SESSION['token'] = generateToken();
-						$db->query("UPDATE users SET token = '".$_SESSION['token']."' WHERE id = ".$check['id']);
-					} else {
-						echo 'Podano nieprawidłowe dane!';
-					}
+                    $login = $_POST['login'];
+
+                    $user = $entityManager->getRepository('User')->findOneBy(array('login' => $login));
+                    if ($user === null) {
+                        echo "Podano nieprawidłowy login!";
+                        exit(1);
+                    }
+
+                    $password = $user->getPasswd();
+                    if(password_verify($_POST['password'], $password)){
+                        echo "Zalogowano!";
+                        $_SESSION['user']  = $user->getId();
+                    }else{
+                        echo "Podano nieporawidłowe hasło!";
+                    }
 				} else {
 					echo 'Uzupełnij wszystkie dane!';
 				}
