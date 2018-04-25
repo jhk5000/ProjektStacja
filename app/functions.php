@@ -40,43 +40,25 @@
 	function getRegisterWindow($subjects, $departments) {
 		global $config;
 		$output = '<div id="registerBox" class="modalWindow">
-				<div id="blackX" onClick="app.closeModal();"></div>
-				<h2>Rejestracja</h2><hr class="style-one"></hr>
-				<div class="row">
-				<div class="col-lg-6">
-					<b>Login:</b> <input onkeypress="app.check_key(event);" type="text" class="form-control" id="register_login" value=""/>
-					<b>Hasło:</b> <input onkeypress="app.check_key(event);" type="password" class="form-control" id="register_pass1" value=""/>
-					<b>Powtórz hasło:</b> <input onkeypress="app.check_key(event);" type="password" class="form-control" id="register_pass2" value=""/>
-					<b>Email:</b> <input onkeypress="app.check_key(event);" type="text" class="form-control" id="register_mail" value=""/>
-				</div>
-				<div class="col-lg-6">
-				<b>Imię:</b> <input onkeypress="app.check_key(event);" type="text" class="form-control" id="register_name" value=""/>
-				<b>Nazwisko:</b> <input onkeypress="app.check_key(event);" type="text" class="form-control" id="register_lastname" value=""/>
-				<b>Typ konta:</b> <select id="user_type" onChange="app.userTypeChange();" class="form-control">
-				<option value="1">Klient</option>
-				<option value="2">Inny typ konta (wymaga potwierdzenia)</option>
-				</select>
-				
-				<div id="student_subject" style="display:block;">
-				<b>Kierunek:</b> <select id="subject" class="form-control">';
-				if($subjects) {
-					foreach($subjects as $s) {
-						$output .= '<option value="'.$s['id'].'">'.$s['name'].' ('.$config['studies_types'][$s['type']].')</option>';
-					}
-				}
-				$output .= '</select>
-				<b>Numer indeksu:</b> <input onkeypress="app.check_key(event);" type="text" class="form-control" id="indeks" value=""/>
-				</div>
-				<div id="promoter_subject" style="display:none;">
-				<b>Wydział:</b> <select id="p_subject" class="form-control">';
-				if($departments) {
-					foreach($departments as $s) {
-						$output .= '<option value="'.$s['id'].'">'.$s['name'].'</option>';
-					}
-				}
-				$output .= '</select></div>
-				</div></div><br/>
-				<center><input class="btn btn-primary btn-lg" type="submit" onClick="app.register();" value="Zarejestruj"/></center>
+				    <div id="blackX" onClick="app.closeModal();"></div>
+				    <h2>Rejestracja</h2><hr class="style-one"></hr>
+				    <div class="row">
+                        <div class="col-lg-6">
+                            <b>Login:</b> <input onkeypress="app.check_key(event);" type="text" class="form-control" id="register_login" value=""/>
+                            <b>Hasło:</b> <input onkeypress="app.check_key(event);" type="password" class="form-control" id="register_pass1" value=""/>
+                            <b>Powtórz hasło:</b> <input onkeypress="app.check_key(event);" type="password" class="form-control" id="register_pass2" value=""/>
+                            <b>Email:</b> <input onkeypress="app.check_key(event);" type="text" class="form-control" id="register_mail" value=""/>
+                        </div>
+				        <div class="col-lg-6">
+                            <b>Imię i Nazwisko:</b> <input onkeypress="app.check_key(event);" type="text" class="form-control" id="register_name" value=""/>
+                            <b>Typ konta:</b> 
+                            <select id="user_type" onChange="app.userTypeChange();" class="form-control">
+                                <option value="1">Klient</option>
+                                <option value="2">Inny typ konta (wymaga potwierdzenia)</option>
+				            </select>
+				        </div>
+				    </div><br/>
+				    <center><input class="btn btn-primary btn-lg" type="submit" onClick="app.register();" value="Zarejestruj"/></center>
 				</div>';
 		return $output;
 	}

@@ -1,38 +1,37 @@
 <?php
-use Doctrine\Common\Collections\ArrayCollection;
 /**
- * @Entity(repositoryClass="BugRepository") @Table(name="bugs")
+ * @Entity @Table(name="stations")
  */
 class Stations
 {
     /**
-     * @Id @Column(type="integer") @GeneratedValue
+     * @Id @GeneratedValue @Column(type="integer")
+     * @var string
      */
     protected $station_id;
+    /**
+     * @Column(type="string")
+     * @var string
+     */
     protected $name;
+    /**
+     * @Column(type="string")
+     * @var string
+     */
     protected $voivodeship;
+    /**
+     * @Column(type="string")
+     * @var string
+     */
     protected $city;
+    /**
+     * @Column(type="string")
+     * @var string
+     */
     protected $street;
 
     /**
-     * Stations constructor.
-     * @param $station_id
-     * @param $name
-     * @param $voivodeship
-     * @param $city
-     * @param $street
-     */
-    public function __construct($station_id, $name, $voivodeship, $city, $street)
-    {
-        $this->station_id = $station_id;
-        $this->name = $name;
-        $this->voivodeship = $voivodeship;
-        $this->city = $city;
-        $this->street = $street;
-    }
-
-    /**
-     * @return mixed
+     * @return string
      */
     public function getStationId()
     {
@@ -40,7 +39,7 @@ class Stations
     }
 
     /**
-     * @param mixed $station_id
+     * @param string $station_id
      */
     public function setStationId($station_id)
     {
@@ -48,7 +47,7 @@ class Stations
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getName()
     {
@@ -56,7 +55,7 @@ class Stations
     }
 
     /**
-     * @param mixed $name
+     * @param string $name
      */
     public function setName($name)
     {
@@ -64,7 +63,7 @@ class Stations
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getVoivodeship()
     {
@@ -72,7 +71,7 @@ class Stations
     }
 
     /**
-     * @param mixed $voivodeship
+     * @param string $voivodeship
      */
     public function setVoivodeship($voivodeship)
     {
@@ -80,7 +79,7 @@ class Stations
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getCity()
     {
@@ -88,7 +87,7 @@ class Stations
     }
 
     /**
-     * @param mixed $city
+     * @param string $city
      */
     public function setCity($city)
     {
@@ -96,7 +95,7 @@ class Stations
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getStreet()
     {
@@ -104,7 +103,7 @@ class Stations
     }
 
     /**
-     * @param mixed $street
+     * @param string $street
      */
     public function setStreet($street)
     {

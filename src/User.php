@@ -10,71 +10,61 @@ class User
      * @var string
      */
     protected $user_id;
+    /**
+     * @Column(type="string")
+     * @var string
+     */
     protected $login;
+    /**
+     * @Column(type="string")
+     * @var string
+     */
     protected $passwd;
+    /**
+     * @Column(type="string")
+     * @var string
+     */
     protected $name;
+    /**
+     * @Column(type="string")
+     * @var string
+     */
     protected $mail;
+    /**
+     * @Column(type="string")
+     * @var string
+     */
     protected $register_date;
+    /**
+     * @Column(type="string")
+     * @var string
+     */
     protected $group_id;
+    /**
+     * @Column(type="string")
+     * @var string
+     */
     protected $info;
+    /**
+     * @Column(type="string")
+     * @var string
+     */
     protected $token;
-    protected $company;
 
     /**
-     * User constructor.
-     * @param string $user_id
-     * @param string $login
-     * @param Stations[] $passwd
-     * @param $name
-     * @param $mail
-     * @param $register_date
-     * @param $group_id
-     * @param $info
+     * @OneToMany(targetEntity="Bug", mappedBy="reporter")
+     * @var Bug[]
      */
-    public function __construct($user_id, $login, array $passwd, $name, $mail, $register_date, $group_id, $info, $token, $company)
-    {
-        $this->user_id = $user_id;
-        $this->login = $login;
-        $this->passwd = $passwd;
-        $this->name = $name;
-        $this->mail = $mail;
-        $this->register_date = $register_date;
-        $this->group_id = $group_id;
-        $this->info = $info;
-        $this->token = $token;
-        $this->company = $company;
-    }
-
+    protected $reportedBugs = null;
     /**
-     * @return mixed
+     * @OneToMany(targetEntity="Bug", mappedBy="engineer")
+     * @var Bug[]
      */
-    public function getToken()
+    protected $assignedBugs = null;
+    public function __construct()
     {
-        return $this->token;
-    }
-
-    /**
-     * @param mixed $token
-     */
-    public function setToken($token)
-    {
-        $this->token = $token;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getCompany()
-    {
-        return $this->company;
-    }
-
-    /**
-     * @param mixed $company
-     */
-    public function setCompany($company)
-    {
-        $this->company = $company;
+        $this->reportedBugs = new ArrayCollection();
+        $this->assignedBugs = new ArrayCollection();
     }
 
     /**
@@ -110,7 +100,7 @@ class User
     }
 
     /**
-     * @return array|Stations[]
+     * @return string
      */
     public function getPasswd()
     {
@@ -118,7 +108,7 @@ class User
     }
 
     /**
-     * @param array|Stations[] $passwd
+     * @param string $passwd
      */
     public function setPasswd($passwd)
     {
@@ -126,7 +116,7 @@ class User
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getName()
     {
@@ -134,7 +124,7 @@ class User
     }
 
     /**
-     * @param mixed $name
+     * @param string $name
      */
     public function setName($name)
     {
@@ -142,7 +132,7 @@ class User
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getMail()
     {
@@ -150,7 +140,7 @@ class User
     }
 
     /**
-     * @param mixed $mail
+     * @param string $mail
      */
     public function setMail($mail)
     {
@@ -158,7 +148,7 @@ class User
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getRegisterDate()
     {
@@ -166,7 +156,7 @@ class User
     }
 
     /**
-     * @param mixed $register_date
+     * @param string $register_date
      */
     public function setRegisterDate($register_date)
     {
@@ -174,7 +164,7 @@ class User
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getGroupId()
     {
@@ -182,7 +172,7 @@ class User
     }
 
     /**
-     * @param mixed $group_id
+     * @param string $group_id
      */
     public function setGroupId($group_id)
     {
@@ -190,7 +180,7 @@ class User
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getInfo()
     {
@@ -198,13 +188,28 @@ class User
     }
 
     /**
-     * @param mixed $info
+     * @param string $info
      */
     public function setInfo($info)
     {
         $this->info = $info;
     }
 
+    /**
+     * @return string
+     */
+    public function getToken()
+    {
+        return $this->token;
+    }
+
+    /**
+     * @param string $token
+     */
+    public function setToken($token)
+    {
+        $this->token = $token;
+    }
 
 
 }
