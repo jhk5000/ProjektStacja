@@ -9,19 +9,19 @@
 class Discount
 {
     protected $discount_id;
-    protected $User_user_id;
+    protected $Users_user_id;
     protected $discount;
 
     /**
      * Discount constructor.
      * @param $discount_id
-     * @param $User_user_id
+     * @param $Users_user_id
      * @param $discount
      */
-    public function __construct($discount_id, $User_user_id, $discount)
+    public function __construct($discount_id, $Users_user_id, $discount)
     {
         $this->discount_id = $discount_id;
-        $this->User_user_id = $User_user_id;
+        $this->Users_user_id = $Users_user_id;
         $this->discount = $discount;
     }
 
@@ -44,17 +44,17 @@ class Discount
     /**
      * @return mixed
      */
-    public function getUserUserId()
+    public function getUsersUserId()
     {
-        return $this->User_user_id;
+        return $this->Users_user_id;
     }
 
     /**
      * @param mixed $User_user_id
      */
-    public function setUserUserId($User_user_id)
+    public function setUsersUserId($Users_user_id)
     {
-        $this->User_user_id = $User_user_id;
+        $this->Users_user_id = $Users_user_id;
     }
 
     /**
