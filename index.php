@@ -35,9 +35,7 @@ $group = 0;
 //	$group = $user['group_id'];
 //}
 
-echo "dziaaa ?";
-
-    $title = $config['title'];
+$title = $config['title'];
 $option = 0;
 if(!empty($_GET['option'])) $option = $_GET['option'];
 $page = 'main';

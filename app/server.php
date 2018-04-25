@@ -2,9 +2,12 @@
 session_start();
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
+
 require_once('../bootstrap.php');
+
 require('config.php');
 require('functions.php');
+
 if (!empty($_POST['task'])) {
     $time_now = time();
     //$db = new DB($config['db']['host'], $config['db']['username'], $config['db']['password'], $config['db']['database']);
@@ -22,6 +25,7 @@ if (!empty($_POST['task'])) {
             die();
         }
     }
+
     switch ($_POST['task']) {
         case 1:
             if (!empty($_POST['name'])) {
@@ -30,22 +34,16 @@ if (!empty($_POST['task'])) {
                 } elseif (!filter_var($_POST['mail'], FILTER_VALIDATE_EMAIL)) {
                     echo 'Podano błędny adres email!';
                 } else {
-//						$check = $db->select_single("SELECT id FROM users WHERE (UPPER(login) = UPPER('".$_POST['login']."')) or (UPPER(mail) = UPPER('".$_POST['mail']."'));");
-//						if($check) {
-//							echo 'Podany login lub email jest już zajęty!';
-                    $user = $entityManager->getRepository('User')->findOneBy(array('login' => $_POST['login']));
-                    $mail = $entityManager->getRepository('User')->findOneBy(array('mail' => $_POST['mail']));
-                    if ($user !== null) {
-                        echo 'Podany login jest już zajęty!';
-                    } elseif ($mail !== null) {
-                        echo 'Podany mail jest już zajęty!';
+                    $check = $db->select_single("SELECT id FROM users WHERE (UPPER(login) = UPPER('" . $_POST['login'] . "')) or (UPPER(mail) = UPPER('" . $_POST['mail'] . "'));");
+                    if ($check) {
+                        echo 'Podany login lub email jest już zajęty!';
                     } else {
-                        $password = password_hash($_POST['pass1'], PASSWORD_BCRYPT);
-                        $user = new User();
-                        $user->setLogin($_POST['login']);
-                        $entityManager->persist($user);
-                        echo 1;
-//							$db->query("INSERT INTO `users` (`login`, `password`, `name`, `lastname`, `mail`, `register_date`, `group_id`, `token`, `subject_ids`, `indeks`) VALUES ('".$_POST['login']."', '".sha1($_POST['pass1'])."', '".$_POST['name']."', '".$_POST['lastname']."', '".$_POST['mail']."', '".$time_now."', '".$_POST['type']."', '".$token."', '".$_POST['subjects']."', '".$_POST['indeks']."');");
+                        echo '1';
+                        $token = generateToken();
+                        $db->query("INSERT INTO `users` (`login`, `password`, `name`, `lastname`, `mail`, `register_date`, `group_id`, `token`, `subject_ids`, `indeks`) VALUES ('" . $_POST['login'] . "', '" . sha1($_POST['pass1']) . "', '" . $_POST['name'] . "', '" . $_POST['lastname'] . "', '" . $_POST['mail'] . "', '" . $time_now . "', '" . $_POST['type'] . "', '" . $token . "', '" . $_POST['subjects'] . "', '" . $_POST['indeks'] . "');");
+                        $id = $db->select_single("SELECT id FROM users WHERE UPPER(login) = UPPER('" . $_POST['login'] . "') AND password = '" . sha1($_POST['pass1']) . "';");
+                        $_SESSION['user'] = $id['id'];
+                        $_SESSION['token'] = $token;
                     }
                 }
             } else {
@@ -55,20 +53,17 @@ if (!empty($_POST['task'])) {
         case 2:
             if (!empty($_POST['login']) && !empty($_POST['password'])) {
                 $login = $_POST['login'];
+
                 $user = $entityManager->getRepository('User')->findOneBy(array('login' => $login));
-//                    $user = $entityManager->find('User', 1);
                 if ($user === null) {
                     echo "Podano nieprawidłowy login!";
                     exit(1);
                 }
+
                 $password = $user->getPasswd();
                 if (password_verify($_POST['password'], $password)) {
-                    $_SESSION['user'] = $user->getUserId();
-                    $token = generateToken();
-                    $_SESSION['token'] = $token;
-                    $user->setToken($token);
-                    $entityManager->flush();
-                    echo 1;
+                    echo "Zalogowano!";
+                    $_SESSION['user'] = $user->getId();
                 } else {
                     echo "Podano nieporawidłowe hasło!";
                 }
@@ -83,8 +78,8 @@ if (!empty($_POST['task'])) {
                 $subjects = $db->select_multi('SELECT * FROM studies');
                 echo getSubjectWindow($subjects);
             } else {
-//					$subjects    = $db->select_multi('SELECT * FROM studies');
-//					$departments = $db->select_multi('SELECT * FROM departments');
+                $subjects = $db->select_multi('SELECT * FROM studies');
+                $departments = $db->select_multi('SELECT * FROM departments');
                 echo getRegisterWindow($subjects, $departments);
             }
             break;

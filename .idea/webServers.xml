@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="4d6c27f2-7d5c-4237-8a10-1d576ec04b20" name="stations_db" url="http://localhost/ProjektStacja/">
+        <fileTransfer port="0" accessType="LOCAL" />
+      </webServer>
+      <webServer id="b6f2a426-3fa5-4a10-bc3c-ef7d2a838a6d" name="http://localhost/ProjektStacja/" url="http://localhost">
+        <fileTransfer port="0" mountedRoot="" accessType="MOUNT" />
+      </webServer>
+      <webServer id="ff11f20d-a0e9-4dd4-a265-5ab3ddd741c3" name="http://localhost/ProjektStacja/ (1)" url="http://localhost">
+        <fileTransfer port="0" mountedRoot="C:\xampp\htdocs\ProjektStacja" accessType="MOUNT" />
+      </webServer>
+      <webServer id="4fda8246-ca81-4ffa-abad-ec74186752ba" name="http://localhost/ProjektStacja/ (2)" url="http://localhost/ProjektStacja/">
+        <fileTransfer port="0" mountedRoot="" accessType="MOUNT" />
+      </webServer>
+    </option>
+  </component>
+</project>

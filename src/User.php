@@ -30,7 +30,6 @@ class User
         $this->reportedBugs = new ArrayCollection();
         $this->assignedBugs = new ArrayCollection();
     }
-
     public function getId()
     {
         return $this->user_id;
@@ -43,12 +42,10 @@ class User
     {
         $this->login = $login;
     }
-
     public function addReportedBug($bug)
     {
         $this->reportedBugs[] = $bug;
     }
-
     public function assignedToBug($bug)
     {
         $this->assignedBugs[] = $bug;
