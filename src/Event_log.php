@@ -2,7 +2,7 @@
 /**
  * @Entity @Table(name="products")
  */
-class Product
+class Eventlog
 {
     /** @Id @Column(type="integer") @GeneratedValue */
     protected $id;

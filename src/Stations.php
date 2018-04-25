@@ -30,7 +30,7 @@ class Stations
      */
     protected $reporter;
     /**
-     * @ManyToMany(targetEntity="Product")
+     * @ManyToMany(targetEntity="Eventlog")
      */
     protected $products;
 
