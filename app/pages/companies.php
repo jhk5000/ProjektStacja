@@ -2,4 +2,5 @@
 
 
 ?>
-<h2>Współpracujące firmy: </h2><hr class="style-one"></hr>
+<h2>Firmy współpracujące z naszymi stacjami: </h2>
+<hr class="style-one"></hr>

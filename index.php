@@ -35,7 +35,7 @@ $group = 0;
 //	$group = $user['group_id'];
 //}
 
-echo dziaaa ?
+echo "dziaaa ?";
 
     $title = $config['title'];
 $option = 0;

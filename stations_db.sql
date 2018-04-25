@@ -115,6 +115,7 @@ CREATE TABLE `users` (
   `register_date` date DEFAULT NULL,
   `group_id` int(10) UNSIGNED DEFAULT NULL,
   `token` varchar(255) COLLATE utf8_polish_ci DEFAULT NULL,
+  `company` varchar(255) COLLATE utf8_polish_ci DEFAULT NULL,
   `info` text COLLATE utf8_polish_ci
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
 
