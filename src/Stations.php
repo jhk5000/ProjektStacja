@@ -3,7 +3,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 /**
  * @Entity(repositoryClass="BugRepository") @Table(name="bugs")
  */
-class Bug
+class Stations
 {
     /**
      * @Id @Column(type="integer") @GeneratedValue

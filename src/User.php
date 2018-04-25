@@ -16,13 +16,13 @@ class User
      */
     protected $login;
     /**
-     * @OneToMany(targetEntity="Bug", mappedBy="reporter")
-     * @var Bug[]
+     * @OneToMany(targetEntity="Stations", mappedBy="reporter")
+     * @var Stations[]
      */
     protected $reportedBugs = null;
     /**
-     * @OneToMany(targetEntity="Bug", mappedBy="engineer")
-     * @var Bug[]
+     * @OneToMany(targetEntity="Stations", mappedBy="engineer")
+     * @var Stations[]
      */
     protected $assignedBugs = null;
     public function __construct()
