@@ -10,73 +10,62 @@ class User
      * @var string
      */
     protected $user_id;
-    public $login;
+    /**
+     * @Column(type="string")
+     * @var string
+     */
+    protected $login;
+    /**
+     * @Column(type="string")
+     * @var string
+     */
     protected $passwd;
+    /**
+     * @Column(type="string")
+     * @var string
+     */
     protected $name;
+    /**
+     * @Column(type="string")
+     * @var string
+     */
     protected $mail;
+    /**
+     * @Column(type="string")
+     * @var string
+     */
     protected $register_date;
+    /**
+     * @Column(type="string")
+     * @var string
+     */
     protected $group_id;
+    /**
+     * @Column(type="string")
+     * @var string
+     */
     protected $info;
+    /**
+     * @Column(type="string")
+     * @var string
+     */
     protected $token;
-    protected $company;
-
     /**
-     * User constructor.
-     * @param string $user_id
-     * @param string $login
-     * @param $passwd
-     * @param $name
-     * @param $mail
-     * @param $register_date
-     * @param $group_id
-     * @param $info
+     * @OneToMany(targetEntity="Bug", mappedBy="reporter")
+     * @var Bug[]
      */
-    public function __construct($user_id, $login, $passwd, $name, $mail, $register_date, $group_id, $info, $token, $company)
-    {
-        $this->user_id = $user_id;
-        $this->login = $login;
-        $this->passwd = $passwd;
-        $this->name = $name;
-        $this->mail = $mail;
-        $this->register_date = $register_date;
-        $this->group_id = $group_id;
-        $this->info = $info;
-        $this->token = $token;
-        $this->company = $company;
-    }
-
+    protected $reportedBugs = null;
     /**
-     * @return mixed
+     * @OneToMany(targetEntity="Bug", mappedBy="engineer")
+     * @var Bug[]
      */
-    public function getToken()
-    {
-        return $this->token;
-    }
+    protected $assignedBugs = null;
 
-    /**
-     * @param mixed $token
-     */
-    public function setToken($token)
+    public function __construct()
     {
-        $this->token = $token;
+        $this->reportedBugs = new ArrayCollection();
+        $this->assignedBugs = new ArrayCollection();
     }
-
-    /**
-     * @return mixed
-     */
-    public function getCompany()
-    {
-        return $this->company;
-    }
-
-    /**
-     * @param mixed $company
-     */
-    public function setCompany($company)
-    {
-        $this->company = $company;
-    }
-
     /**
      * @return string
      */
@@ -84,7 +73,6 @@ class User
     {
         return $this->user_id;
     }
-
     /**
      * @param string $user_id
      */
@@ -92,7 +80,6 @@ class User
     {
         $this->user_id = $user_id;
     }
-
     /**
      * @return string
      */
@@ -100,7 +87,6 @@ class User
     {
         return $this->login;
     }
-
     /**
      * @param string $login
      */
@@ -108,103 +94,104 @@ class User
     {
         $this->login = $login;
     }
-
     /**
-     * @return array|Stations[]
+     * @return string
      */
     public function getPasswd()
     {
         return $this->passwd;
     }
-
     /**
-     * @param array|Stations[] $passwd
+     * @param string $passwd
      */
     public function setPasswd($passwd)
     {
         $this->passwd = $passwd;
     }
-
     /**
-     * @return mixed
+     * @return string
      */
     public function getName()
     {
         return $this->name;
     }
-
     /**
-     * @param mixed $name
+     * @param string $name
      */
     public function setName($name)
     {
         $this->name = $name;
     }
-
     /**
-     * @return mixed
+     * @return string
      */
     public function getMail()
     {
         return $this->mail;
     }
-
     /**
-     * @param mixed $mail
+     * @param string $mail
      */
     public function setMail($mail)
     {
         $this->mail = $mail;
     }
-
     /**
-     * @return mixed
+     * @return string
      */
     public function getRegisterDate()
     {
         return $this->register_date;
     }
-
     /**
-     * @param mixed $register_date
+     * @param string $register_date
      */
     public function setRegisterDate($register_date)
     {
         $this->register_date = $register_date;
     }
-
     /**
-     * @return mixed
+     * @return string
      */
     public function getGroupId()
     {
         return $this->group_id;
     }
-
     /**
-     * @param mixed $group_id
+     * @param string $group_id
      */
     public function setGroupId($group_id)
     {
         $this->group_id = $group_id;
     }
-
     /**
-     * @return mixed
+     * @return string
      */
     public function getInfo()
     {
         return $this->info;
     }
-
     /**
-     * @param mixed $info
+     * @param string $info
      */
     public function setInfo($info)
     {
         $this->info = $info;
     }
 
+    /**
+     * @return string
+     */
+    public function getToken()
+    {
+        return $this->token;
+    }
 
-
+    /**
+     * @param string $token
+     */
+    public function setToken($token)
+    {
+        $this->token = $token;
+    }
 }
