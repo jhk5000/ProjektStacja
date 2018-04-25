@@ -10,17 +10,7 @@ class User
      * @var string
      */
     protected $user_id;
-    /**
-     * @Column(type="string")
-     * @var string
-     */
-
     protected $login;
-    /**
-     * @OneToMany(targetEntity="Stations", mappedBy="reporter")
-     * @var Stations[]
-     */
-
     protected $passwd;
     protected $name;
     protected $mail;
