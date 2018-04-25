@@ -14,22 +14,43 @@ class User
      * @Column(type="string")
      * @var string
      */
+
     protected $login;
     /**
      * @OneToMany(targetEntity="Stations", mappedBy="reporter")
      * @var Stations[]
      */
-    protected $reportedBugs = null;
+
+    protected $passwd;
+    protected $name;
+    protected $mail;
+    protected $register_date;
+    protected $group_id;
+    protected $info;
+
     /**
-     * @OneToMany(targetEntity="Stations", mappedBy="engineer")
-     * @var Stations[]
+     * User constructor.
+     * @param string $user_id
+     * @param string $login
+     * @param Stations[] $passwd
+     * @param $name
+     * @param $mail
+     * @param $register_date
+     * @param $group_id
+     * @param $info
      */
-    protected $assignedBugs = null;
-    public function __construct()
+    public function __construct($user_id, $login, array $passwd, $name, $mail, $register_date, $group_id, $info)
     {
-        $this->reportedBugs = new ArrayCollection();
-        $this->assignedBugs = new ArrayCollection();
+        $this->user_id = $user_id;
+        $this->login = $login;
+        $this->passwd = $passwd;
+        $this->name = $name;
+        $this->mail = $mail;
+        $this->register_date = $register_date;
+        $this->group_id = $group_id;
+        $this->info = $info;
     }
+
     public function getId()
     {
         return $this->user_id;
@@ -42,12 +63,15 @@ class User
     {
         $this->login = $login;
     }
-    public function addReportedBug($bug)
+
+    public function getPasswd($passwd)
     {
-        $this->reportedBugs[] = $bug;
+        return $this->passwd;
     }
-    public function assignedToBug($bug)
+
+    public function setPasswd($passwd)
     {
-        $this->assignedBugs[] = $bug;
+        $this->passwd = $passwd;
     }
+
 }
