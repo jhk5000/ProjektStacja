@@ -1,5 +1,7 @@
 <?php
 
+
+// to sem jest strona, która mozna usunąć :) 
 $option = 0;
 
 if (empty($_GET['option']) === false) {
