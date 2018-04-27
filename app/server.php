@@ -19,7 +19,7 @@
 				die();
 			}
             $user = $entityManager->find('User', $_SESSION['user']);
-			if($user === null || $user->getToken() != $_SESSION['token']) {
+			if($user === null || !password_verify($_SESSION['token'], $user->getToken())) {
 				session_destroy();
 				$_SESSION = array();
 				die();
@@ -79,15 +79,36 @@
                         exit(1);
                     }
 
+                    $dql = "SELECT l FROM logdata l WHERE l.Users_user_id = ".$user->getUserId()." AND l.valid = 0 ORDER BY l.log_date DESC";
+                    $query = $entityManager->createQuery($dql);
+                    $query->setMaxResults(3);
+                    $logs = $query->getResult();
+                    $date1 = $logs[2]->getLogDate();
+                    if(compareDates($date1, $logs)>0){
+                        echo "Logowanie zablokowane. Następne możliwe logowanie: ";
+                        echo date("y-m-d H:i:s", strtotime($date1)+300);
+                        exit(1);
+                    }
+
                     $password = $user->getPasswd();
+                    $log = new Logdata();
+                    $log->setUsersUserId($user->getUserId());
+                    $log->setLogDate(date("y-m-d H:i:s"));
                     if(password_verify($_POST['password'], $password)){
                         $_SESSION['user']  = $user->getUserId();
                         $token = generateToken();
                         $_SESSION['token'] = $token;
+                        $token = password_hash($token, PASSWORD_BCRYPT);
                         $user->setToken($token);
+                        $entityManager->flush();
+                        $log->setValid(1);
+                        $entityManager->persist($log);
                         $entityManager->flush();
                         echo 1;
                     }else{
+                        $log->setValid(0);
+                        $entityManager->persist($log);
+                        $entityManager->flush();
                         echo "Podano nieporawidłowe hasło!";
                     }
 				} else {

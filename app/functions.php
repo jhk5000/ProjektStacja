@@ -185,3 +185,12 @@ function getName(array $array) {
 
 	return trim($string);
 }
+
+function compareDates($date1, $logs){
+    $date2 = date("y-m-d H:i:s");
+    if (count($logs) > 2 && strtotime($date2) < strtotime($date1)+300){
+        return 1;
+    }else{
+        return 0;
+    }
+}
