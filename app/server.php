@@ -83,11 +83,13 @@
                     $query = $entityManager->createQuery($dql);
                     $query->setMaxResults(3);
                     $logs = $query->getResult();
-                    $date1 = $logs[2]->getLogDate();
-                    if(compareDates($date1, $logs)>0){
-                        echo "Logowanie zablokowane. Następne możliwe logowanie: ";
-                        echo date("y-m-d H:i:s", strtotime($date1)+300);
-                        exit(1);
+                    if(count($logs)>2){
+                        $date1 = $logs[2]->getLogDate();
+                        if(compareDates($date1, $logs)>0){
+                            echo "Logowanie zablokowane. Następne możliwe logowanie: ";
+                            echo date("y-m-d H:i:s", strtotime($date1)+300);
+                            exit(1);
+                        }
                     }
 
                     $password = $user->getPasswd();
