@@ -1,36 +1,32 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: Adrian
- * Date: 2018-04-25
- * Time: 14:18
+ * @Entity @Table(name="logdata")
  */
-
 class Logdata
 {
-
+    /**
+     * @Id @GeneratedValue @Column(type="integer")
+     * @var string
+     */
     protected $logdata_id;
+    /**
+     * @Column(type="integer")
+     * @var string
+     */
     protected $Users_user_id;
-    protected $log_data;
+    /**
+     * @Column(type="string")
+     * @var string
+     */
+    protected $log_date;
+    /**
+     * @Column(type="string")
+     * @var string
+     */
     protected $valid;
 
     /**
-     * Logdata constructor.
-     * @param $logdata_id
-     * @param $Users_user_id
-     * @param $log_data
-     * @param $valid
-     */
-    public function __construct($logdata_id, $Users_user_id, $log_data, $valid)
-    {
-        $this->logdata_id = $logdata_id;
-        $this->Users_user_id = $Users_user_id;
-        $this->log_data = $log_data;
-        $this->valid = $valid;
-    }
-
-    /**
-     * @return mixed
+     * @return string
      */
     public function getLogdataId()
     {
@@ -38,7 +34,7 @@ class Logdata
     }
 
     /**
-     * @param mixed $logdata_id
+     * @param string $logdata_id
      */
     public function setLogdataId($logdata_id)
     {
@@ -46,7 +42,7 @@ class Logdata
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getUsersUserId()
     {
@@ -54,7 +50,7 @@ class Logdata
     }
 
     /**
-     * @param mixed $Users_user_id
+     * @param string $Users_user_id
      */
     public function setUsersUserId($Users_user_id)
     {
@@ -62,23 +58,23 @@ class Logdata
     }
 
     /**
-     * @return mixed
+     * @return string
      */
-    public function getLogData()
+    public function getLogDate()
     {
-        return $this->log_data;
+        return $this->log_date;
     }
 
     /**
-     * @param mixed $log_data
+     * @param string $log_date
      */
-    public function setLogData($log_data)
+    public function setLogDate($log_date)
     {
-        $this->log_data = $log_data;
+        $this->log_date = $log_date;
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getValid()
     {
@@ -86,13 +82,12 @@ class Logdata
     }
 
     /**
-     * @param mixed $valid
+     * @param string $valid
      */
     public function setValid($valid)
     {
         $this->valid = $valid;
     }
-
 
 
 }
