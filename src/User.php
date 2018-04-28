@@ -70,9 +70,10 @@ class User
     /**
      * @return string
      */
-    public function getInfoAboutCustomer($login,$name,$mail,$info,$register_date)
+    public function getInfoAboutCustomer()
     {
-        return $this->login+" "+$this->name+" "+$this->mail+" "+$this->info+" "+$this->register_date;
+        $dane = $this->getLogin() . ' | ' . $this->getName(). ' | ' . $this->getMail(). ' | '  . $this->getRegisterDate();
+        return $dane;
     }
 
     /**
