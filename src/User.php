@@ -70,6 +70,22 @@ class User
     /**
      * @return string
      */
+    public function getInfoAboutCustomer($login,$name,$mail,$info,$register_date)
+    {
+        return $this->login+" "+$this->name+" "+$this->mail+" "+$this->info+" "+$this->register_date;
+    }
+
+    /**
+     * @return string
+     */
+    public function getOursCustomersCompanyName()
+    {
+        return "";
+    }
+
+    /**
+     * @return string
+     */
     public function getUserId()
     {
         return $this->user_id;
