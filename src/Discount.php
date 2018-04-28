@@ -5,11 +5,25 @@
  * Date: 2018-04-25
  * Time: 14:19
  */
-
+/**
+ * @Entity @Table(name="discount")
+ */
 class Discount
 {
+    /**
+     * @Id @GeneratedValue @Column(type="integer")
+     * @var string
+     */
     protected $discount_id;
+    /**
+     * @Column(type="string")
+     * @var string
+     */
     protected $Users_user_id;
+    /**
+     * @Column(type="string")
+     * @var string
+     */
     protected $discount;
 
     /**

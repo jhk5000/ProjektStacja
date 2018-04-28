@@ -6,11 +6,24 @@
  * Time: 14:19
  */
 
+/**
+ * @Entity @Table(name="managers")
+ */
 class Managers
 {
-
+    /**
+     * @Id @GeneratedValue @Column(type="integer")
+     * @var string
+     */
     protected $manager_id;
+    /**
+     * @OneToMany(targetEntity="Stations", inversedBy="station_id")
+     */
     protected $Stations_station_id;
+
+    /**
+     * @ManyToOne(targetEntity="User", inversedBy="user_id")
+     */
     protected $Users_user_id;
 
     /**
