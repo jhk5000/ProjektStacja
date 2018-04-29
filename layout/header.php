@@ -7,7 +7,7 @@
 		<link href="css/basic.css" rel="stylesheet" type="text/css" media="screen">
         <?php scripts(); ?>
 	</head>
-	<body>
+	<body onload="refresh()">
 		<div id="box"></div>
 		<div id="page">
 			<div id="top_menu">

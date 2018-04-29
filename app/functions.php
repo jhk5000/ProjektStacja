@@ -203,7 +203,27 @@ function scripts(){
                 $(document).ready(function(){
                     $(\'[data-toggle="tooltip"]\').tooltip();
                 });
-            </script>';
+            </script>
+            
+            <script>
+                 var time = new Date().getTime();
+                 var refreshtime = 1000 * 60 * 15;
+                 
+                 function refresh() {
+                     $(document.body).bind("mousemove keypress keydown click scroll", function(e) {
+                     time = new Date().getTime();
+                     });
+                     if(new Date().getTime() - time >= refreshtime) {
+                         if('.isset($_SESSION['user']).'){
+                            app.logout();
+                         }
+                     }
+                     else{
+                         setTimeout(refresh, refreshtime);
+                     }
+                 }
+            </script>
+            ';
 }
 
 function compareDates($date1, $logs){
