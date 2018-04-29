@@ -126,7 +126,7 @@
 				} else {
 //					$subjects    = $db->select_multi('SELECT * FROM studies');
 //					$departments = $db->select_multi('SELECT * FROM departments');
-					echo getRegisterWindow($subjects, $departments);
+					echo getRegisterWindow();
 				}
 				break;
 			case 4:

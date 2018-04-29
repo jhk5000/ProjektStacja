@@ -37,7 +37,7 @@
 
 	// okno rejestracji użytkownika - > zmienić na okno dodawania użytkownika?
 
-	function getRegisterWindow($subjects, $departments) {
+	function getRegisterWindow() {
 		global $config;
 		$output = '<div id="registerBox" class="modalWindow">
 				    <div id="blackX" onClick="app.closeModal();"></div>
@@ -184,6 +184,26 @@ function getName(array $array) {
 	}//end if
 
 	return trim($string);
+}
+
+function scripts(){
+    echo '  
+            <script async="" src="js/jquery.min.js?v=1.72"></script>
+            <script async="" src="js/app.js"></script>
+            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+            <script>
+                $(document).ready(function(){
+                    $(\'[data-toggle="popover"]\').popover();
+                });
+            </script>
+            
+            <script>
+                $(document).ready(function(){
+                    $(\'[data-toggle="tooltip"]\').tooltip();
+                });
+            </script>';
 }
 
 function compareDates($date1, $logs){
