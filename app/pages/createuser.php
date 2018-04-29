@@ -14,7 +14,7 @@ require_once "bootstrap.php";
 
 
 // posiedze nad tym pozniej kurłaaaa
-// trza to zintegrować na funkcje i przeniesc bezposrednio do pliku customers lub managers
+// trza to zintegrować na funkcje i przeniesc bezposrednio do pliku customers lub managers 
 ?>
 
 
