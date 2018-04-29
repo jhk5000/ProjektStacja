@@ -10,7 +10,7 @@ $l=1;
 echo '<table class="table table-bordered table-hover">
 		<thead>
 		  <tr>
-		  <th>lp.</th>
+		    <th>lp.</th>
 			<th>Login</th>
 			<th>Nazwa</th>
 			<th>Mail</th>
@@ -20,12 +20,21 @@ echo '<table class="table table-bordered table-hover">
 		</thead>
 		<tbody>';
     foreach ($users as $user) {
-        echo sprintf('<tr><td>'.$l. '</td><td>'.$user->getLogin().'</td><td>'.$user->getName().' </td>
-        <td>'.$user->getMail().'</td><td>'.$user->getRegisterDate().'</td>
-        <td><a href="'.$config['page_url'].'?page=edituser&id='.$user->getUserId().'"><input type="submit" class="btn btn-info btn-xs" value="Edytuj"/></a> 
-            <a href="'.$config['page_url'].'?page=deleteuser&option=1&id='.$user->getUserId().'">
-        <input type="submit" class="btn btn-danger btn-xs" value="Usuń"/></a></td></tr>');
-   $l++;
+        echo sprintf('
+        <tr>
+            <td>'.$l. '</td>
+            <td>'.$user->getLogin().'</td>
+            <td>'.$user->getName().' </td>
+            <td>'.$user->getMail().'</td>
+            <td>'.$user->getRegisterDate().'</td>
+            <td>
+                <a href="'.$config['page_url'].'?page=edituser&id='.$user->getUserId().'"><input type="submit" class="btn btn-info btn-xs" value="Edytuj"/></a> 
+                <a href="'.$config['page_url'].'?page=deleteuser&option=1&id='.$user->getUserId().'">
+                <input type="submit" class="btn btn-danger btn-xs" value="Usuń"/></a>
+            </td>
+        </tr>
+        ');
+        $l++;
     }//end foreach
 
 echo '</tbody></table>';

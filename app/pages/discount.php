@@ -16,7 +16,7 @@ $l=1;
 echo '<table class="table table-bordered table-hover">
 		<thead>
 		  <tr>
-		  <th>lp.</th>			
+		    <th>lp.</th>			
 			<th>Klient</th>
 			<th>Wysokość zniżki</th>			
 		  </tr>
