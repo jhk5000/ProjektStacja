@@ -152,9 +152,9 @@
             else
                 echo '<a href="' . $config['page_url'] . '?page=discount" class="list-group-item">Zniżki</a>';
             if ($page == 'editusers')
-                echo '<a href="' . $config['page_url'] . '?page=editusers" class="list-group-item active">Zarządzaj użytkownikami</a>';
+                echo '<a href="' . $config['page_url'] . '?page=edituser" class="list-group-item active">Zarządzaj użytkownikami</a>';
             else
-                echo '<a href="' . $config['page_url'] . '?page=editusers" class="list-group-item">Zarządzaj użytkownikami</a>';
+                echo '<a href="' . $config['page_url'] . '?page=edituser" class="list-group-item">Zarządzaj użytkownikami</a>';
             if ($page == 'managers')
                 echo '<a href="' . $config['page_url'] . '?page=managers" class="list-group-item active">Kierownictwo</a>';
             else

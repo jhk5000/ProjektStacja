@@ -5,7 +5,7 @@ require_once "bootstrap.php";
 
 //pobranie wszystkich uzytkowników z bazy i wyswietlnie ich imion i nazwisk
 $userRepository = $entityManager->getRepository('user');
-$users = $userRepository->findBy(array('group_id' => '0'));
+$users = $userRepository->findBy(array('group_id' => '1'));
 $l=1;
 echo '<table class="table table-bordered table-hover">
 		<thead>
