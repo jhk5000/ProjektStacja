@@ -1,6 +1,11 @@
+
+
+
 <h3>Przyznane znizki</h3><hr class="style-one"></hr>
 
 <?php
+    use Doctrine\ORM\EntityRepository;
+
 	echo '<h2>zniżki</h2><hr class="style-one"></hr>';
 
 require_once "bootstrap.php";

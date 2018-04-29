@@ -12,7 +12,7 @@ require_once "bootstrap.php";
 $companyRepository = $entityManager->getRepository('User');
 $companies = $companyRepository->findBy(array('group_id' => '0'));
 
-// Tutaj trzeba uzupełnic funkcje w src/users.php, tak by wyswietlaja nazwę kazej firmy tylko raz
+// Tutaj trzeba uzupełnic funkcje w src/userss.php, tak by wyswietlaja nazwę kazej firmy tylko raz
 
 foreach ($companies as $company) {
 echo sprintf("-%s\n", $company->getOursCustomersCompanyName());
