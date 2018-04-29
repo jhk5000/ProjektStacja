@@ -51,6 +51,7 @@ echo '<table class="table table-bordered table-hover">
     }//end foreach
 
 echo '</tbody></table>';
+echo '<a href="'.$config['page_url'].'?page=createuser"><input type="submit" class="btn btn-primary" value="Dodaj klienta"/></a>';
     
 if(isset($_POST['deleteUser'])){
     $deleted = $entityManager->find('User', $_POST['id']);
