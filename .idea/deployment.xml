@@ -2,14 +2,7 @@
 <project version="4">
   <component name="PublishConfigData" serverName="baza">
     <serverData>
-      <paths name="baza">
-        <serverdata>
-          <mappings>
-            <mapping local="$PROJECT_DIR$" web="ProjektStacja" />
-          </mappings>
-        </serverdata>
-      </paths>
-      <paths name="http://localhost/ProjektStacja/">
+      <paths name="bd_test">
         <serverdata>
           <mappings>
             <mapping local="$PROJECT_DIR$" web="/" />
@@ -24,13 +17,6 @@
         </serverdata>
       </paths>
       <paths name="http://localhost/ProjektStacja/ (2)">
-        <serverdata>
-          <mappings>
-            <mapping local="$PROJECT_DIR$" web="/" />
-          </mappings>
-        </serverdata>
-      </paths>
-      <paths name="stations_db">
         <serverdata>
           <mappings>
             <mapping local="$PROJECT_DIR$" web="/" />
