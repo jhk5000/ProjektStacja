@@ -5,10 +5,9 @@
 		<title><?php echo $title;?></title>
 		<link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="screen">
 		<link href="css/basic.css" rel="stylesheet" type="text/css" media="screen">
-		<script async="" src="js/jquery.min.js?v=1.72"></script>
-		<script async="" src="js/app.js"></script>
+        <?php scripts(); ?>
 	</head>
-	<body>
+	<body onload="refresh()">
 		<div id="box"></div>
 		<div id="page">
 			<div id="top_menu">

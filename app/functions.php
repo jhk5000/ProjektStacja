@@ -37,7 +37,7 @@
 
 	// okno rejestracji użytkownika - > zmienić na okno dodawania użytkownika?
 
-	function getRegisterWindow($subjects, $departments) {
+	function getRegisterWindow() {
 		global $config;
 		$output = '<div id="registerBox" class="modalWindow">
 				    <div id="blackX" onClick="app.closeModal();"></div>
@@ -152,9 +152,9 @@
             else
                 echo '<a href="' . $config['page_url'] . '?page=discount" class="list-group-item">Zniżki</a>';
             if ($page == 'editusers')
-                echo '<a href="' . $config['page_url'] . '?page=editusers" class="list-group-item active">Zarządzaj użytkownikami</a>';
+                echo '<a href="' . $config['page_url'] . '?page=edituser" class="list-group-item active">Zarządzaj użytkownikami</a>';
             else
-                echo '<a href="' . $config['page_url'] . '?page=editusers" class="list-group-item">Zarządzaj użytkownikami</a>';
+                echo '<a href="' . $config['page_url'] . '?page=edituser" class="list-group-item">Zarządzaj użytkownikami</a>';
             if ($page == 'managers')
                 echo '<a href="' . $config['page_url'] . '?page=managers" class="list-group-item active">Kierownictwo</a>';
             else
@@ -184,6 +184,51 @@ function getName(array $array) {
 	}//end if
 
 	return trim($string);
+}
+
+function scripts(){
+    global $config;
+    echo '  
+            <script async="" src="js/jquery.min.js?v=1.72"></script>
+            <script async="" src="js/app.js"></script>
+            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+            <script>
+                $(document).ready(function(){
+                    $(\'[data-toggle="popover"]\').popover();
+                });
+            </script>
+            
+            <script>
+                $(document).ready(function(){
+                    $(\'[data-toggle="tooltip"]\').tooltip();
+                });
+            </script>
+            
+            <script>
+                 var time = new Date().getTime();
+                 var refreshtime = 1000 * 60 * 15;
+                 
+                 function refresh() {
+                     $(document.body).bind("mousemove keypress keydown click scroll", function(e) {
+                     time = new Date().getTime();
+                     });
+                     if(new Date().getTime() - time >= refreshtime) {
+                         if('.isset($_SESSION['user']).'){
+                            app.logout();
+                         }
+                     }
+                     else{
+                         setTimeout(refresh, refreshtime);
+                     }
+                 }
+                 
+                 function reload(){
+                     window.location.href="'.$config['page_url'].'?page=customers";
+                 }
+            </script>
+            ';
 }
 
 function compareDates($date1, $logs){
