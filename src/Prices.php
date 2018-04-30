@@ -1,15 +1,5 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: Adrian
- * Date: 2018-04-25
- * Time: 14:04
- */
-
-use Doctrine\ORM\Mapping as ORM;
-
-
-/**
  * @Entity @Table(name="prices")
  */
 class Prices
@@ -20,27 +10,27 @@ class Prices
      */
     protected $price_id;
     /**
-     * @Column(type="string")
+     * @Column(type="integer")
      * @var string
      */
     protected $Stations_station_id;
     /**
-     * @Column(type="string")
+     * @Column(type="decimal")
      * @var string
      */
     protected $PB98;
     /**
-     * @Column(type="string")
+     * @Column(type="decimal")
      * @var string
      */
     protected $PB95;
     /**
-     * @Column(type="string")
+     * @Column(type="decimal")
      * @var string
      */
-    protected $ON;
+    protected $OIL;
     /**
-     * @Column(type="string")
+     * @Column(type="decimal")
      * @var string
      */
     protected $LPG;
@@ -51,43 +41,25 @@ class Prices
     protected $date_of_change;
 
     /**
-     * Prices constructor.
-     * @param $price_id
-     * @param $Stations_station_id
-     * @param $gas_type
-     * @param $price
-     */
-    public function __construct($price_id, $Stations_station_id, $gas_type, $price)
-    {
-        $this->price_id = $price_id;
-        $this->Stations_station_id = $Stations_station_id;
-        $this->gas_type = $gas_type;
-        $this->price = $price;
-    }
-
-
-    /**
      * @return string
      */
-    public function getPriceId()
+    public function getPriceId(): string
     {
         return $this->price_id;
     }
 
-
     /**
      * @param string $price_id
      */
-    public function setPriceId($price_id)
+    public function setPriceId(string $price_id): void
     {
         $this->price_id = $price_id;
     }
 
-
     /**
      * @return string
      */
-    public function getStationsStationId()
+    public function getStationsStationId(): string
     {
         return $this->Stations_station_id;
     }
@@ -95,7 +67,7 @@ class Prices
     /**
      * @param string $Stations_station_id
      */
-    public function setStationsStationId($Stations_station_id)
+    public function setStationsStationId(string $Stations_station_id): void
     {
         $this->Stations_station_id = $Stations_station_id;
     }
@@ -135,17 +107,17 @@ class Prices
     /**
      * @return string
      */
-    public function getON(): string
+    public function getOIL(): string
     {
-        return $this->ON;
+        return $this->OIL;
     }
 
     /**
-     * @param string $ON
+     * @param string $OIL
      */
-    public function setON(string $ON): void
+    public function setOIL(string $OIL): void
     {
-        $this->ON = $ON;
+        $this->OIL = $OIL;
     }
 
     /**
@@ -179,6 +151,7 @@ class Prices
     {
         $this->date_of_change = $date_of_change;
     }
+
 
 
 }

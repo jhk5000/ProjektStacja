@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Czas generowania: 30 Kwi 2018, 20:11
+-- Czas generowania: 01 Maj 2018, 00:12
 -- Wersja serwera: 10.1.30-MariaDB
 -- Wersja PHP: 7.2.1
 
@@ -89,8 +89,8 @@ CREATE TABLE `managers` (
 
 INSERT INTO `managers` (`manager_id`, `Stations_station_id`, `Users_user_id`) VALUES
 (1, 4, 4),
-(5, 5, 7),
-(6, 4, 9);
+(8, 4, 5),
+(9, 4, 7);
 
 -- --------------------------------------------------------
 
@@ -101,12 +101,19 @@ INSERT INTO `managers` (`manager_id`, `Stations_station_id`, `Users_user_id`) VA
 CREATE TABLE `prices` (
   `price_id` int(10) UNSIGNED NOT NULL,
   `Stations_station_id` int(10) UNSIGNED NOT NULL,
-  `PB98` double DEFAULT NULL,
-  `PB95` double DEFAULT NULL,
-  `ON` double DEFAULT NULL,
-  `LPG` double DEFAULT NULL,
+  `PB98` varchar(255) COLLATE utf8_polish_ci DEFAULT NULL,
+  `PB95` varchar(255) COLLATE utf8_polish_ci DEFAULT NULL,
+  `OIL` varchar(255) COLLATE utf8_polish_ci DEFAULT NULL,
+  `LPG` varchar(255) COLLATE utf8_polish_ci DEFAULT NULL,
   `date_of_change` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
+
+--
+-- Zrzut danych tabeli `prices`
+--
+
+INSERT INTO `prices` (`price_id`, `Stations_station_id`, `PB98`, `PB95`, `OIL`, `LPG`, `date_of_change`) VALUES
+(7, 4, '0.03', '', '', '', '2018-05-01');
 
 -- --------------------------------------------------------
 
@@ -156,9 +163,8 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`user_id`, `login`, `passwd`, `name`, `mail`, `register_date`, `group_id`, `token`, `company`, `info`) VALUES
 (1, 'a', '$2y$10$pfdm9ssnDrQdXlVSSQ0U1OxfSA9fdUYgcP2qB/f0pV68hofjbjdMK', 'a', 'a', '2018-04-09', 4, '$2y$10$34Ocda5LvfuN/Dzp0XlzMe90IkWp1UcmSO9PRzqUm/LCZTBoeI9HW', NULL, 'a'),
 (4, '1', '1', '11', '1@1.pl', '0000-00-00', 2, '1', '1', '0'),
-(5, '2', '2', '2', '2@2.pl', '0000-00-00', 2, '2', '2', '0'),
 (7, '4', '4', '4', '4@4.pl', '0000-00-00', 2, '4', '4', '0'),
-(9, '6', '6', '6', '6@6.pl', '0000-00-00', 2, '6', '6', '0'),
+(9, '6', '6', '65', '6@6.pl', '0000-00-00', 2, '6', '6', '0'),
 (11, '8', '8', '8', '8@8.pl', '0000-00-00', 1, '8', '8', '0'),
 (12, '9', '9', '9', '9@9.pl', '0000-00-00', 1, '9', '9', '0');
 
@@ -240,13 +246,13 @@ ALTER TABLE `logdata`
 -- AUTO_INCREMENT dla tabeli `managers`
 --
 ALTER TABLE `managers`
-  MODIFY `manager_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `manager_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT dla tabeli `prices`
 --
 ALTER TABLE `prices`
-  MODIFY `price_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `price_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT dla tabeli `stations`
