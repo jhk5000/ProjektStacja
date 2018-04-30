@@ -163,6 +163,10 @@
                 echo '<a href="' . $config['page_url'] . '?page=stations" class="list-group-item active">Stacje</a>';
             else
                 echo '<a href="' . $config['page_url'] . '?page=stations" class="list-group-item">Stacje</a>';
+            if ($page == 'ourprincesoffuelsales')
+                echo '<a href="' . $config['page_url'] . '?page=ourprincesoffuelsales" class="list-group-item active">Nasze ceny paliw</a>';
+            else
+                echo '<a href="' . $config['page_url'] . '?page=ourprincesoffuelsales" class="list-group-item">Nasze ceny paliw</a>';
         }
 		if($page == 'messages')
 			echo '<a href="'.$config['page_url'].'?page=messages" class="list-group-item active">Wiadomości</a>';

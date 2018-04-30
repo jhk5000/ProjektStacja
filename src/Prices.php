@@ -6,12 +6,30 @@
  * Time: 14:04
  */
 
+
+/**
+ * @Entity @Table(name="prices")
+ */
 class Prices
 {
-
+    /**
+     * @Id @GeneratedValue @Column(type="integer")
+     * @var string
+     */
     protected $price_id;
+    /**
+     * @OneToMany(targetEntity="Stations", inversedBy="station_id")
+     */
     protected $Stations_station_id;
+    /**
+     * @Column(type="string")
+     * @var string
+     */
     protected $gas_type;
+    /**
+     * @Column(type="string")
+     * @var string
+     */
     protected $price;
 
     /**
@@ -29,24 +47,27 @@ class Prices
         $this->price = $price;
     }
 
+
     /**
-     * @return mixed
+     * @return string
      */
     public function getPriceId()
     {
         return $this->price_id;
     }
 
+
     /**
-     * @param mixed $price_id
+     * @param string $price_id
      */
     public function setPriceId($price_id)
     {
         $this->price_id = $price_id;
     }
 
+
     /**
-     * @return mixed
+     * @return string
      */
     public function getStationsStationId()
     {
@@ -54,7 +75,7 @@ class Prices
     }
 
     /**
-     * @param mixed $Stations_station_id
+     * @param string $Stations_station_id
      */
     public function setStationsStationId($Stations_station_id)
     {
@@ -62,7 +83,7 @@ class Prices
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getGasType()
     {
@@ -70,7 +91,7 @@ class Prices
     }
 
     /**
-     * @param mixed $gas_type
+     * @param string $gas_type
      */
     public function setGasType($gas_type)
     {
@@ -78,7 +99,7 @@ class Prices
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getPrice()
     {
@@ -86,7 +107,7 @@ class Prices
     }
 
     /**
-     * @param mixed $price
+     * @param string $price
      */
     public function setPrice($price)
     {
