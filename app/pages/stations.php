@@ -27,7 +27,7 @@ foreach ($stations as $station) {
     echo sprintf('
         <tr>
             <td>'.$l. '</td>
-            <td>'.$station->getName().'</td>
+            <td>'.$station->getStationName().'</td>
             <td>'.$station->getVoivodeship().'</td>
             <td>'.$station->getCity().'</td>
             <td>'.$station->getStreet().'</td>
@@ -35,7 +35,7 @@ foreach ($stations as $station) {
                 <center>
                     <a href="'.$config['page_url'].'?page=editstation&id='.$station->getStationId().'"><i class=\'glyphicon glyphicon-pencil\'></i></a> 
                     <!--<a href="'.$config['page_url'].'?page=deletestation&option=1&id='.$station->getStationId().'"><input type="submit" class="btn btn-danger btn-xs" value="Usuń"/></a>-->
-                    <a href="javascript://" title=\'<center>Czy napewno chcesz usunąć stacje '.$station->getName().'?</center>\' data-placement="bottom" data-html=\'true\' data-toggle="popover" data-trigger="focus" 
+                    <a href="javascript://" title=\'<center>Czy napewno chcesz usunąć stacje '.$station->getStationName().'?</center>\' data-placement="bottom" data-html=\'true\' data-toggle="popover" data-trigger="focus" 
                     data-content="
                         <form method=\'post\' enctype=\'multipart/form-data\' action=\'\'>
                             <div class=\'form-group\'>

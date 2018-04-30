@@ -35,34 +35,6 @@
 		return $output;
 	}
 
-	// okno rejestracji użytkownika - > zmienić na okno dodawania użytkownika?
-
-//	function getRegisterWindow() {
-//		global $config;
-//		$output = '<div id="registerBox" class="modalWindow">
-//				    <div id="blackX" onClick="app.closeModal();"></div>
-//				    <h2>Rejestracja</h2><hr class="style-one"></hr>
-//				    <div class="row">
-//                        <div class="col-lg-6">
-//                            <b>Login:</b> <input onkeypress="app.check_key(event);" type="text" class="form-control" id="register_login" value=""/>
-//                            <b>Hasło:</b> <input onkeypress="app.check_key(event);" type="password" class="form-control" id="register_pass1" value=""/>
-//                            <b>Powtórz hasło:</b> <input onkeypress="app.check_key(event);" type="password" class="form-control" id="register_pass2" value=""/>
-//                            <b>Email:</b> <input onkeypress="app.check_key(event);" type="text" class="form-control" id="register_mail" value=""/>
-//                        </div>
-//				        <div class="col-lg-6">
-//                            <b>Imię i Nazwisko:</b> <input onkeypress="app.check_key(event);" type="text" class="form-control" id="register_name" value=""/>
-//                            <b>Typ konta:</b>
-//                            <select id="user_type" onChange="app.userTypeChange();" class="form-control">
-//                                <option value="1">Klient</option>
-//                                <option value="2">Inny typ konta (wymaga potwierdzenia)</option>
-//				            </select>
-//				        </div>
-//				    </div><br/>
-//				    <center><input class="btn btn-primary btn-lg" type="submit" onClick="app.register();" value="Zarejestruj"/></center>
-//				</div>';
-//		return $output;
-//	}
-	
 	function checkPageAccess($page, $group, $access, $url) {
 		if($access[$page])
 			foreach($access[$page] as $a)
@@ -155,10 +127,6 @@
                 echo '<a href="' . $config['page_url'] . '?page=managers" class="list-group-item active">Kierownictwo</a>';
             else
                 echo '<a href="' . $config['page_url'] . '?page=managers" class="list-group-item">Kierwonictwo</a>';
-            if ($page == 'editusers')
-                echo '<a href="' . $config['page_url'] . '?page=edituser" class="list-group-item active">Zarządzaj użytkownikami</a>';
-            else
-                echo '<a href="' . $config['page_url'] . '?page=edituser" class="list-group-item">Zarządzaj użytkownikami</a>';
             if ($page == 'addstation')
                 echo '<a href="' . $config['page_url'] . '?page=addstation" class="list-group-item active">Dodaj stację</a>';
             else
