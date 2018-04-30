@@ -33,7 +33,7 @@ foreach ($stations as $station) {
             <td>'.$station->getCity().'</td>
             <td>'.$station->getStreet().'</td>
             <td>
-                <a href="'.$config['page_url'].'?page=edituser&id='.$station->getStationId().'"><input type="submit" class="btn btn-info btn-xs" value="Edytuj"/></a> 
+                <a href="'.$config['page_url'].'?page=editstation&id='.$station->getStationId().'"><input type="submit" class="btn btn-info btn-xs" value="Edytuj"/></a> 
                 <a href="'.$config['page_url'].'?page=deleteuser&option=1&id='.$station->getStationId().'">
                 <input type="submit" class="btn btn-danger btn-xs" value="Usuń"/></a>
             </td>
