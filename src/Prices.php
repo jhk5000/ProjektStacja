@@ -20,7 +20,8 @@ class Prices
      */
     protected $price_id;
     /**
-     * @ORM\OneToMany(targetEntity="stations", inversedBy="station_id")
+     * @Column(type="string")
+     * @var string
      */
     protected $Stations_station_id;
     /**
