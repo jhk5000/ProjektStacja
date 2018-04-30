@@ -6,6 +6,8 @@
  * Time: 14:04
  */
 
+use Doctrine\ORM\Mapping as ORM;
+
 
 /**
  * @Entity @Table(name="prices")
@@ -18,7 +20,7 @@ class Prices
      */
     protected $price_id;
     /**
-     * @OneToMany(targetEntity="Stations", inversedBy="station_id")
+     * @ORM\ManyToOne(targetEntity="Stations", inversedBy="station_id")
      */
     protected $Stations_station_id;
     /**
