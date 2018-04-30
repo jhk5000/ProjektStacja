@@ -35,34 +35,6 @@
 		return $output;
 	}
 
-	// okno rejestracji użytkownika - > zmienić na okno dodawania użytkownika?
-
-//	function getRegisterWindow() {
-//		global $config;
-//		$output = '<div id="registerBox" class="modalWindow">
-//				    <div id="blackX" onClick="app.closeModal();"></div>
-//				    <h2>Rejestracja</h2><hr class="style-one"></hr>
-//				    <div class="row">
-//                        <div class="col-lg-6">
-//                            <b>Login:</b> <input onkeypress="app.check_key(event);" type="text" class="form-control" id="register_login" value=""/>
-//                            <b>Hasło:</b> <input onkeypress="app.check_key(event);" type="password" class="form-control" id="register_pass1" value=""/>
-//                            <b>Powtórz hasło:</b> <input onkeypress="app.check_key(event);" type="password" class="form-control" id="register_pass2" value=""/>
-//                            <b>Email:</b> <input onkeypress="app.check_key(event);" type="text" class="form-control" id="register_mail" value=""/>
-//                        </div>
-//				        <div class="col-lg-6">
-//                            <b>Imię i Nazwisko:</b> <input onkeypress="app.check_key(event);" type="text" class="form-control" id="register_name" value=""/>
-//                            <b>Typ konta:</b>
-//                            <select id="user_type" onChange="app.userTypeChange();" class="form-control">
-//                                <option value="1">Klient</option>
-//                                <option value="2">Inny typ konta (wymaga potwierdzenia)</option>
-//				            </select>
-//				        </div>
-//				    </div><br/>
-//				    <center><input class="btn btn-primary btn-lg" type="submit" onClick="app.register();" value="Zarejestruj"/></center>
-//				</div>';
-//		return $output;
-//	}
-	
 	function checkPageAccess($page, $group, $access, $url) {
 		if($access[$page])
 			foreach($access[$page] as $a)
@@ -143,26 +115,30 @@
                 echo '<a href="' . $config['page_url'] . '?page=companies" class="list-group-item active">Klienci (firmy)</a>';
             else
                 echo '<a href="' . $config['page_url'] . '?page=companies" class="list-group-item">Klienci (firmy)</a>';
+            if ($page == 'register')
+                echo '<a href="' . $config['page_url'] . '?page=register" class="list-group-item active">Stwórz użytkownika</a>';
+            else
+                echo '<a href="' . $config['page_url'] . '?page=register" class="list-group-item">Stwórz użytkownika</a>';
             if ($page == 'customers')
                 echo '<a href="' . $config['page_url'] . '?page=customers" class="list-group-item active">Konta klientów</a>';
             else
                 echo '<a href="' . $config['page_url'] . '?page=customers" class="list-group-item">Konta klientów</a>';
-            if ($page == 'discount')
-                echo '<a href="' . $config['page_url'] . '?page=discount" class="list-group-item active">Zniżki</a>';
-            else
-                echo '<a href="' . $config['page_url'] . '?page=discount" class="list-group-item">Zniżki</a>';
-            if ($page == 'editusers')
-                echo '<a href="' . $config['page_url'] . '?page=edituser" class="list-group-item active">Zarządzaj użytkownikami</a>';
-            else
-                echo '<a href="' . $config['page_url'] . '?page=edituser" class="list-group-item">Zarządzaj użytkownikami</a>';
             if ($page == 'managers')
                 echo '<a href="' . $config['page_url'] . '?page=managers" class="list-group-item active">Kierownictwo</a>';
             else
                 echo '<a href="' . $config['page_url'] . '?page=managers" class="list-group-item">Kierwonictwo</a>';
+            if ($page == 'addstation')
+                echo '<a href="' . $config['page_url'] . '?page=addstation" class="list-group-item active">Dodaj stację</a>';
+            else
+                echo '<a href="' . $config['page_url'] . '?page=addstation" class="list-group-item">Dodaj stację</a>';
             if ($page == 'stations')
                 echo '<a href="' . $config['page_url'] . '?page=stations" class="list-group-item active">Stacje</a>';
             else
                 echo '<a href="' . $config['page_url'] . '?page=stations" class="list-group-item">Stacje</a>';
+            if ($page == 'discount')
+                echo '<a href="' . $config['page_url'] . '?page=discount" class="list-group-item active">Zniżki</a>';
+            else
+                echo '<a href="' . $config['page_url'] . '?page=discount" class="list-group-item">Zniżki</a>';
             if ($page == 'ourpricesoffuelsales')
                 echo '<a href="' . $config['page_url'] . '?page=ourpricesoffuelsales" class="list-group-item active">Nasze ceny paliw</a>';
             else
@@ -228,9 +204,6 @@ function scripts(){
                      }
                  }
                  
-                 function reload(){
-                     window.location.href="'.$config['page_url'].'?page=customers";
-                 }
             </script>
             ';
 }

@@ -1,4 +1,3 @@
-
 <?php
 echo '<h2>Nasi klienci:</h2><hr class="style-one"></hr>';
 require_once "bootstrap.php";
@@ -29,7 +28,6 @@ foreach ($users as $user) {
             <td>
                 <center>
                     <a href="'.$config['page_url'].'?page=edituser&id='.$user->getUserId().'"><i class=\'glyphicon glyphicon-pencil\'></i></a> 
-                    <!--<a href="'.$config['page_url'].'?page=deleteuser&option=1&id='.$user->getUserId().'"><input type="submit" class="btn btn-danger btn-xs" value="Usuń"/></a>-->
                     <a href="javascript://" title=\'<center>Czy napewno chcesz usunąć użytkownika '.$user->getLogin().'?</center>\' data-placement="bottom" data-html=\'true\' data-toggle="popover" data-trigger="focus" 
                     data-content="
                         <form method=\'post\' enctype=\'multipart/form-data\' action=\'\'>
@@ -54,6 +52,6 @@ if(isset($_POST['deleteUser'])){
     $entityManager->remove($deleted);
     $entityManager->flush();
     echo '<script type="text/javascript">
-            reload();
+            window.location.href="'.$config['page_url'].'?page=customers";
           </script>';
 }
