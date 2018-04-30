@@ -33,9 +33,21 @@ foreach ($stations as $station) {
             <td>'.$station->getCity().'</td>
             <td>'.$station->getStreet().'</td>
             <td>
-                <a href="'.$config['page_url'].'?page=editstation&id='.$station->getStationId().'"><input type="submit" class="btn btn-info btn-xs" value="Edytuj"/></a> 
-                <a href="'.$config['page_url'].'?page=deleteuser&option=1&id='.$station->getStationId().'">
-                <input type="submit" class="btn btn-danger btn-xs" value="Usuń"/></a>
+                <center>
+                    <a href="'.$config['page_url'].'?page=editstation&id='.$station->getStationId().'"><i class=\'glyphicon glyphicon-pencil\'></i></a> 
+                    <!--<a href="'.$config['page_url'].'?page=deletestation&option=1&id='.$station->getStationId().'"><input type="submit" class="btn btn-danger btn-xs" value="Usuń"/></a>-->
+                    <a href="javascript://" title=\'<center>Czy napewno chcesz usunąć stacje '.$station->getName().'?</center>\' data-placement="bottom" data-html=\'true\' data-toggle="popover" data-trigger="focus" 
+                    data-content="
+                        <form method=\'post\' enctype=\'multipart/form-data\' action=\'\'>
+                            <div class=\'form-group\'>
+                                <center><input type=\'hidden\' name=\'id\' value=\''.$station->getStationId().'\'>
+                                    <button type=\'submit\' name=\'deleteStation\' class=\'btn btn-success\'>Tak</button> 
+                                    <button type=\'button\' class=\'btn btn-danger\' data-dismiss=\'modal\'>Nie</button>
+                                </center>
+                            </div>
+                        </form>">
+                    <i class=\'glyphicon glyphicon-trash\' style="color: black;"></i></a>
+                </center>
             </td>
         </tr>
     ');

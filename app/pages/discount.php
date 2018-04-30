@@ -6,8 +6,6 @@
 <?php
     use Doctrine\ORM\EntityRepository;
 
-	echo '<h2>zniżki</h2><hr class="style-one"></hr>';
-
 require_once "bootstrap.php";
 
 $dql = "SELECT u.user_id. u.name, d.discount, d.Users_user_id FROM discount d, user u 

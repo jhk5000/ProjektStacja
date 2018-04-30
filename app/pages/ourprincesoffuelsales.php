@@ -3,8 +3,8 @@
 require_once "bootstrap.php";
 $user = $entityManager->find('User', $_SESSION['user']);
 
-	// Czynnosc dla option == 1 //
-if($option == 1) {
+// Czynnosc dla option == 1 //
+
     echo '<h2>Ceny paliw na Twoich stacjach:</h2><hr class="style-one"></hr>';
     $stationRepository = $entityManager->getRepository('Stations');
     $stations = $stationRepository->findAll();
@@ -35,7 +35,7 @@ if($option == 1) {
             ');
         $priceRepository = $entityManager->getRepository('Prices');
         $prices = $pricesRepository->findBy(array('Stations_station_id' => $station->getStationId()));
-            foreach ($prices as $price)
+        foreach ($prices as $price)
             echo sprintf(' 
                 <td>'. $price->getPrice().'</td>
        </tr>');
@@ -43,10 +43,7 @@ if($option == 1) {
         $l++;
     }//end foreach
 //1,1,ON,5 || 2,1,PB95,5 || 3,1,LPG,2
-}
 
-	else {
-		echo '<h2>Ceny paliw na Twoich stacjach</h2><hr class="style-one"></hr>';
-        echo 'Wybierz stację: ';
-	}
+
+
 ?>
