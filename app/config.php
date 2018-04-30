@@ -34,7 +34,7 @@ $config['pages_groups'] = array(
 	'archive'      => array(2,3,4), // zamkniete stacje w archiwum
     'myprices'       => array(1), // "topics" ->ceny na stacji dla klienta
     'register'      => array(4),
-    'ourprincesoffuelsales'=>array(2,3,4), //ustalanie cen paliw
+    'ourpricesoffuelsales'=>array(2,3,4), //ustalanie cen paliw
 );
 
 $config['password']['max_lenght'] = 30;

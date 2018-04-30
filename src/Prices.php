@@ -20,7 +20,7 @@ class Prices
      */
     protected $price_id;
     /**
-     * @ORM\ManyToOne(targetEntity="Stations", inversedBy="station_id")
+     * @ORM\OneToMany(targetEntity="stations", inversedBy="station_id")
      */
     protected $Stations_station_id;
     /**
