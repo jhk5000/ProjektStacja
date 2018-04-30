@@ -33,6 +33,7 @@ $config['pages_groups'] = array(
 	'companies'       => array(3,4), // "groups" -> companies (przypisanie pracownika klienta biznesowego do jego firmy)
 	'archive'      => array(2,3,4), // zamkniete stacje w archiwum
     'myprices'       => array(1), // "topics" ->ceny na stacji dla klienta
+    'register'      => array(4),
     'ourprincesoffuelsales'=>array(2,3,4), //ustalanie cen paliw
 );
 
