@@ -34,6 +34,7 @@ $config['pages_groups'] = array(
 	'archive'      => array(2,3,4), // zamkniete stacje w archiwum
     'myprices'       => array(1), // "topics" ->ceny na stacji dla klienta
     'register'      => array(4),
+    'addstation'      => array(4),
     'ourpricesoffuelsales'=>array(2,3,4), //ustalanie cen paliw
 );
 

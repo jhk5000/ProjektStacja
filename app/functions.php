@@ -143,14 +143,14 @@
                 echo '<a href="' . $config['page_url'] . '?page=companies" class="list-group-item active">Klienci (firmy)</a>';
             else
                 echo '<a href="' . $config['page_url'] . '?page=companies" class="list-group-item">Klienci (firmy)</a>';
+            if ($page == 'register')
+                echo '<a href="' . $config['page_url'] . '?page=register" class="list-group-item active">Stwórz użytkownika</a>';
+            else
+                echo '<a href="' . $config['page_url'] . '?page=register" class="list-group-item">Stwórz użytkownika</a>';
             if ($page == 'customers')
                 echo '<a href="' . $config['page_url'] . '?page=customers" class="list-group-item active">Konta klientów</a>';
             else
                 echo '<a href="' . $config['page_url'] . '?page=customers" class="list-group-item">Konta klientów</a>';
-            if ($page == 'discount')
-                echo '<a href="' . $config['page_url'] . '?page=discount" class="list-group-item active">Zniżki</a>';
-            else
-                echo '<a href="' . $config['page_url'] . '?page=discount" class="list-group-item">Zniżki</a>';
             if ($page == 'editusers')
                 echo '<a href="' . $config['page_url'] . '?page=edituser" class="list-group-item active">Zarządzaj użytkownikami</a>';
             else
@@ -159,14 +159,18 @@
                 echo '<a href="' . $config['page_url'] . '?page=managers" class="list-group-item active">Kierownictwo</a>';
             else
                 echo '<a href="' . $config['page_url'] . '?page=managers" class="list-group-item">Kierwonictwo</a>';
+            if ($page == 'addstation')
+                echo '<a href="' . $config['page_url'] . '?page=addstation" class="list-group-item active">Dodaj stację</a>';
+            else
+                echo '<a href="' . $config['page_url'] . '?page=addstation" class="list-group-item">Dodaj stację</a>';
             if ($page == 'stations')
                 echo '<a href="' . $config['page_url'] . '?page=stations" class="list-group-item active">Stacje</a>';
             else
                 echo '<a href="' . $config['page_url'] . '?page=stations" class="list-group-item">Stacje</a>';
-            if ($page == 'register')
-                echo '<a href="' . $config['page_url'] . '?page=register" class="list-group-item active">Stwórz użytkownika</a>';
+            if ($page == 'discount')
+                echo '<a href="' . $config['page_url'] . '?page=discount" class="list-group-item active">Zniżki</a>';
             else
-                echo '<a href="' . $config['page_url'] . '?page=register" class="list-group-item">Stwórz użytkownika</a>';
+                echo '<a href="' . $config['page_url'] . '?page=discount" class="list-group-item">Zniżki</a>';
             if ($page == 'ourpricesoffuelsales')
                 echo '<a href="' . $config['page_url'] . '?page=ourpricesoffuelsales" class="list-group-item active">Nasze ceny paliw</a>';
             else
@@ -232,9 +236,6 @@ function scripts(){
                      }
                  }
                  
-                 function reload(){
-                     window.location.href="'.$config['page_url'].'?page=customers";
-                 }
             </script>
             ';
 }

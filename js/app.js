@@ -88,6 +88,21 @@ var app = {
                 }
             });
     },
+    registerStation: function() {
+        var name        = document.getElementById('station_name').value;
+        var voide        = document.getElementById('station_void').value;
+        var city        = document.getElementById('station_city').value;
+        var street         = document.getElementById('station_street').value;
+
+        $.ajax({ type: 'POST', url: app.server, data: {task: 5, name: name, voide: voide, city:city, street: street} })
+            .done(function(msg) {
+                if(parseInt(msg) == 1) {
+                    location.reload();
+                } else {
+                    app.modalAlert(msg);
+                }
+            });
+    },
     modalAlert: function(t) {
         alert(t);
     },

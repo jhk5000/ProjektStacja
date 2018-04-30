@@ -8,20 +8,18 @@ echo '<h2>Nasze stacje:</h2><hr class="style-one"></hr>';
 
 require_once "bootstrap.php";
 
-echo '<a href="'.$config['page_url'].'?page=stations&option=8&id="><input type="submit" class="btn btn-primary" value="Dodaj stację"/></a></br></br>';
-
 $stationRepository = $entityManager->getRepository('Stations');
 $stations = $stationRepository->findAll();
 $l=1;
 echo '<table class="table table-bordered table-hover">
 		<thead>
 		  <tr>
-		  <th>lp.</th>
-			<th>Nazwa</th>
-			<th>Województwo</th>
-			<th>Miasto</th>
-			<th>Ulica</th>
-			<th>Akcja</th>
+		    <th width="5%">lp.</th>
+			<th width="25%">Nazwa</th>
+			<th width="20%">Województwo</th>
+			<th width="20%">Miasto</th>
+			<th width="25%">Ulica</th>
+			<th width="5%">Akcja</th>
 		  </tr>
 		</thead>
 		<tbody>';
@@ -57,11 +55,14 @@ foreach ($stations as $station) {
 
 echo '</tbody></table>';
 
-//foreach ($users as $user) {
-//    echo "<br>";
-//    echo sprintf("$l. %s \n", $user->getInfoAboutCustomer());
-//        $l++;
-//}
+if(isset($_POST['deleteStation'])){
+    $deleted = $entityManager->find('Stations', $_POST['id']);
+    $entityManager->remove($deleted);
+    $entityManager->flush();
+    echo '<script type="text/javascript">
+            window.location.href="'.$config['page_url'].'?page=stations";
+          </script>';
+}
 
 
 

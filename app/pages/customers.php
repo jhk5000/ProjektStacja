@@ -54,6 +54,6 @@ if(isset($_POST['deleteUser'])){
     $entityManager->remove($deleted);
     $entityManager->flush();
     echo '<script type="text/javascript">
-            reload();
+            window.location.href="'.$config['page_url'].'?page=customers";
           </script>';
 }

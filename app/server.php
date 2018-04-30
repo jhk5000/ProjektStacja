@@ -120,6 +120,26 @@ if(!empty($_POST['task'])) {
             $_SESSION = array();
             echo 1;
             break;
+        case 5:
+            if(!empty($_POST['name'])) {
+                $station = $entityManager->getRepository('Stations')->findOneBy(array('name' => $_POST['name']));
+                if ($station !== null) {
+                    echo 'Podana nazwa jest już zajęta!';
+                } else {
+                    $st = new Stations();
+                    $st->setName($_POST['name']);
+                    $st->setVoivodeship($_POST['voide']);
+                    $st->setCity($_POST['city']);
+                    $st->setStreet($_POST['street']);
+                    $entityManager->persist($st);
+                    $entityManager->flush();
+                    echo 1;
+                }
+
+            } else {
+                echo 'Uzupełnij wszystkie dane!';
+            }
+            break;
         default:
             break;
     }
