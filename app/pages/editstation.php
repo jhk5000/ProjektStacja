@@ -1,5 +1,5 @@
 <?php
-$station = $entityManager->find('Station', $_GET['id']);
+$station = $entityManager->find('Stations', $_GET['id']);
 $loged = $entityManager->find('User', $_SESSION['user']);
 if($station) {
     //Do dostosowania!!!
@@ -40,23 +40,23 @@ if($station) {
                         <label><?php echo $station->getName();?> </label>
                     </div>
                     <div class="form-group">
-                        <label>Imię i Nazwisko:</label>
+                        <label>Nazwa:</label>
                         <input type="text" class="form-control" name="name" value="<?php echo $station->getName();?>"/>
                     </div>
                     <div class="form-group">
-                        <label>Login:</label>
+                        <label>Województwo</label>
                         <input type="text" class="form-control" name="voivodeship" value="<?php echo $station->getVoivodeship();?>"/>
                     </div>
                     <div class="form-group">
-                        <label>E-mail:</label>
+                        <label>Miasto</label>
                         <input type="text" class="form-control" name="city" value="<?php echo $station->getCity();?>"/>
                     </div>
                     <div class="form-group">
-                        <label>E-mail:</label>
+                        <label>Ulica</label>
                         <input type="text" class="form-control" name="street" value="<?php echo $station->getStreet();?>"/>
                     </div>
                     <input type="submit" class="btn btn-primary btn-ls" value="Edytuj"/>
-                    <a href="?page=customers"><button type="button" class="btn btn-primary">Powrót</button></a>
+                    <a href="?page=stations"><button type="button" class="btn btn-primary">Powrót</button></a>
                 </div>
             </div>
         </form>
