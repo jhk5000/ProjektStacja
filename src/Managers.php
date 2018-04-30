@@ -1,12 +1,5 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: Adrian
- * Date: 2018-04-25
- * Time: 14:19
- */
-
-/**
  * @Entity @Table(name="managers")
  */
 class Managers
@@ -17,72 +10,60 @@ class Managers
      */
     protected $manager_id;
     /**
-     * @OneToMany(targetEntity="Stations", inversedBy="station_id")
+     * @Column(type="integer")
+     * @var string
      */
     protected $Stations_station_id;
-
     /**
-     * @ManyToOne(targetEntity="User", inversedBy="user_id")
+     * @Column(type="integer")
+     * @var string
      */
     protected $Users_user_id;
 
     /**
-     * Managers constructor.
-     * @param $manager_id
-     * @param $Stations_station_id
-     * @param $Users_user_id
+     * @return string
      */
-    public function __construct($manager_id, $Stations_station_id, $Users_user_id)
-    {
-        $this->manager_id = $manager_id;
-        $this->Stations_station_id = $Stations_station_id;
-        $this->Users_user_id = $Users_user_id;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getManagerId()
+    public function getManagerId(): string
     {
         return $this->manager_id;
     }
 
     /**
-     * @param mixed $manager_id
+     * @param string $manager_id
      */
-    public function setManagerId($manager_id)
+    public function setManagerId(string $manager_id): void
     {
         $this->manager_id = $manager_id;
     }
 
     /**
-     * @return mixed
+     * @return string
      */
-    public function getStationsStationId()
+    public function getStationsStationId(): string
     {
         return $this->Stations_station_id;
     }
 
     /**
-     * @param mixed $Stations_station_id
+     * @param string $Stations_station_id
      */
-    public function setStationsStationId($Stations_station_id)
+    public function setStationsStationId(string $Stations_station_id): void
     {
         $this->Stations_station_id = $Stations_station_id;
     }
 
     /**
-     * @return mixed
+     * @return string
      */
-    public function getUsersUserId()
+    public function getUsersUserId(): string
     {
         return $this->Users_user_id;
     }
 
     /**
-     * @param mixed $Users_user_id
+     * @param string $Users_user_id
      */
-    public function setUsersUserId($Users_user_id)
+    public function setUsersUserId(string $Users_user_id): void
     {
         $this->Users_user_id = $Users_user_id;
     }

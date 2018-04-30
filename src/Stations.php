@@ -13,7 +13,7 @@ class Stations
      * @Column(type="string")
      * @var string
      */
-    protected $name;
+    protected $station_name;
     /**
      * @Column(type="string")
      * @var string
@@ -49,17 +49,17 @@ class Stations
     /**
      * @return string
      */
-    public function getName()
+    public function getStationName()
     {
-        return $this->name;
+        return $this->station_name;
     }
 
     /**
-     * @param string $name
+     * @param string $station_name
      */
-    public function setName($name)
+    public function setStationName(string $station_name)
     {
-        $this->name = $name;
+        $this->station_name = $station_name;
     }
 
     /**

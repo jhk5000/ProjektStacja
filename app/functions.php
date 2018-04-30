@@ -151,14 +151,14 @@
                 echo '<a href="' . $config['page_url'] . '?page=customers" class="list-group-item active">Konta klientów</a>';
             else
                 echo '<a href="' . $config['page_url'] . '?page=customers" class="list-group-item">Konta klientów</a>';
-            if ($page == 'editusers')
-                echo '<a href="' . $config['page_url'] . '?page=edituser" class="list-group-item active">Zarządzaj użytkownikami</a>';
-            else
-                echo '<a href="' . $config['page_url'] . '?page=edituser" class="list-group-item">Zarządzaj użytkownikami</a>';
             if ($page == 'managers')
                 echo '<a href="' . $config['page_url'] . '?page=managers" class="list-group-item active">Kierownictwo</a>';
             else
                 echo '<a href="' . $config['page_url'] . '?page=managers" class="list-group-item">Kierwonictwo</a>';
+            if ($page == 'editusers')
+                echo '<a href="' . $config['page_url'] . '?page=edituser" class="list-group-item active">Zarządzaj użytkownikami</a>';
+            else
+                echo '<a href="' . $config['page_url'] . '?page=edituser" class="list-group-item">Zarządzaj użytkownikami</a>';
             if ($page == 'addstation')
                 echo '<a href="' . $config['page_url'] . '?page=addstation" class="list-group-item active">Dodaj stację</a>';
             else
