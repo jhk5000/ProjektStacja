@@ -28,12 +28,27 @@ class Prices
      * @Column(type="string")
      * @var string
      */
-    protected $gas_type;
+    protected $PB98;
     /**
      * @Column(type="string")
      * @var string
      */
-    protected $price;
+    protected $PB95;
+    /**
+     * @Column(type="string")
+     * @var string
+     */
+    protected $ON;
+    /**
+     * @Column(type="string")
+     * @var string
+     */
+    protected $LPG;
+    /**
+     * @Column(type="string")
+     * @var string
+     */
+    protected $date_of_change;
 
     /**
      * Prices constructor.
@@ -88,33 +103,81 @@ class Prices
     /**
      * @return string
      */
-    public function getGasType()
+    public function getPB98(): string
     {
-        return $this->gas_type;
+        return $this->PB98;
     }
 
     /**
-     * @param string $gas_type
+     * @param string $PB98
      */
-    public function setGasType($gas_type)
+    public function setPB98(string $PB98): void
     {
-        $this->gas_type = $gas_type;
+        $this->PB98 = $PB98;
     }
 
     /**
      * @return string
      */
-    public function getPrice()
+    public function getPB95(): string
     {
-        return $this->price;
+        return $this->PB95;
     }
 
     /**
-     * @param string $price
+     * @param string $PB95
      */
-    public function setPrice($price)
+    public function setPB95(string $PB95): void
     {
-        $this->price = $price;
+        $this->PB95 = $PB95;
+    }
+
+    /**
+     * @return string
+     */
+    public function getON(): string
+    {
+        return $this->ON;
+    }
+
+    /**
+     * @param string $ON
+     */
+    public function setON(string $ON): void
+    {
+        $this->ON = $ON;
+    }
+
+    /**
+     * @return string
+     */
+    public function getLPG(): string
+    {
+        return $this->LPG;
+    }
+
+    /**
+     * @param string $LPG
+     */
+    public function setLPG(string $LPG): void
+    {
+        $this->LPG = $LPG;
+    }
+
+    /**
+     * @return string
+     */
+    public function getDateOfChange(): string
+    {
+        return $this->date_of_change;
+    }
+
+    /**
+     * @param string $date_of_change
+     */
+    public function setDateOfChange(string $date_of_change): void
+    {
+        $this->date_of_change = $date_of_change;
     }
 
 

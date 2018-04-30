@@ -82,8 +82,11 @@ CREATE TABLE `managers` (
 CREATE TABLE `prices` (
   `price_id` int(10) UNSIGNED NOT NULL,
   `Stations_station_id` int(10) UNSIGNED NOT NULL,
-  `gas_type` varchar(255) COLLATE utf8_polish_ci DEFAULT NULL,
-  `price` double DEFAULT NULL
+  `PB98` double DEFAULT NULL,
+  `PB95` double DEFAULT NULL,
+  `ON` double DEFAULT NULL,
+  `LPG` double DEFAULT NULL,
+  `date_of_change` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
 
 -- --------------------------------------------------------

@@ -34,12 +34,15 @@ if($option == 1) {
             <td>' . $station->getStreet() . '</td>
             ');
         $priceRepository = $entityManager->getRepository('Prices');
-        $prices = $pricesRepository->findBy(array('Stations_station_id' => $station->getStationId()));
-            foreach ($prices as $price)
+        $prices = $priceRepository->findBy(array('Stations_station_id' => $station->getStationId()));
+        foreach ($prices as $price)
             echo sprintf(' 
-                <td>'. $price->getPrice().'</td>
-       </tr>');
-
+                <td>'. $price->getPB98().'</td>
+                <td>'. $price->getPB95().'</td>
+                <td>'. $price->getON().'</td>
+                <td>'. $price->getLPG().'</td>
+       ');
+        echo '</tr>';
         $l++;
     }//end foreach
 //1,1,ON,5 || 2,1,PB95,5 || 3,1,LPG,2

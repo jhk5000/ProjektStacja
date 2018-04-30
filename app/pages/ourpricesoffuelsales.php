@@ -5,7 +5,7 @@ $user = $entityManager->find('User', $_SESSION['user']);
 
 // Czynnosc dla option == 1 //
 
-    echo '<h2>Ceny paliw na Twoich stacjach:</h2><hr class="style-one"></hr>';
+    echo '<h2>Ceny paliw na naszych stacjach:</h2><hr class="style-one"></hr>';
     $stationRepository = $entityManager->getRepository('Stations');
     $stations = $stationRepository->findAll();
     $l = 1;
@@ -21,6 +21,7 @@ $user = $entityManager->find('User', $_SESSION['user']);
 			<th>PB95</th>
 			<th>ON</th>
 			<th>LPG</th>
+			<th>Akcja</th>
 		  </tr>
 	</thead>
 	<tbody>';
@@ -37,8 +38,29 @@ $user = $entityManager->find('User', $_SESSION['user']);
         $prices = $priceRepository->findBy(array('Stations_station_id' => $station->getStationId()));
         foreach ($prices as $price)
             echo sprintf(' 
-                <td>'. $price->getPrice().'</td>
+                <td>'. $price->getPB98().'</td>
+                <td>'. $price->getPB95().'</td>
+                <td>'. $price->getON().'</td>
+                <td>'. $price->getLPG().'</td>
+                <td>
+                <center>
+                    <a href="'.$config['page_url'].'?page=editprice&id='.$price->getPriceId().'"><i class=\'glyphicon glyphicon-pencil\'></i></a> 
+                    <!--<a href="'.$config['page_url'].'?page=deleteprice&option=1&id='.$price->getPriceId().'"><input type="submit" class="btn btn-danger btn-xs" value="Usuń"/></a>-->
+                    <a href="javascript://" title=\'<center>Czy napewno wyczyscic ceny paliw na tej stacji?'.$price->getPriceId().'?</center>\' data-placement="bottom" data-html=\'true\' data-toggle="popover" data-trigger="focus" 
+                    data-content="
+                        <form method=\'post\' enctype=\'multipart/form-data\' action=\'\'>
+                            <div class=\'form-group\'>
+                                <center><input type=\'hidden\' name=\'id\' value=\''.$user->getUserId().'\'>
+                                    <button type=\'submit\' name=\'deletePrice\' class=\'btn btn-success\'>Tak</button> 
+                                    <button type=\'button\' class=\'btn btn-danger\' data-dismiss=\'modal\'>Nie</button>
+                                </center>
+                            </div>
+                        </form>">
+                    <i class=\'glyphicon glyphicon-trash\' style="color: black;"></i></a>
+                </center>
+            </td>
        ');
+
         echo '</tr>';
         $l++;
     }//end foreach
