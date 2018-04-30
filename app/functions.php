@@ -135,10 +135,6 @@
                 echo '<a href="' . $config['page_url'] . '?page=stations" class="list-group-item active">Stacje</a>';
             else
                 echo '<a href="' . $config['page_url'] . '?page=stations" class="list-group-item">Stacje</a>';
-            if ($page == 'discount')
-                echo '<a href="' . $config['page_url'] . '?page=discount" class="list-group-item active">Zniżki</a>';
-            else
-                echo '<a href="' . $config['page_url'] . '?page=discount" class="list-group-item">Zniżki</a>';
             if ($page == 'ourpricesoffuelsales')
                 echo '<a href="' . $config['page_url'] . '?page=ourpricesoffuelsales" class="list-group-item active">Nasze ceny paliw</a>';
             else
