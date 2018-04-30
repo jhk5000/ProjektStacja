@@ -163,6 +163,10 @@
                 echo '<a href="' . $config['page_url'] . '?page=stations" class="list-group-item active">Stacje</a>';
             else
                 echo '<a href="' . $config['page_url'] . '?page=stations" class="list-group-item">Stacje</a>';
+            if ($page == 'register')
+                echo '<a href="' . $config['page_url'] . '?page=register" class="list-group-item active">Stwórz użytkownika</a>';
+            else
+                echo '<a href="' . $config['page_url'] . '?page=register" class="list-group-item">Stwórz użytkownika</a>';
             if ($page == 'ourpricesoffuelsales')
                 echo '<a href="' . $config['page_url'] . '?page=ourpricesoffuelsales" class="list-group-item active">Nasze ceny paliw</a>';
             else

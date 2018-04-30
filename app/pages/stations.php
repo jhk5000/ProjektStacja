@@ -8,7 +8,8 @@ echo '<h2>Nasze stacje:</h2><hr class="style-one"></hr>';
 
 require_once "bootstrap.php";
 
-//pobranie wszystkich uzytkowników z bazy i wyswietlnie ich imion i nazwisk
+echo '<a href="'.$config['page_url'].'?page=stations&option=8&id="><input type="submit" class="btn btn-primary" value="Dodaj stację"/></a></br></br>';
+
 $stationRepository = $entityManager->getRepository('Stations');
 $stations = $stationRepository->findAll();
 $l=1;
@@ -55,7 +56,6 @@ foreach ($stations as $station) {
 }//end foreach
 
 echo '</tbody></table>';
-echo '<a href="'.$config['page_url'].'?page=stations&option=8&id="><input type="submit" class="btn btn-primary" value="Dodaj stację"/></a>';
 
 //foreach ($users as $user) {
 //    echo "<br>";
