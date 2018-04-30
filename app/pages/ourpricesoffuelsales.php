@@ -38,8 +38,8 @@ $user = $entityManager->find('User', $_SESSION['user']);
         foreach ($prices as $price)
             echo sprintf(' 
                 <td>'. $price->getPrice().'</td>
-       </tr>');
-
+       ');
+        echo '</tr>';
         $l++;
     }//end foreach
 //1,1,ON,5 || 2,1,PB95,5 || 3,1,LPG,2
