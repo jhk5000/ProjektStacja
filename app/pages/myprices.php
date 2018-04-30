@@ -3,13 +3,13 @@
 require_once "bootstrap.php";
 $user = $entityManager->find('User', $_SESSION['user']);
 
-	// Czynnosc dla option == 1 //
-if($option == 1) {
-    echo '<h2>Ceny paliw na Twoich stacjach:</h2><hr class="style-one"></hr>';
-    $stationRepository = $entityManager->getRepository('Stations');
-    $stations = $stationRepository->findAll();
-    $l = 1;
-    echo '<table class="table table-bordered table-hover">
+// Czynnosc dla option == 1 //
+
+echo '<h2>Ceny paliw na naszych stacjach:</h2><hr class="style-one"></hr>';
+$stationsRepository = $entityManager->getRepository('Stations');
+$stations = $stationsRepository->findAll();
+$l = 1;
+echo '<table class="table table-bordered table-hover">
 	<thead>
 		 <tr>
 		  <th>lp.</th>
@@ -24,32 +24,33 @@ if($option == 1) {
 		  </tr>
 	</thead>
 	<tbody>';
-    foreach ($stations as $station) {
-        echo sprintf('
+foreach ($stations as $station) {
+    echo sprintf('
         <tr>
             <td>' . $l . '</td>
-            <td>' . $station->getName() . '</td>
+            <td>' . $station->getStationName() . '</td>
             <td>' . $station->getVoivodeship() . '</td>
             <td>' . $station->getCity() . '</td>
             <td>' . $station->getStreet() . '</td>
             ');
-        $priceRepository = $entityManager->getRepository('Prices');
-        $prices = $priceRepository->findBy(array('Stations_station_id' => $station->getStationId()));
-        foreach ($prices as $price)
-            echo sprintf(' 
+    $priceRepository = $entityManager->getRepository('Prices');
+    $price = $priceRepository->findOneBy(array('Stations_station_id' => $station->getStationId()));
+    if($price){
+        echo sprintf(' 
                 <td>'. $price->getPB98().'</td>
                 <td>'. $price->getPB95().'</td>
-                <td>'. $price->getON().'</td>
+                <td>'. $price->getOIL().'</td>
                 <td>'. $price->getLPG().'</td>
-       ');
-        echo '</tr>';
-        $l++;
-    }//end foreach
-//1,1,ON,5 || 2,1,PB95,5 || 3,1,LPG,2
-}
+                
+            ');
+    }else{
+        echo sprintf('
+                    <td></td><td></td><td></td><td></td>
+                    
+                    ');
+    }
+    echo '</tr>';
+    $l++;
+}//end foreach
 
-	else {
-		echo '<h2>Ceny paliw na Twoich stacjach</h2><hr class="style-one"></hr>';
-        echo 'Wybierz stację: ';
-	}
-?>
+
