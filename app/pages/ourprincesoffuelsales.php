@@ -34,7 +34,7 @@ $user = $entityManager->find('User', $_SESSION['user']);
             <td>' . $station->getStreet() . '</td>
             ');
         $priceRepository = $entityManager->getRepository('Prices');
-        $prices = $pricesRepository->findBy(array('Stations_station_id' => $station->getStationId()));
+        $prices = $priceRepository->findBy(array('Stations_station_id' => $station->getStationId()));
         foreach ($prices as $price)
             echo sprintf(' 
                 <td>'. $price->getPrice().'</td>
