@@ -23,6 +23,7 @@ $config['pages_groups'] = array(
 	'stations'  => array(3,4), //"wydziały" -> stacje
 	'customers'     => array(2,3,4), // "studenci" - > klienci
     'createuser'     => array(3,4),
+	'editstation'=> array(3,4),
 	'managers'    => array(3,4), // " promotorzy" -> kierownicy
 	'faq'          => array(0,1,2,3,4),
 	'edituser'     => array(3,4), //edycja konto użytkowników
