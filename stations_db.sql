@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Czas generowania: 17 Kwi 2018, 18:24
+-- Czas generowania: 01 Maj 2018, 00:12
 -- Wersja serwera: 10.1.30-MariaDB
 -- Wersja PHP: 7.2.1
 
@@ -61,6 +61,16 @@ CREATE TABLE `logdata` (
   `valid` tinyint(1) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
 
+--
+-- Zrzut danych tabeli `logdata`
+--
+
+INSERT INTO `logdata` (`logdata_id`, `Users_user_id`, `log_date`, `valid`) VALUES
+(1, 1, '2018-04-30 14:57:52', 1),
+(2, 1, '2018-04-30 15:50:07', 1),
+(3, 1, '2018-04-30 17:40:26', 1),
+(4, 1, '2018-04-30 17:42:27', 1);
+
 -- --------------------------------------------------------
 
 --
@@ -73,6 +83,15 @@ CREATE TABLE `managers` (
   `Users_user_id` int(10) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
 
+--
+-- Zrzut danych tabeli `managers`
+--
+
+INSERT INTO `managers` (`manager_id`, `Stations_station_id`, `Users_user_id`) VALUES
+(1, 4, 4),
+(8, 4, 5),
+(9, 4, 7);
+
 -- --------------------------------------------------------
 
 --
@@ -82,12 +101,19 @@ CREATE TABLE `managers` (
 CREATE TABLE `prices` (
   `price_id` int(10) UNSIGNED NOT NULL,
   `Stations_station_id` int(10) UNSIGNED NOT NULL,
-  `PB98` double DEFAULT NULL,
-  `PB95` double DEFAULT NULL,
-  `ON` double DEFAULT NULL,
-  `LPG` double DEFAULT NULL,
+  `PB98` varchar(255) COLLATE utf8_polish_ci DEFAULT NULL,
+  `PB95` varchar(255) COLLATE utf8_polish_ci DEFAULT NULL,
+  `OIL` varchar(255) COLLATE utf8_polish_ci DEFAULT NULL,
+  `LPG` varchar(255) COLLATE utf8_polish_ci DEFAULT NULL,
   `date_of_change` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
+
+--
+-- Zrzut danych tabeli `prices`
+--
+
+INSERT INTO `prices` (`price_id`, `Stations_station_id`, `PB98`, `PB95`, `OIL`, `LPG`, `date_of_change`) VALUES
+(7, 4, '0.03', '', '', '', '2018-05-01');
 
 -- --------------------------------------------------------
 
@@ -97,11 +123,19 @@ CREATE TABLE `prices` (
 
 CREATE TABLE `stations` (
   `station_id` int(10) UNSIGNED NOT NULL,
-  `name` varchar(255) COLLATE utf8_polish_ci DEFAULT NULL,
+  `station_name` varchar(255) COLLATE utf8_polish_ci DEFAULT NULL,
   `voivodeship` varchar(255) COLLATE utf8_polish_ci DEFAULT NULL,
   `city` varchar(255) COLLATE utf8_polish_ci DEFAULT NULL,
   `street` varchar(255) COLLATE utf8_polish_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
+
+--
+-- Zrzut danych tabeli `stations`
+--
+
+INSERT INTO `stations` (`station_id`, `station_name`, `voivodeship`, `city`, `street`) VALUES
+(4, 'test', 'Podkarpackie', 'test', 'test'),
+(5, 't', 'Podkarpackie', 't', 't');
 
 -- --------------------------------------------------------
 
@@ -126,8 +160,13 @@ CREATE TABLE `users` (
 -- Zrzut danych tabeli `users`
 --
 
-INSERT INTO `users` (`user_id`, `login`, `passwd`, `name`, `mail`, `register_date`, `group_id`, `token`, `info`) VALUES
-(1, 'a', '$2y$10$pfdm9ssnDrQdXlVSSQ0U1OxfSA9fdUYgcP2qB/f0pV68hofjbjdMK', 'a', 'a', '2018-04-09', 1, 'a', 'a');
+INSERT INTO `users` (`user_id`, `login`, `passwd`, `name`, `mail`, `register_date`, `group_id`, `token`, `company`, `info`) VALUES
+(1, 'a', '$2y$10$pfdm9ssnDrQdXlVSSQ0U1OxfSA9fdUYgcP2qB/f0pV68hofjbjdMK', 'a', 'a', '2018-04-09', 4, '$2y$10$34Ocda5LvfuN/Dzp0XlzMe90IkWp1UcmSO9PRzqUm/LCZTBoeI9HW', NULL, 'a'),
+(4, '1', '1', '11', '1@1.pl', '0000-00-00', 2, '1', '1', '0'),
+(7, '4', '4', '4', '4@4.pl', '0000-00-00', 2, '4', '4', '0'),
+(9, '6', '6', '65', '6@6.pl', '0000-00-00', 2, '6', '6', '0'),
+(11, '8', '8', '8', '8@8.pl', '0000-00-00', 1, '8', '8', '0'),
+(12, '9', '9', '9', '9@9.pl', '0000-00-00', 1, '9', '9', '0');
 
 --
 -- Indeksy dla zrzutów tabel
@@ -201,34 +240,33 @@ ALTER TABLE `event_log`
 -- AUTO_INCREMENT dla tabeli `logdata`
 --
 ALTER TABLE `logdata`
-  MODIFY `logdata_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `logdata_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT dla tabeli `managers`
 --
 ALTER TABLE `managers`
-  MODIFY `manager_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `manager_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT dla tabeli `prices`
 --
 ALTER TABLE `prices`
-  MODIFY `price_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `price_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT dla tabeli `stations`
 --
 ALTER TABLE `stations`
-  MODIFY `station_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `station_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT dla tabeli `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `user_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
----
