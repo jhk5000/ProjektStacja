@@ -187,6 +187,7 @@ function getName(array $array) {
 }
 
 function scripts(){
+    global $config;
     echo '  
             <script async="" src="js/jquery.min.js?v=1.72"></script>
             <script async="" src="js/app.js"></script>
@@ -221,6 +222,10 @@ function scripts(){
                      else{
                          setTimeout(refresh, refreshtime);
                      }
+                 }
+                 
+                 function reload(){
+                     window.location.href="'.$config['page_url'].'?page=customers";
                  }
             </script>
             ';

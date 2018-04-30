@@ -11,12 +11,12 @@ $l=1;
 echo '<table class="table table-bordered table-hover">
 		<thead>
 		  <tr>
-		    <th>lp.</th>
-			<th>Login</th>
-			<th>Nazwa</th>
-			<th>Mail</th>
-			<th>Data rejestracji</th>
-			<th>Akcja</th>
+		    <th width="5%">lp.</th>
+			<th width="20%">Login</th>
+			<th width="25%">Nazwa</th>
+			<th width="25%">Mail</th>
+			<th width="20%">Data rejestracji</th>
+			<th width="5%">Akcja</th>
 		  </tr>
 		</thead>
 		<tbody>';
@@ -32,7 +32,17 @@ echo '<table class="table table-bordered table-hover">
                 <center>
                     <a href="'.$config['page_url'].'?page=edituser&id='.$user->getUserId().'"><i class=\'glyphicon glyphicon-pencil\'></i></a> 
                     <!--<a href="'.$config['page_url'].'?page=deleteuser&option=1&id='.$user->getUserId().'"><input type="submit" class="btn btn-danger btn-xs" value="Usuń"/></a>-->
-                    <a href="javascript://" title=\'<center>Czy napewno chcesz usunąć użytkownika '.$user->getLogin().'?</center>\' data-placement="bottom" data-html=\'true\' data-toggle="popover" data-trigger="focus" data-content="<form method=\'post\' enctype=\'multipart/form-data\' action=\'\'><div class=\'form-group\'><center><input type=\'hidden\' name=\'id\' value=\''.$user->getUserId().'\'><button type=\'submit\' name=\'deleteUser\' class=\'btn btn-success\'>Tak</button> <button type=\'button\' class=\'btn btn-danger\' data-dismiss=\'modal\'>Nie</button></center></div></form>"><i class=\'glyphicon glyphicon-trash\' style="color: black;"></i></a>
+                    <a href="javascript://" title=\'<center>Czy napewno chcesz usunąć użytkownika '.$user->getLogin().'?</center>\' data-placement="bottom" data-html=\'true\' data-toggle="popover" data-trigger="focus" 
+                    data-content="
+                        <form method=\'post\' enctype=\'multipart/form-data\' action=\'\'>
+                            <div class=\'form-group\'>
+                                <center><input type=\'hidden\' name=\'id\' value=\''.$user->getUserId().'\'>
+                                    <button type=\'submit\' name=\'deleteUser\' class=\'btn btn-success\'>Tak</button> 
+                                    <button type=\'button\' class=\'btn btn-danger\' data-dismiss=\'modal\'>Nie</button>
+                                </center>
+                            </div>
+                        </form>">
+                    <i class=\'glyphicon glyphicon-trash\' style="color: black;"></i></a>
                 </center>
             </td>
         </tr>
@@ -46,7 +56,9 @@ if(isset($_POST['deleteUser'])){
     $deleted = $entityManager->find('User', $_POST['id']);
     $entityManager->remove($deleted);
     $entityManager->flush();
-    echo '<body onload="window.location.href=\''.$config['page_url'].'?page=customers\'"></body>';
+    echo '<script type="text/javascript">
+            reload();
+          </script>';
 }
 
 
