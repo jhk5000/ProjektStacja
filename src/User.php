@@ -50,6 +50,27 @@ class User
      * @var string
      */
     protected $token;
+    /**
+     * @Column(type="string")
+     * @var string
+     */
+    protected $company;
+
+    /**
+     * @return string
+     */
+    public function getCompany(): string
+    {
+        return $this->company;
+    }
+
+    /**
+     * @param string $company
+     */
+    public function setCompany(string $company): void
+    {
+        $this->company = $company;
+    }
 
     /**
      * @OneToMany(targetEntity="Bug", mappedBy="reporter")
@@ -227,6 +248,7 @@ class User
     {
         $this->token = $token;
     }
+
 
 
 }

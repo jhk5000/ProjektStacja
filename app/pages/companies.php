@@ -1,19 +1,55 @@
 <?php
-
-
-
-echo '<h2>Firmy współpracujące z naszymi stacjami: </h2>
-<hr class="style-one"></hr>';
-
-
-// pobieranie nazw firm. Trzeba dodać w sprntf by wybierało każda firmę tylko raz
-
+echo '<h2>Nasi klienci:</h2><hr class="style-one"></hr>';
 require_once "bootstrap.php";
-$companyRepository = $entityManager->getRepository('User');
-$companies = $companyRepository->findBy(array('group_id' => '0'));
+//pobranie wszystkich firm uzytkownikow z bazy
+// potrzeba to zrobic tak by pobierało także znizkę dla firmy i by można było zmienic nazwę firmy wszystich użytkowników o danym id
 
-// Tutaj trzeba uzupełnic funkcje w src/userss.php, tak by wyswietlaja nazwę kazej firmy tylko raz
+//$userRepository = $entityManager->getRepository('User');
+//$user = $userRepository->findBy(array('group_id' => '1'));
 
+
+
+$company = $entityManager->getRepository('User')
+    ->createQueryBuilder('u')
+    ->select('u.company')
+    ->where('u.group_id=1')
+    ->distinct()
+    ->getQuery();
+$companies = $company->getResult();
+
+
+$l=1;
+echo '<table class="table table-bordered table-hover">
+		<thead>
+		  <tr>
+		    <th width="5%">lp.</th>
+			<th width="20%">Nazwa firmy</th>
+			<th width="20%">Zniżka</th>
+			<th width="5%">Edytuj zniżkę</th>
+			<th width="5%">Edytuj nazwę firmy</th>
+		  </tr>
+		</thead>
+		<tbody>';
 foreach ($companies as $company) {
-echo sprintf("-%s\n", $company->getOursCustomersCompanyName());
-}
+    echo '
+        <tr>
+            <td>'.$l. '</td>
+            <td>'.$company['company'].'</td>            
+            <td> </td>
+            <td>
+                <center>
+                    <a href="'.$config['page_url'].'?page=editdiscount&id='.$company['company'].'"><i class=\'glyphicon glyphicon-pencil\'></i></a> 
+                 </center>
+            </td>
+            <td>
+                <center>
+                    <a href="'.$config['page_url'].'?page=editcompany&id='.$company['company'].'"><i class=\'glyphicon glyphicon-pencil\'></i></a>                    
+                </center>
+            </td>
+        </tr>
+        ';
+    $l++;
+}//end foreach
+echo '</tbody></table>';
+
+

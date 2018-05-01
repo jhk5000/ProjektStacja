@@ -122,12 +122,12 @@ if(!empty($_POST['task'])) {
             break;
         case 5:
             if(!empty($_POST['name'])) {
-                $station = $entityManager->getRepository('Stations')->findOneBy(array('name' => $_POST['name']));
+                $station = $entityManager->getRepository('Stations')->findOneBy(array('station_name' => $_POST['name']));
                 if ($station !== null) {
                     echo 'Podana nazwa jest już zajęta!';
                 } else {
                     $st = new Stations();
-                    $st->setName($_POST['name']);
+                    $st->setStationName($_POST['name']);
                     $st->setVoivodeship($_POST['voide']);
                     $st->setCity($_POST['city']);
                     $st->setStreet($_POST['street']);
