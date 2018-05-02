@@ -15,6 +15,7 @@ echo '<table class="table table-bordered table-hover">
 		  <tr>
 		    <th width="5%">lp.</th>
 			<th width="20%">Nazwa firmy</th>
+			<th width="20%">Adres</th>
 			<th width="20%">Zniżka</th>
 			<th width="5%">Edytuj zniżkę</th>
 			<th width="5%">Edytuj firmę</th>
@@ -25,7 +26,8 @@ foreach ($companies as $company) {
     echo '
         <tr>
             <td>'.$l. '</td>
-            <td>'.$company->getCompanyName().'</td>            
+            <td>'.$company->getCompanyName().'</td>    
+            <td>'.$company->getAddress().'</td>            
             <td>'.$company->getDiscount().'</td> 
             <td>
                 <center>

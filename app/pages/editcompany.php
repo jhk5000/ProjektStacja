@@ -8,17 +8,19 @@ if($company) {//Do dostosowania!!!
     echo '<h2>Edycja nazwy firmy</h2><hr class="style-one"></hr>';
     if($loged->getGroupId() == 3 || $loged->getGroupId() == 4) {
         if(!empty($_POST['send'])) {
-            if(!empty($_POST['name'])) {
+            if(!empty($_POST['name']) && !empty($_POST['address'])) {
                 $query = $entityManager->getRepository('Companies')
                     ->createQueryBuilder()
-                    ->where('company_id =! :id')
+                    ->select('company_id,company_name,address')
+                    ->where('company_id =! :id AND (company_name = :name OR address = :address)')
                     ->setParameter('id', $_GET['id'])
-                    ->setParameter('company_name', $_POST['name'])
-                    ->orderBy('company_name', 'ASC')
+                    ->setParameter('address', $_POST['address'])
+                    ->orderBy('company_id', 'ASC')
                     ->getQuery();
                 $results = $query->getResult();
                 if(count($results)<1) {
                     $company->setCompanyName($_POST['name']);
+                    $company->setAddress($_POST['address']);
                     $entityManager->flush();
                     alert(1, 'Dane zostały zeedytowane.');
                 } else {
@@ -39,6 +41,10 @@ if($company) {//Do dostosowania!!!
                     <div class="form-group">
                         <label>Nazwa firmy:</label>
                         <input type="text" class="form-control" name="name" value="<?php echo $company->getCompanyName();?>"/>
+                    </div>
+                    <div class="form-group">
+                        <label>Adres firmy:</label>
+                        <input type="text" class="form-control" name="address" value="<?php echo $company->getAddress();?>"/>
                     </div>
                     <input type="submit" class="btn btn-primary btn-ls" value="Edytuj"/>
                     <a href="?page=companies"><button type="button" class="btn btn-primary">Powrót</button></a>
