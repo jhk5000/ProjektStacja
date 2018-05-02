@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Czas generowania: 02 Maj 2018, 12:05
+-- Czas generowania: 02 Maj 2018, 22:32
 -- Wersja serwera: 10.1.30-MariaDB
 -- Wersja PHP: 7.2.1
 
@@ -40,7 +40,7 @@ CREATE TABLE `companies` (
 --
 
 INSERT INTO `companies` (`company_id`, `company_name`, `address`, `discount`) VALUES
-(1, 'Our Company', 'Wierzbowa 3, Rzeszów', 90),
+(1, 'Our Company', 'Wierzbowa 3, RzeszÃ³w', 90),
 (2, 'Firma Testowa 1', 'Baziowa 5, Rzeszów', 10),
 (3, 'FirmaTestowa 2', 'Sosnowa 15, Rzeszów', 15);
 
@@ -52,11 +52,50 @@ INSERT INTO `companies` (`company_id`, `company_name`, `address`, `discount`) VA
 
 CREATE TABLE `event_log` (
   `event_id` int(10) UNSIGNED NOT NULL,
-  `Users_user_id` int(10) UNSIGNED NOT NULL,
   `event_name` varchar(255) COLLATE utf8_polish_ci DEFAULT NULL,
   `event_date` datetime DEFAULT NULL,
+  `changer` text COLLATE utf8_polish_ci NOT NULL,
   `description` text COLLATE utf8_polish_ci
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
+
+--
+-- Zrzut danych tabeli `event_log`
+--
+
+INSERT INTO `event_log` (`event_id`, `event_name`, `event_date`, `changer`, `description`) VALUES
+(13, 'Rejestracja', '2018-05-02 19:02:16', '1, a, a', 'Zarejestrowano uÅ¼ytkownika. Login: user Nazwa: User Userzasty E-mail: user@user.user'),
+(14, 'Logowanie(bÅ‚Ä™dne)', '2018-05-02 19:18:47', '', 'BÅ‚Ä™dna prÃ³ba zalogowania. Login: user IP: ::1'),
+(15, 'Logowanie(bÅ‚Ä™dne)', '2018-05-02 19:19:45', '', 'BÅ‚Ä™dna prÃ³ba zalogowania. Login: user IP: ::1'),
+(16, 'Logowanie(poprawne)', '2018-05-02 19:20:11', '', 'Zalogowano uÅ¼ytkownika. Login: a'),
+(17, 'Logowanie(poprawne)', '2018-05-02 19:31:35', '', 'Zalogowano uÅ¼ytkownika. Login: user'),
+(18, 'Logowanie(poprawne)', '2018-05-02 19:32:08', '', 'Zalogowano uÅ¼ytkownika. Login: a'),
+(19, 'Edycja(firma)', '2018-05-02 19:32:21', '1, a, a', 'Edytowano firmÄ™. Nazwa: Our Company(Our Company1), Adres: Wierzbowa 3, RzeszÃ³w(Wierzbowa 3, RzeszÃ³w)'),
+(20, 'Rejestracja', '2018-05-02 19:40:46', '1, a, a', 'Zarejestrowano uÅ¼ytkownika. Login: manager, Nazwa: Manager Important, E-mail: manager.important@company.com'),
+(21, 'Logowanie(poprawne)', '2018-05-02 20:18:21', '', 'Zalogowano uÅ¼ytkownika. Login: manager'),
+(22, 'Logowanie(poprawne)', '2018-05-02 20:18:30', '', 'Zalogowano uÅ¼ytkownika. Login: a'),
+(23, 'Edycja(kierownik - zmiana danych)', '2018-05-02 20:27:41', '1, a, a', 'Edytowano kierownika. Login: manager1(manager), Nazwa: Manager Important(Manager Important), E-mail: manager.important@company.com(manager.important@company.com)'),
+(24, 'Edycja(kierownik - zmiana stacji)', '2018-05-02 20:28:25', '1, a, a', 'Kierownika (Login: manager1) usuniÄ™to ze stacji (Nazwa: test, Adres: test, test)'),
+(25, 'Edycja(kierownik - zmiana stacji)', '2018-05-02 20:34:07', '1, a, a', 'Edytowano kierownika. Login: manager1Nowa stacja: Nazwa: test, Adres: test, test'),
+(26, 'Edycja(kierownik - zmiana stacji)', '2018-05-02 20:34:22', '1, a, a', 'Kierownika (Login: manager1) usuniÄ™to ze stacji (Nazwa: test, Adres: test, test)'),
+(30, 'Edycja(ceny)', '2018-05-02 21:42:44', '1, a, a', 'Edytowano cenÄ™ na stacji t, t, t. Nowe ceny: PB98 - (), PB95 - 0.02(0.02), ON - (), LPG - 0.04()'),
+(31, 'Edycja(uÅ¼ytkownik)', '2018-05-02 21:48:35', '1, a, a', 'Edytowano uÅ¼ytkownika. Login: user1(user), Nazwa: User Userzasty(User Userzasty), E-mail: user@user.user(user@user.user)'),
+(32, 'Edycja(uÅ¼ytkownik)', '2018-05-02 21:48:41', '1, a, a', 'Edytowano uÅ¼ytkownika. Login: user(user1), Nazwa: User Userzasty(User Userzasty), E-mail: user@user.user(user@user.user)'),
+(33, 'Edycja(stacja)', '2018-05-02 21:57:20', '1, a, a', 'Edytowano stacje. Nazwa: test1(test), Adres: test, test, Podkarpackie(test, test, , Podkarpackie)'),
+(34, 'Edycja(stacja)', '2018-05-02 21:57:25', '1, a, a', 'Edytowano stacje. Nazwa: test(test1), Adres: test, test, Podkarpackie(test, test, , Podkarpackie)'),
+(35, 'Logowanie(poprawne)', '2018-05-02 22:01:14', '', 'Zalogowano uÅ¼ytkownika. Login: a'),
+(36, 'Logowanie(poprawne)', '2018-05-02 22:04:43', '', 'Zalogowano uÅ¼ytkownika. Login: a'),
+(37, 'Logowanie(poprawne)', '2018-05-02 22:09:58', '', 'Zalogowano uÅ¼ytkownika. Login: a'),
+(38, 'Logowanie(poprawne)', '2018-05-02 22:11:53', '', 'Zalogowano uÅ¼ytkownika. Login: a'),
+(39, 'Logowanie(poprawne)', '2018-05-02 22:12:47', '', 'Zalogowano uÅ¼ytkownika. Login: a'),
+(40, 'Rejestracja', '2018-05-02 22:13:05', '1, a, a', 'Zarejestrowano uÅ¼ytkownika. Login: m, Nazwa: m, E-mail: m@m.pl'),
+(41, 'Logowanie(poprawne)', '2018-05-02 22:17:08', '', 'Zalogowano uÅ¼ytkownika. Login: a'),
+(42, 'Rejestracja', '2018-05-02 22:17:21', '1, a, a', 'Zarejestrowano uÅ¼ytkownika. Login: b, Nazwa: b, E-mail: b@b.pl'),
+(43, 'Logowanie(poprawne)', '2018-05-02 22:22:34', '', 'Zalogowano uÅ¼ytkownika. Login: a'),
+(44, 'Logowanie(poprawne)', '2018-05-02 22:26:21', '', 'Zalogowano uÅ¼ytkownika. Login: a'),
+(45, 'Logowanie(poprawne)', '2018-05-02 22:26:54', '', 'Zalogowano uÅ¼ytkownika. Login: a'),
+(46, 'Rejestracja', '2018-05-02 22:27:57', '1, a, a', 'Zarejestrowano uÅ¼ytkownika. Login: b, Nazwa: b, E-mail: b@b.pl'),
+(47, 'Logowanie(poprawne)', '2018-05-02 22:28:12', '', 'Zalogowano uÅ¼ytkownika. Login: a'),
+(48, 'Logowanie(poprawne)', '2018-05-02 22:28:47', '', 'Zalogowano uÅ¼ytkownika. Login: a');
 
 -- --------------------------------------------------------
 
@@ -79,7 +118,17 @@ INSERT INTO `logdata` (`logdata_id`, `Users_user_id`, `log_date`, `valid`) VALUE
 (1, 1, '2018-04-30 14:57:52', 1),
 (2, 1, '2018-04-30 15:50:07', 1),
 (3, 1, '2018-04-30 17:40:26', 1),
-(4, 1, '2018-04-30 17:42:27', 1);
+(4, 1, '2018-04-30 17:42:27', 1),
+(5, 1, '2018-05-02 13:36:55', 1),
+(6, 1, '2018-05-02 13:37:18', 1),
+(7, 1, '2018-05-02 14:19:19', 1),
+(8, 1, '2018-05-02 14:20:07', 1),
+(9, 1, '2018-05-02 14:38:01', 1),
+(10, 1, '2018-05-02 14:39:38', 1),
+(11, 1, '2018-05-02 15:24:19', 1),
+(12, 1, '2018-05-02 15:24:55', 1),
+(13, 26, '2018-05-02 19:18:47', 0),
+(14, 26, '2018-05-02 19:19:45', 0);
 
 -- --------------------------------------------------------
 
@@ -115,7 +164,7 @@ CREATE TABLE `prices` (
   `PB95` varchar(255) COLLATE utf8_polish_ci DEFAULT NULL,
   `OIL` varchar(255) COLLATE utf8_polish_ci DEFAULT NULL,
   `LPG` varchar(255) COLLATE utf8_polish_ci DEFAULT NULL,
-  `date_of_change` date DEFAULT NULL
+  `date_of_change` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
 
 --
@@ -123,7 +172,8 @@ CREATE TABLE `prices` (
 --
 
 INSERT INTO `prices` (`price_id`, `Stations_station_id`, `PB98`, `PB95`, `OIL`, `LPG`, `date_of_change`) VALUES
-(7, 4, '0.03', '', '', '', '2018-05-01');
+(7, 4, '0.03', '', '0.06', '0.05', '2018-05-02 21:38:44'),
+(8, 5, '', '0.02', '', '0.04', '2018-05-02 21:42:45');
 
 -- --------------------------------------------------------
 
@@ -171,12 +221,10 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`user_id`, `login`, `passwd`, `name`, `mail`, `register_date`, `group_id`, `token`, `Companies_company_id`, `info`) VALUES
-(1, 'a', '$2y$10$pfdm9ssnDrQdXlVSSQ0U1OxfSA9fdUYgcP2qB/f0pV68hofjbjdMK', 'a', 'a', '2018-04-09', 4, '$2y$10$34Ocda5LvfuN/Dzp0XlzMe90IkWp1UcmSO9PRzqUm/LCZTBoeI9HW', NULL, 'a'),
-(4, '1', '1', '11', '1@1.pl', '0000-00-00', 2, '1', 1, '0'),
-(7, '4', '4', '4', '4@4.pl', '0000-00-00', 2, '4', 1, '0'),
-(9, '6', '6', '65', '6@6.pl', '0000-00-00', 2, '6', 1, '0'),
-(11, '8', '8', '8', '8@8.pl', '0000-00-00', 1, '8', 2, '0'),
-(12, '9', '9', '9', '9@9.pl', '0000-00-00', 1, '9', 2, '0');
+(1, 'a', '$2y$10$pfdm9ssnDrQdXlVSSQ0U1OxfSA9fdUYgcP2qB/f0pV68hofjbjdMK', 'a', 'a', '2018-04-09', 4, '$2y$10$YMj1iqu/swReRnHAddNYuu9TuyxKsqLdiqDSolKZtiQrcKYAqhj6G', NULL, 'a'),
+(26, 'user', '$2y$10$uOi5g3rZeKCe.mDVzvut4.Mt2ydqTJMrhxOww8rLWr6WRI4dljjlC', 'User Userzasty', 'user@user.user', '2018-05-02', 1, '$2y$10$abPnv16RnMUkYPBVwYDmAOAY19CBaQ1djyP79mQfmli94QqPf3egy', NULL, ''),
+(27, 'manager1', '$2y$10$dbS.5cxdLrB5KLAbUZh1J.muRt5yuYSZUQo/KlyybIUe1QorwfhEi', 'Manager Important', 'manager.important@company.com', '2018-05-02', 2, '$2y$10$S9sieQrapT7tnCbXIWKgv.BWRcVtaPU0bl46jNIPyKGBFDsYam0C6', NULL, ''),
+(31, 'b', '$2y$10$cVLXidPbRzx0Ti.EzoCHfuVI6ClOjuXm50cY6/2CUHryT//AsfiAK', 'b', 'b@b.pl', '2018-05-02', 1, NULL, NULL, '');
 
 --
 -- Indeksy dla zrzutów tabel
@@ -192,8 +240,7 @@ ALTER TABLE `companies`
 -- Indexes for table `event_log`
 --
 ALTER TABLE `event_log`
-  ADD PRIMARY KEY (`event_id`),
-  ADD KEY `Event_log_FKIndex1` (`Users_user_id`);
+  ADD PRIMARY KEY (`event_id`);
 
 --
 -- Indexes for table `logdata`
@@ -244,25 +291,25 @@ ALTER TABLE `companies`
 -- AUTO_INCREMENT dla tabeli `event_log`
 --
 ALTER TABLE `event_log`
-  MODIFY `event_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `event_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
 
 --
 -- AUTO_INCREMENT dla tabeli `logdata`
 --
 ALTER TABLE `logdata`
-  MODIFY `logdata_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `logdata_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT dla tabeli `managers`
 --
 ALTER TABLE `managers`
-  MODIFY `manager_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `manager_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT dla tabeli `prices`
 --
 ALTER TABLE `prices`
-  MODIFY `price_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `price_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT dla tabeli `stations`
@@ -274,7 +321,7 @@ ALTER TABLE `stations`
 -- AUTO_INCREMENT dla tabeli `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `user_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

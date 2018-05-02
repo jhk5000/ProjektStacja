@@ -24,42 +24,46 @@ if(!empty($_POST['task'])) {
     }
     switch($_POST['task']) {
         case 1:
-            if(!empty($_POST['name'])) {
-                if($_POST['pass1'] != $_POST['pass2']) {
-                    echo 'Podane hasła nie są identyczne!';
-                } elseif (!filter_var($_POST['mail'], FILTER_VALIDATE_EMAIL)) {
-                    echo 'Podano błędny adres email!';
-                } else {
-                    $user = $entityManager->getRepository('User')->findOneBy(array('login' => $_POST['login']));
-                    $mail = $entityManager->getRepository('User')->findOneBy(array('mail' => $_POST['mail']));
-                    if ($user !== null) {
-                        echo 'Podany login jest już zajęty!';
-                    } elseif($mail !== null){
-                        echo 'Podany mail jest już zajęty!';
+            if(isset($user)) {
+                if (!empty($_POST['name'])) {
+                    if ($_POST['pass1'] != $_POST['pass2']) {
+                        echo 'Podane hasła nie są identyczne!';
+                    } elseif (!filter_var($_POST['mail'], FILTER_VALIDATE_EMAIL)) {
+                        echo 'Podano błędny adres email!';
                     } else {
-                        $password = password_hash($_POST['pass1'], PASSWORD_BCRYPT);
-                        $data = date("y-m-d");
-                        $user = new User();
-                        $user->setLogin($_POST['login']);
-                        $user->setPasswd($password);
-                        $user->setName($_POST['name']);
-                        $user->setMail($_POST['mail']);
-                        $user->setRegisterDate($data);
-                        $user->setGroupId($_POST['group']);
-                        $user->setToken(null);
-                        $user->setInfo('');
-                        $entityManager->persist($user);
-                        $entityManager->flush();
+                        $user = $entityManager->getRepository('User')->findOneBy(array('login' => $_POST['login']));
+                        $mail = $entityManager->getRepository('User')->findOneBy(array('mail' => $_POST['mail']));
+                        if ($user !== null) {
+                            echo 'Podany login jest już zajęty!';
+                        } elseif ($mail !== null) {
+                            echo 'Podany mail jest już zajęty!';
+                        } else {
+                            $password = password_hash($_POST['pass1'], PASSWORD_BCRYPT);
+                            $data = date("y-m-d");
+                            $user = new User();
+                            $user->setLogin($_POST['login']);
+                            $user->setPasswd($password);
+                            $user->setName($_POST['name']);
+                            $user->setMail($_POST['mail']);
+                            $user->setRegisterDate($data);
+                            $user->setGroupId($_POST['group']);
+                            $user->setToken(null);
+                            $user->setInfo('');
+                            $entityManager->persist($user);
+                            $entityManager->flush();
 
-                        $loged = $entityManager->find('User', $_SESSION['user']);
-                        $changer = $loged->getUserId() . ', ' . $loged->getLogin() . ', ' . $loged->getName();
-                        $description = 'Zarejestrowano użytkownika. ' .  'Login: ' . $_POST['login'] . ', Nazwa: ' . $_POST['name'] . ', E-mail: ' . $_POST['mail'];
-                        makeLog($entityManager,'Rejestracja', $changer, $description);
-                        echo 1;
+                            $loged = $entityManager->find('User', $_SESSION['user']);
+                            $changer = $loged->getUserId() . ', ' . $loged->getLogin() . ', ' . $loged->getName();
+                            $description = 'Zarejestrowano użytkownika. ' . 'Login: ' . $_POST['login'] . ', Nazwa: ' . $_POST['name'] . ', E-mail: ' . $_POST['mail'];
+                            makeLog($entityManager, 'Rejestracja', $changer, $description);
+                            echo 1;
+                        }
                     }
+                } else {
+                    echo 'Uzupełnij wszystkie dane!';
                 }
-            } else {
-                echo 'Uzupełnij wszystkie dane!';
+            }else{
+                echo 'Zostałeś wylogowany';
             }
             break;
         case 2:
@@ -133,28 +137,32 @@ if(!empty($_POST['task'])) {
             echo 1;
             break;
         case 5:
-            if(!empty($_POST['name'])) {
-                $station = $entityManager->getRepository('Stations')->findOneBy(array('station_name' => $_POST['name']));
-                if ($station !== null) {
-                    echo 'Podana nazwa jest już zajęta!';
+            if(isset($user)) {
+                if (!empty($_POST['name'])) {
+                    $station = $entityManager->getRepository('Stations')->findOneBy(array('station_name' => $_POST['name']));
+                    if ($station !== null) {
+                        echo 'Podana nazwa jest już zajęta!';
+                    } else {
+                        $st = new Stations();
+                        $st->setStationName($_POST['name']);
+                        $st->setVoivodeship($_POST['voide']);
+                        $st->setCity($_POST['city']);
+                        $st->setStreet($_POST['street']);
+                        $entityManager->persist($st);
+                        $entityManager->flush();
+
+                        $loged = $entityManager->find('User', $_SESSION['user']);
+                        $changer = $loged->getUserId() . ', ' . $loged->getLogin() . ', ' . $loged->getName();
+                        $description = 'Dodano stację. ' . 'Nazwa: ' . $_POST['name'] . ', Adres: ' . $_POST['city'] . ', ' . $_POST['street'] . ', ' . $_POST['voide'];
+                        makeLog($entityManager, 'Wprowadzono nową stację', $changer, $description);
+                        echo 1;
+                    }
+
                 } else {
-                    $st = new Stations();
-                    $st->setStationName($_POST['name']);
-                    $st->setVoivodeship($_POST['voide']);
-                    $st->setCity($_POST['city']);
-                    $st->setStreet($_POST['street']);
-                    $entityManager->persist($st);
-                    $entityManager->flush();
-
-                    $loged = $entityManager->find('User', $_SESSION['user']);
-                    $changer = $loged->getUserId() . ', ' . $loged->getLogin() . ', ' . $loged->getName();
-                    $description = 'Dodano stację. ' .  'Nazwa: ' . $_POST['name'] . ', Adres: ' . $_POST['city'] . ', ' . $_POST['street'] . ', ' . $_POST['voide'];
-                    makeLog($entityManager,'Wprowadzono nową stację', $changer, $description);
-                    echo 1;
+                    echo 'Uzupełnij wszystkie dane!';
                 }
-
-            } else {
-                echo 'Uzupełnij wszystkie dane!';
+            }else{
+                echo 'Zostałeś wylogowany';
             }
             break;
         default:

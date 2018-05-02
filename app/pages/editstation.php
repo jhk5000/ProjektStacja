@@ -9,16 +9,17 @@ if($station) {
             if(!empty($_POST['name']) && !empty($_POST['voivodeship']) && !empty($_POST['city']) && !empty($_POST['street'])) {
                 $query = $entityManager->getRepository('Stations')
                     ->createQueryBuilder('s')
-                    ->where('s.station_id != :id AND (s.voivodeship = :voivodeship OR s.city = :city OR s.street = :street)')
+                    ->where('s.station_id != :id AND s.station_name = :name')
                     ->setParameter('id', $_GET['id'])
-                    ->setParameter('voivodeship', $_POST['voivodeship'])
-                    ->setParameter('city', $_POST['city'])
-                    ->setParameter('street', $_POST['street'])
-                    ->orderBy('s.station_id', 'ASC')
+                    ->setParameter('name', $_POST['name'])
                     ->getQuery();
                 $results = $query->getResult();
                 if(count($results)<1) {
-                    $station->setName($_POST['name']);
+                    $changer = $loged->getUserId() . ', ' . $loged->getLogin() . ', ' . $loged->getName();
+                    $description = 'Edytowano stacje. ' .  'Nazwa: ' . $_POST['name'] . '(' . $station->getStationName() .'), Adres: ' . $_POST['city'] . ', ' . $_POST['street'] . ', ' . $_POST['voivodeship'] . '(' . $station->getCity() . ', ' . $station->getStreet() .', ' . ', ' . $station->getVoivodeship() .')';
+                    makeLog($entityManager,'Edycja(stacja)', $changer, $description);
+
+                    $station->setStationName($_POST['name']);
                     $station->setVoivodeship($_POST['voivodeship']);
                     $station->setCity($_POST['city']);
                     $station->setStreet($_POST['street']);
@@ -37,22 +38,22 @@ if($station) {
             <div class="row">
                 <div class="col-lg-12">
                     <div class="form-group">
-                        <label><?php echo $station->getName();?> </label>
+                        <label><?php echo $station->getStationName();?> </label>
                     </div>
                     <div class="form-group">
                         <label>Nazwa:</label>
-                        <input type="text" class="form-control" name="name" value="<?php echo $station->getName();?>"/>
+                        <input type="text" class="form-control" name="name" value="<?php echo $station->getStationName();?>"/>
                     </div>
                     <div class="form-group">
-                        <label>Województwo</label>
+                        <label>Województwo:</label>
                         <input type="text" class="form-control" name="voivodeship" value="<?php echo $station->getVoivodeship();?>"/>
                     </div>
                     <div class="form-group">
-                        <label>Miasto</label>
+                        <label>Miasto:</label>
                         <input type="text" class="form-control" name="city" value="<?php echo $station->getCity();?>"/>
                     </div>
                     <div class="form-group">
-                        <label>Ulica</label>
+                        <label>Ulica:</label>
                         <input type="text" class="form-control" name="street" value="<?php echo $station->getStreet();?>"/>
                     </div>
                     <input type="submit" class="btn btn-primary btn-ls" value="Edytuj"/>

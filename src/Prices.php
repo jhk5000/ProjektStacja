@@ -75,7 +75,7 @@ class Prices
     /**
      * @return string
      */
-    public function getPB98(): string
+    public function getPB98()
     {
         return $this->PB98;
     }
@@ -83,7 +83,7 @@ class Prices
     /**
      * @param string $PB98
      */
-    public function setPB98(string $PB98): void
+    public function setPB98(string $PB98)
     {
         $this->PB98 = $PB98;
     }
@@ -91,7 +91,7 @@ class Prices
     /**
      * @return string
      */
-    public function getPB95(): string
+    public function getPB95()
     {
         return $this->PB95;
     }
@@ -99,7 +99,7 @@ class Prices
     /**
      * @param string $PB95
      */
-    public function setPB95(string $PB95): void
+    public function setPB95(string $PB95)
     {
         $this->PB95 = $PB95;
     }
@@ -107,7 +107,7 @@ class Prices
     /**
      * @return string
      */
-    public function getOIL(): string
+    public function getOIL()
     {
         return $this->OIL;
     }
@@ -115,7 +115,7 @@ class Prices
     /**
      * @param string $OIL
      */
-    public function setOIL(string $OIL): void
+    public function setOIL(string $OIL)
     {
         $this->OIL = $OIL;
     }
@@ -123,7 +123,7 @@ class Prices
     /**
      * @return string
      */
-    public function getLPG(): string
+    public function getLPG()
     {
         return $this->LPG;
     }
@@ -131,7 +131,7 @@ class Prices
     /**
      * @param string $LPG
      */
-    public function setLPG(string $LPG): void
+    public function setLPG(string $LPG)
     {
         $this->LPG = $LPG;
     }
