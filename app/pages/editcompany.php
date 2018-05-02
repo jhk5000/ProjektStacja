@@ -8,16 +8,17 @@ if($company) {//Do dostosowania!!!
     echo '<h2>Edycja nazwy firmy</h2><hr class="style-one"></hr>';
     if($loged->getGroupId() == 3 || $loged->getGroupId() == 4) {
         if(!empty($_POST['send'])) {
-            if(!empty($_POST['name']) && !empty($_POST['id'])) {
+            if(!empty($_POST['name'])) {
                 $query = $entityManager->getRepository('Companies')
                     ->createQueryBuilder()
-                    ->where('company_id != :id')
-                    ->setParameter('company_name', $_POST['company'])
+                    ->where('company_id = :id')
+                    ->setParameter('id', $_GET['id'])
+                    ->setParameter('company_name', $_POST['name'])
                     ->orderBy('company_name', 'ASC')
                     ->getQuery();
                 $results = $query->getResult();
                 if(count($results)<1) {
-                    $company->setCompanyName($_POST['company']);
+                    $company->setCompanyName($_POST['name']);
                     $entityManager->flush();
                     alert(1, 'Dane zostały zeedytowane.');
                 } else {
@@ -33,11 +34,11 @@ if($company) {//Do dostosowania!!!
             <div class="row">
                 <div class="col-lg-12">
                     <div class="form-group">
-                        <label><?php echo $company->getCompany();?> </label>
+                        <label><?php echo $company->getCompanyName();?> </label>
                     </div>
                     <div class="form-group">
                         <label>Nazwa firmy:</label>
-                        <input type="text" class="form-control" name="name" value="<?php echo $user->getCompany();?>"/>
+                        <input type="text" class="form-control" name="name" value="<?php echo $company->getCompanyName();?>"/>
                     </div>
                     <input type="submit" class="btn btn-primary btn-ls" value="Edytuj"/>
                     <a href="?page=companies"><button type="button" class="btn btn-primary">Powrót</button></a>
