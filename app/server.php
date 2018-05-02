@@ -165,6 +165,34 @@ if(!empty($_POST['task'])) {
                 echo 'Zostałeś wylogowany';
             }
             break;
+        case 6:
+            if(isset($user)) {
+                if (!empty($_POST['name'])) {
+                    $company = $entityManager->getRepository('Companies')->findOneBy(array('company_name' => $_POST['name']));
+                    if ($company !== null) {
+                        echo 'Podana nazwa jest już zajęta!';
+                    } else {
+                        $cp = new Companies();
+                        $cp->setCompanyName($_POST['name']);
+                        $cp->setAddress($_POST['address']);
+                        $cp->setDiscount($_POST['discount']);
+                        $entityManager->persist($cp);
+                        $entityManager->flush();
+
+                        $loged = $entityManager->find('User', $_SESSION['user']);
+                        $changer = $loged->getUserId() . ', ' . $loged->getLogin() . ', ' . $loged->getName();
+                        $description = 'Dodano firmę. ' . 'Nazwa: ' . $_POST['name'] . ', Adres: ' . $_POST['address'];
+                        makeLog($entityManager, 'Wprowadzono nową firmę', $changer, $description);
+                        echo 1;
+                    }
+
+                } else {
+                    echo 'Uzupełnij wszystkie dane!';
+                }
+            }else{
+                echo 'Zostałeś wylogowany';
+            }
+            break;
         default:
             break;
     }

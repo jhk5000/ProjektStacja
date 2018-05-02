@@ -46,6 +46,7 @@ foreach ($users as $user) {
     $l++;
 }//end foreach
 echo '</tbody></table>';
+echo '<a href="'.$config['page_url'].'?page=register"><input type="submit" class="btn btn-primary" value="Dodaj klienta"/></a>';
 
 if(isset($_POST['deleteUser'])){
     $deleted = $entityManager->find('User', $_POST['id']);

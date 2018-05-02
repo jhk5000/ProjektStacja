@@ -54,6 +54,7 @@ foreach ($stations as $station) {
 }//end foreach
 
 echo '</tbody></table>';
+echo '<a href="'.$config['page_url'].'?page=addstation"><input type="submit" class="btn btn-primary" value="Dodaj stację"/></a>';
 
 if(isset($_POST['deleteStation'])){
     $deleted = $entityManager->find('Stations', $_POST['id']);
