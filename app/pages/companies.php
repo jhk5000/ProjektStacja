@@ -3,11 +3,10 @@ echo '<h2>Nasi klienci:</h2><hr class="style-one"></hr>';
 require_once "bootstrap.php";
 //
 
-$company = $entityManager->getRepository('Companies')
-    ->createQueryBuilder()
-    ->select('company_name, company_id, discount')
-    ->getQuery();
-$companies = $company->getResult();
+$companyRepository = $entityManager->getRepository('Companies');
+$companies = $companyRepository->findAll();
+$l=1;
+//$companies = $company->getResult();
 
 
 $l=1;
@@ -26,16 +25,16 @@ foreach ($companies as $company) {
     echo '
         <tr>
             <td>'.$l. '</td>
-            <td>'.$company['company_name'].'</td>            
-            <td>'.$company['discount'].'</td> 
+            <td>'.$company->getCompanyName().'</td>            
+            <td>'.$company->getDiscount().'</td> 
             <td>
                 <center>
-                    <a href="'.$config['page_url'].'?page=editdiscount&id='.$company['company_id'].'"><i class=\'glyphicon glyphicon-pencil\'></i></a> 
+                    <a href="'.$config['page_url'].'?page=editdiscount&id='.$company->getCompanyId().'"><i class=\'glyphicon glyphicon-pencil\'></i></a> 
                  </center>
             </td>
             <td>
                 <center>
-                    <a href="'.$config['page_url'].'?page=editcompany&id='.$company['company_id'].'"><i class=\'glyphicon glyphicon-pencil\'></i></a>                    
+                    <a href="'.$config['page_url'].'?page=editcompany&id='.$company->getCompanyId().'"><i class=\'glyphicon glyphicon-pencil\'></i></a>                    
                 </center>
             </td>
         </tr>

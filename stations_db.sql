@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Czas generowania: 01 Maj 2018, 00:12
+-- Czas generowania: 02 Maj 2018, 12:05
 -- Wersja serwera: 10.1.30-MariaDB
 -- Wersja PHP: 7.2.1
 
@@ -25,7 +25,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Struktura tabeli dla tabeli `discount`
+-- Struktura tabeli dla tabeli `companies`
 --
 
 CREATE TABLE `companies` (
@@ -34,14 +34,16 @@ CREATE TABLE `companies` (
   `address` varchar(255) COLLATE utf8_polish_ci DEFAULT NULL,
   `discount` int(10) UNSIGNED DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
+
 --
--- Zrzut danych tabeli `prices`
+-- Zrzut danych tabeli `companies`
 --
 
 INSERT INTO `companies` (`company_id`, `company_name`, `address`, `discount`) VALUES
-(1, 'Our Company', 'Wierzbowa 3, Rzeszów', '90'),
-(2, 'Firma Testowa 1', 'Baziowa 5, Rzeszów', '10'),
-(3, 'FirmaTestowa 2', 'Sosnowa 15, Rzeszów', '15');
+(1, 'Our Company', 'Wierzbowa 3, Rzeszów', 90),
+(2, 'Firma Testowa 1', 'Baziowa 5, Rzeszów', 10),
+(3, 'FirmaTestowa 2', 'Sosnowa 15, Rzeszów', 15);
+
 -- --------------------------------------------------------
 
 --
@@ -170,18 +172,18 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`user_id`, `login`, `passwd`, `name`, `mail`, `register_date`, `group_id`, `token`, `Companies_company_id`, `info`) VALUES
 (1, 'a', '$2y$10$pfdm9ssnDrQdXlVSSQ0U1OxfSA9fdUYgcP2qB/f0pV68hofjbjdMK', 'a', 'a', '2018-04-09', 4, '$2y$10$34Ocda5LvfuN/Dzp0XlzMe90IkWp1UcmSO9PRzqUm/LCZTBoeI9HW', NULL, 'a'),
-(4, '1', '1', '11', '1@1.pl', '0000-00-00', 2, '1', '1', '0'),
-(7, '4', '4', '4', '4@4.pl', '0000-00-00', 2, '4', '1', '0'),
-(9, '6', '6', '65', '6@6.pl', '0000-00-00', 2, '6', '1', '0'),
-(11, '8', '8', '8', '8@8.pl', '0000-00-00', 1, '8', '2', '0'),
-(12, '9', '9', '9', '9@9.pl', '0000-00-00', 1, '9', '2', '0');
+(4, '1', '1', '11', '1@1.pl', '0000-00-00', 2, '1', 1, '0'),
+(7, '4', '4', '4', '4@4.pl', '0000-00-00', 2, '4', 1, '0'),
+(9, '6', '6', '65', '6@6.pl', '0000-00-00', 2, '6', 1, '0'),
+(11, '8', '8', '8', '8@8.pl', '0000-00-00', 1, '8', 2, '0'),
+(12, '9', '9', '9', '9@9.pl', '0000-00-00', 1, '9', 2, '0');
 
 --
 -- Indeksy dla zrzutów tabel
 --
 
 --
--- Indexes for table `discount`
+-- Indexes for table `companies`
 --
 ALTER TABLE `companies`
   ADD PRIMARY KEY (`company_id`);
@@ -221,7 +223,7 @@ ALTER TABLE `prices`
 ALTER TABLE `stations`
   ADD PRIMARY KEY (`station_id`);
 
--- 
+--
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
@@ -233,10 +235,10 @@ ALTER TABLE `users`
 --
 
 --
--- AUTO_INCREMENT dla tabeli `discount`
+-- AUTO_INCREMENT dla tabeli `companies`
 --
-ALTER TABLE `Companies`
-  MODIFY `company_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+ALTER TABLE `companies`
+  MODIFY `company_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT dla tabeli `event_log`
@@ -267,12 +269,6 @@ ALTER TABLE `prices`
 --
 ALTER TABLE `stations`
   MODIFY `station_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
-
---
--- AUTO_INCREMENT dla tabeli `companies`
---
-ALTER TABLE `companies`
-  MODIFY `company_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT dla tabeli `users`
