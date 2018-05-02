@@ -1,4 +1,5 @@
 <?php
+
 	function alert($type, $text) {
 		if($type == 1) {
 			echo '<div class="alert alert-success"><strong>Sukces:</strong> '.$text.'</div>';
@@ -8,7 +9,7 @@
 	}
 
 	function getLoginWindow() {
-		global $config;
+        global $config;
 		return '<div id="loginBox" class="modalWindow">
 				<div id="blackX" onClick="app.closeModal();"></div>
 				<h2>Logowanie</h2><hr class="style-one"></hr>
@@ -221,4 +222,34 @@ function compareDates($date1, $logs){
     }else{
         return 0;
     }
+}
+
+function makeLog($entityManager, $name, $changer, $description){
+    $event = new Events();
+    $event->setEventName($name);
+    $event->setEventDate(date("y-m-d H:i:s"));
+    $event->setChanger($changer);
+    $event->setDescription($description);
+    $entityManager->persist($event);
+    $entityManager->flush();
+}
+
+function getIP() {
+    $ipaddress = '';
+    if (getenv('HTTP_CLIENT_IP'))
+        $ipaddress = getenv('HTTP_CLIENT_IP');
+    else if(getenv('HTTP_X_FORWARDED_FOR'))
+        $ipaddress = getenv('HTTP_X_FORWARDED_FOR');
+    else if(getenv('HTTP_X_FORWARDED'))
+        $ipaddress = getenv('HTTP_X_FORWARDED');
+    else if(getenv('HTTP_FORWARDED_FOR'))
+        $ipaddress = getenv('HTTP_FORWARDED_FOR');
+    else if(getenv('HTTP_FORWARDED'))
+        $ipaddress = getenv('HTTP_FORWARDED');
+    else if(getenv('REMOTE_ADDR'))
+        $ipaddress = getenv('REMOTE_ADDR');
+    else
+        $ipaddress = 'UNKNOWN';
+
+    return $ipaddress;
 }

@@ -10,11 +10,6 @@ class Events
      */
     protected $event_id;
     /**
-     * @Column(type="integer")
-     * @var string
-     */
-    protected $Users_user_id;
-    /**
      * @Column(type="string")
      * @var string
      */
@@ -24,6 +19,11 @@ class Events
      * @var string
      */
     protected $event_date;
+    /**
+     * @Column(type="string")
+     * @var string
+     */
+    protected $changer;
     /**
      * @Column(type="string")
      * @var string
@@ -49,18 +49,19 @@ class Events
     /**
      * @return string
      */
-    public function getUsersUserId(): string
+    public function getChanger(): string
     {
-        return $this->Users_user_id;
+        return $this->changer;
     }
 
     /**
-     * @param string $Users_user_id
+     * @param string $changer
      */
-    public function setUsersUserId(string $Users_user_id): void
+    public function setChanger(string $changer): void
     {
-        $this->Users_user_id = $Users_user_id;
+        $this->changer = $changer;
     }
+
 
     /**
      * @return string
