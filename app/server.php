@@ -50,6 +50,7 @@ if(!empty($_POST['task'])) {
                         $user->setInfo('');
                         $entityManager->persist($user);
                         $entityManager->flush();
+
                         $loged = $entityManager->find('User', $_SESSION['user']);
                         $changer = $loged->getUserId() . ', ' . $loged->getLogin() . ', ' . $loged->getName();
                         $description = 'Zarejestrowano użytkownika. ' .  'Login: ' . $_POST['login'] . ', Nazwa: ' . $_POST['name'] . ', E-mail: ' . $_POST['mail'];
@@ -144,6 +145,7 @@ if(!empty($_POST['task'])) {
                     $st->setStreet($_POST['street']);
                     $entityManager->persist($st);
                     $entityManager->flush();
+
                     $loged = $entityManager->find('User', $_SESSION['user']);
                     $changer = $loged->getUserId() . ', ' . $loged->getLogin() . ', ' . $loged->getName();
                     $description = 'Dodano stację. ' .  'Nazwa: ' . $_POST['name'] . ', Adres: ' . $_POST['city'] . ', ' . $_POST['street'] . ', ' . $_POST['voide'];
