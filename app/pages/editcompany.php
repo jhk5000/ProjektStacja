@@ -8,13 +8,13 @@ if($company) {//Do dostosowania!!!
     echo '<h2>Edycja nazwy firmy</h2><hr class="style-one"></hr>';
     if($loged->getGroupId() == 3 || $loged->getGroupId() == 4) {
         if(!empty($_POST['send'])) {
-            if(!empty($_POST['name'])) {
+            if(!empty($_POST['name']) && !empty($_POST['address'])) {
                 $query = $entityManager->getRepository('Companies')
                     ->createQueryBuilder()
-                    ->where('company_id =! :id AND company_name = :name')
+                    ->where('company_id =! :id AND (company_name = :name or address =: address)')
                     ->setParameter('id', $_GET['id'])
                     ->setParameter('address', $_POST['address'])
-                    ->orderBy('company_name', 'ASC')
+                    ->orderBy('company_id', 'ASC')
                     ->getQuery();
                 $results = $query->getResult();
                 if(count($results)<1) {
@@ -43,7 +43,7 @@ if($company) {//Do dostosowania!!!
                     </div>
                     <div class="form-group">
                         <label>Adres firmy:</label>
-                        <input type="text" class="form-control" name="addres" value="<?php echo $company->getAddress();?>"/>
+                        <input type="text" class="form-control" name="address" value="<?php echo $company->getAddress();?>"/>
                     </div>
                     <input type="submit" class="btn btn-primary btn-ls" value="Edytuj"/>
                     <a href="?page=companies"><button type="button" class="btn btn-primary">Powrót</button></a>
