@@ -225,8 +225,8 @@ ALTER TABLE `stations`
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
-  ADD PRIMARY KEY (`user_id`)
-  ADD KEY `Companies_FKIndex8` (`Companies_company_id`);;
+  ADD PRIMARY KEY (`user_id`),
+  ADD KEY `Companies_FKIndex1` (`Companies_company_id`);
 
 --
 -- AUTO_INCREMENT for dumped tables
