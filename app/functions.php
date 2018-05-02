@@ -140,9 +140,9 @@
             else
                 echo '<a href="' . $config['page_url'] . '?page=ourpricesoffuelsales" class="list-group-item">Nasze ceny paliw</a>';
             if ($page == 'logs')
-                echo '<a href="' . $config['page_url'] . '?page=logs" class="list-group-item active">Logi zdarzeń</a>';
+                echo '<a href="' . $config['page_url'] . '?page=logs&event=" class="list-group-item active">Logi zdarzeń</a>';
             else
-                echo '<a href="' . $config['page_url'] . '?page=logs" class="list-group-item">Logi zdarzeń</a>';
+                echo '<a href="' . $config['page_url'] . '?page=logs&event=" class="list-group-item">Logi zdarzeń</a>';
 
         }
 		if($page == 'messages')
@@ -203,6 +203,11 @@ function scripts(){
                      else{
                          setTimeout(refresh, refreshtime);
                      }
+                 }
+                 
+                 function getEvent(){
+                    var type = document.getElementById(\'event_type\').value;
+                    window.location.href="'.$config['page_url'].'?page=logs&event="+type;
                  }
                  
             </script>
