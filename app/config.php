@@ -38,6 +38,7 @@ $config['pages_groups'] = array(
     'addstation'      => array(3,4),
     'ourpricesoffuelsales'=>array(2,3,4), //ustalanie cen paliw
     'editcompany'   =>array(3,4),
+    'logs'      => array(4),
 );
 
 $config['password']['max_lenght'] = 30;
