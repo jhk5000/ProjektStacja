@@ -11,7 +11,7 @@ if($company) {//Do dostosowania!!!
             if(!empty($_POST['name']) && !empty($_POST['address'])) {
                 $query = $entityManager->getRepository('Companies')
                     ->createQueryBuilder()
-                    ->where('company_id =! :id AND (company_name = :name OR address = :address)')
+                    ->where('company_id != :id AND (company_name = :name OR address = :address)')
                     ->setParameter('id', $_GET['id'])
                     ->setParameter('address', $_POST['address'])
                     ->orderBy('company_id', 'ASC')
