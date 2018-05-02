@@ -11,7 +11,7 @@ if($company) {//Do dostosowania!!!
             if(!empty($_POST['name'])) {
                 $query = $entityManager->getRepository('Companies')
                     ->createQueryBuilder()
-                    ->where('company_id = :id')
+                    ->where('company_id =! :id')
                     ->setParameter('id', $_GET['id'])
                     ->setParameter('company_name', $_POST['name'])
                     ->orderBy('company_name', 'ASC')
