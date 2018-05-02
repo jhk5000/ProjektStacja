@@ -1,14 +1,14 @@
 <?php
 
-// Nie dziaa, bo nie dziaaa. CHyba najlepiej bylo by zrobić odosbna tabele "firma"
 
-$user = $entityManager->find('User', $_GET['id']);
+
+$company = $entityManager->find('Company', $_GET['id']);
 $loged = $entityManager->find('User', $_SESSION['user']);
-if($user) {//Do dostosowania!!!
+if($company) {//Do dostosowania!!!
     echo '<h2>Edycja nazwy firmy</h2><hr class="style-one"></hr>';
     if($loged->getGroupId() == 3 || $loged->getGroupId() == 4) {
         if(!empty($_POST['send'])) {
-            if(!empty($_POST['name']) && !empty($_POST['company'])) {
+            if(!empty($_POST['name']) && !empty($_POST['id'])) {
                 $query = $entityManager->getRepository('User')
                     ->createQueryBuilder()
                     ->where('company != :id')
@@ -33,7 +33,7 @@ if($user) {//Do dostosowania!!!
             <div class="row">
                 <div class="col-lg-12">
                     <div class="form-group">
-                        <label><?php echo $user->getCompany();?> </label>
+                        <label><?php echo $company->getCompany();?> </label>
                     </div>
                     <div class="form-group">
                         <label>Nazwa firmy:</label>
