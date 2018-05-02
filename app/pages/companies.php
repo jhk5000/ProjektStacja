@@ -29,8 +29,9 @@ foreach ($companies as $company) {
             <td>'.$company->getCompanyName().'</td>    
             <td>'.$company->getAddress().'</td>            
             <td>'.$company->getDiscount().'%</td>
-            <td>
+            <td>            
             <select  name="discount">';
+    //nie pobiera tez przez id="discount" ???
                 for ($i = 0; $i <= 100; $i = $i+5) {
                     echo('<option value="'.$i.'">'.$i.'%</option>');
                 }
