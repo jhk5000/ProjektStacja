@@ -30,9 +30,10 @@ foreach ($companies as $company) {
             <td>'.$company->getAddress().'</td>            
             <td>'.$company->getDiscount().'%</td>
             <td>            
-            <select  name="discount">';
+            <select name="discount">';
     //nie pobiera tez przez id="discount" ???
                 for ($i = 0; $i <= 100; $i = $i+5) {
+                    // tutaj w option id="discount""tez nie pobiera???
                     echo('<option value="'.$i.'">'.$i.'%</option>');
                 }
             echo'</select>            
