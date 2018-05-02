@@ -139,6 +139,10 @@
                 echo '<a href="' . $config['page_url'] . '?page=ourpricesoffuelsales" class="list-group-item active">Nasze ceny paliw</a>';
             else
                 echo '<a href="' . $config['page_url'] . '?page=ourpricesoffuelsales" class="list-group-item">Nasze ceny paliw</a>';
+            if ($page == 'logs')
+                echo '<a href="' . $config['page_url'] . '?page=logs" class="list-group-item active">Logi zdarzeń</a>';
+            else
+                echo '<a href="' . $config['page_url'] . '?page=logs" class="list-group-item">Logi zdarzeń</a>';
 
         }
 		if($page == 'messages')
