@@ -16,13 +16,12 @@ if($company) {//Do dostosowania!!!
                     ->getQuery();
                 $results = $query->getResult();
                 if(count($results)<1) {
-
                     $changer = $loged->getUserId() . ', ' . $loged->getLogin() . ', ' . $loged->getName();
-                    $description = 'Edytowano firmę. ' .  'Nazwa: ' . $_POST['name'] . '(' . $company->getCompanyName() .'), Adres: ' . $_POST['address'] . '(' . $company->getAddress() .')';
+                    $description = 'Edytowano firmę. ' .  'Nazwa: ' . $_POST['name'] . '(' . $company->getCompanyName() .'), Adres: ' . $_POST['address'] . '(' . $company->getAddress() .'), Zniżka: ' . $_POST['discount'] . '(' . $company->getDiscount() .')';
                     makeLog($entityManager,'Edycja(firma)', $changer, $description);
-
                     $company->setCompanyName($_POST['name']);
                     $company->setAddress($_POST['address']);
+                    $company->setDiscount($_POST['discount']);
                     $entityManager->flush();
                     alert(1, 'Dane zostały zeedytowane.');
                 } else {
@@ -47,6 +46,10 @@ if($company) {//Do dostosowania!!!
                     <div class="form-group">
                         <label>Adres firmy:</label>
                         <input type="text" class="form-control" name="address" value="<?php echo $company->getAddress();?>"/>
+                    </div>
+                    <div class="form-group">
+                        <label>Zniżka:</label>
+                        <input type="number" step="1" min="0" max="100" class="form-control" name="discount" value="<?php echo $company->getDiscount();?>"/>
                     </div>
                     <input type="submit" class="btn btn-primary btn-ls" value="Edytuj"/>
                     <a href="?page=companies"><button type="button" class="btn btn-primary">Powrót</button></a>
