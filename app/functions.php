@@ -75,7 +75,7 @@
 				echo '<a href="'.$config['page_url'].'?page=mystation" class="list-group-item active">Moja stacja</a>';
 			else
 				echo '<a href="'.$config['page_url'].'?page=mystation" class="list-group-item">Moja stacja</a>';
-            if ($page == 'discount')
+            if ($page == 'Companies')
                 echo '<a href="' . $config['page_url'] . '?page=discount" class="list-group-item active">Zniżki</a>';
 			else
                 echo '<a href="' . $config['page_url'] . '?page=discount" class="list-group-item">Zniżki</a>';
@@ -112,9 +112,9 @@
 		//Konfiguracja dla administratora
         elseif($group == 4) {
             if ($page == 'companies')
-                echo '<a href="' . $config['page_url'] . '?page=companies" class="list-group-item active">Klienci (firmy)</a>';
+                echo '<a href="' . $config['page_url'] . '?page=companies" class="list-group-item active">Współpracujące firmy</a>';
             else
-                echo '<a href="' . $config['page_url'] . '?page=companies" class="list-group-item">Klienci (firmy)</a>';
+                echo '<a href="' . $config['page_url'] . '?page=companies" class="list-group-item">Współpracujące firmy</a>';
             if ($page == 'register')
                 echo '<a href="' . $config['page_url'] . '?page=register" class="list-group-item active">Stwórz użytkownika</a>';
             else
@@ -139,10 +139,7 @@
                 echo '<a href="' . $config['page_url'] . '?page=ourpricesoffuelsales" class="list-group-item active">Nasze ceny paliw</a>';
             else
                 echo '<a href="' . $config['page_url'] . '?page=ourpricesoffuelsales" class="list-group-item">Nasze ceny paliw</a>';
-            if ($page == 'discount')
-                echo '<a href="' . $config['page_url'] . '?page=discount" class="list-group-item active">Zniżki</a>';
-            else
-                echo '<a href="' . $config['page_url'] . '?page=discount" class="list-group-item">Zniżki</a>';
+
         }
 		if($page == 'messages')
 			echo '<a href="'.$config['page_url'].'?page=messages" class="list-group-item active">Wiadomości</a>';

@@ -51,25 +51,25 @@ class User
      */
     protected $token;
     /**
-     * @Column(type="string")
+     * @Column(type="integer")
      * @var string
      */
-    protected $company;
+    protected $Companies_company_id;
 
     /**
      * @return string
      */
-    public function getCompany(): string
+    public function getCompaniesCompanyId(): string
     {
-        return $this->company;
+        return $this->Companies_company_id;
     }
 
     /**
-     * @param string $company
+     * @param string $Companies_company_id
      */
-    public function setCompany(string $company): void
+    public function setCompaniesCompanyId(string $Companies_company_id): void
     {
-        $this->company = $company;
+        $this->Companies_company_id =$Companies_company_id;
     }
 
     /**
@@ -97,13 +97,6 @@ class User
         return $dane;
     }
 
-    /**
-     * @return string
-     */
-    public function getOursCustomersCompanyName()
-    {
-        return "";
-    }
 
     /**
      * @return string
