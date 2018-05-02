@@ -5,13 +5,15 @@
 
 <?php
 echo '<h2>Nasze stacje:</h2><hr class="style-one"></hr>';
+echo '<a href="'.$config['page_url'].'?page=addstation"><input type="submit" class="btn btn-primary" value="Dodaj stację"/></a><br>';
+
 
 require_once "bootstrap.php";
 
 $stationRepository = $entityManager->getRepository('Stations');
 $stations = $stationRepository->findAll();
 $l=1;
-echo '<table class="table table-bordered table-hover">
+echo '<br><table class="table table-bordered table-hover">
 		<thead>
 		  <tr>
 		    <th width="5%">lp.</th>
