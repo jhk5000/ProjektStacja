@@ -30,10 +30,35 @@ if($user) {
                     ->getQuery();
                 $results = $query->getResult();
                 if(count($results)<1) {
+                    $changer = $loged->getUserId() . ', ' . $loged->getLogin() . ', ' . $loged->getName();
+
+                    if($user->getName()!=$_POST['name'] || $user->getLogin()!=$_POST['login'] || $user->getMail()!=$_POST['mail']){
+                        $description = 'Edytowano kierownika. ' .  'Login: ' . $_POST['login'] . '(' . $user->getLogin() .'), Nazwa: ' . $_POST['name'] . '(' . $user->getName() .'), E-mail: ' . $_POST['mail'] . '(' . $user->getMail() .')';
+                        makeLog($entityManager,'Edycja(kierownik - zmiana danych)', $changer, $description);
+                    }
+
                     $user->setName($_POST['name']);
                     $user->setLogin($_POST['login']);
                     $user->setMail($_POST['mail']);
                     $entityManager->flush();
+
+                    if(isset($station)){
+                        if($_POST['station']!=$station->getStationName()) {
+                            if ($_POST['station'] == "") {
+                                $description = 'Kierownika ' . '(Login: ' . $_POST['login'] . ') usunięto ze stacji (Nazwa: ' . $station->getStationName() . ', Adres: ' . $station->getCity() . ', ' . $station->getStreet() . ')';
+                            } else {
+                                $newstation = $entityManager->find('Stations', $manager->$_POST['station']);
+                                $description = 'Edytowano kierownika. ' . '(Login: ' . $_POST['login'] . ') Nowa stacja: Nazwa: ' . $newstation->getStationName() . '(' . $station->getStationName() . '), Adres: ' . $newstation->getCity() . ', ' . $newstation->getStreet() . '(' . $station->getCity() . ', ' . $station->getStreet() . ')';
+                            }
+                            makeLog($entityManager, 'Edycja(kierownik - zmiana stacji)', $changer, $description);
+                        }
+                    }else{
+                        if($_POST['station']!=""){
+                            $newstation = $entityManager->find('Stations', $_POST['station']);
+                            $description = 'Edytowano kierownika. ' . 'Login: ' . $_POST['login'] . ' Nowa stacja: Nazwa: ' . $newstation->getStationName() . ', Adres: ' . $newstation->getCity() . ', ' . $newstation->getStreet();
+                            makeLog($entityManager, 'Edycja(kierownik - zmiana stacji)', $changer, $description);
+                        }
+                    }
                     if($manager){
                         if($_POST['station']==""){
                             $deleted = $entityManager->getRepository('Managers')->findOneBy(array('Users_user_id' => $user->getUserId()));
@@ -41,15 +66,17 @@ if($user) {
                             $entityManager->flush();
                         }else{
                             $manager->setStationsStationId($_POST['station']);
+                            $entityManager->flush();
                         }
                     }else{
-                        $manager = new Managers();
-                        $manager->setUsersUserId($user->getUserId());
-                        $manager->setStationsStationId($_POST['station']);
-                        $entityManager->persist($manager);
-                        $entityManager->flush();
+                        if($_POST['station']!=""){
+                            $manager = new Managers();
+                            $manager->setUsersUserId($user->getUserId());
+                            $manager->setStationsStationId($_POST['station']);
+                            $entityManager->persist($manager);
+                            $entityManager->flush();
+                        }
                     }
-                    $entityManager->flush();
                     alert(1, 'Dane zostały zeedytowane.');
                 } else {
                     alert(2, 'Użytkownik z podanym loginem lub mailem już istnieje!');

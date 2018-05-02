@@ -16,12 +16,17 @@ if($company) {//Do dostosowania!!!
                     ->getQuery();
                 $results = $query->getResult();
                 if(count($results)<1) {
+
+                    $changer = $loged->getUserId() . ', ' . $loged->getLogin() . ', ' . $loged->getName();
+                    $description = 'Edytowano firmę. ' .  'Nazwa: ' . $_POST['name'] . '(' . $company->getCompanyName() .'), Adres: ' . $_POST['address'] . '(' . $company->getAddress() .')';
+                    makeLog($entityManager,'Edycja(firma)', $changer, $description);
+
                     $company->setCompanyName($_POST['name']);
                     $company->setAddress($_POST['address']);
                     $entityManager->flush();
                     alert(1, 'Dane zostały zeedytowane.');
                 } else {
-                    alert(2, 'Błąd!');
+                    alert(2, 'Istnieje już firma o tej nazwie lub adresie!');
                 }
             } else {
                 alert(2, 'Wypełnij wszystkie pola!');
@@ -50,8 +55,5 @@ if($company) {//Do dostosowania!!!
         </form>
         <?php
     }
-}
-else{
-    echo '<h2>Błąd kurłaa</h2><hr class="style-one"></hr>';
 }
 ?>

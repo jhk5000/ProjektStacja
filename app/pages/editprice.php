@@ -11,6 +11,11 @@ if($loged->getGroupId() == 3 || $loged->getGroupId() == 4) {
         if($_GET['id']==0) $price = new Prices();
         $price->setStationsStationId($_GET['station']);
 
+        $changer = $loged->getUserId() . ', ' . $loged->getLogin() . ', ' . $loged->getName();
+        $description = 'Edytowano cenę na stacji ' . $station->getStationName() . ', ' .  $station->getCity() . ', ' .  $station->getStreet() .
+                                                     '. Nowe ceny: PB98 - ' . $_POST['pb98'] . '(' . $price->getPB98() . '), PB95 - ' . $_POST['pb95'] . '(' . $price->getPB95() . '), ON - ' . $_POST['on'] . '(' . $price->getOIL() . '), LPG - ' . $_POST['lpg'] . '(' . $price->getLPG() . ')';
+        makeLog($entityManager,'Edycja(ceny)', $changer, $description);
+
         if(!empty($_POST['pb98'])) $price->setPB98($_POST['pb98']);
         else $price->setPB98("");
         if(!empty($_POST['pb95'])) $price->setPB95($_POST['pb95']);
@@ -19,7 +24,8 @@ if($loged->getGroupId() == 3 || $loged->getGroupId() == 4) {
         else $price->setOIL("");
         if(!empty($_POST['lpg'])) $price->setLPG($_POST['lpg']);
         else $price->setLPG("");
-        $price->setDateOfChange(date("y-m-d"));
+        $price->setDateOfChange(date("y-m-d H:i:s"));
+
         if($_GET['id']==0) $entityManager->persist($price);
         $entityManager->flush();
 

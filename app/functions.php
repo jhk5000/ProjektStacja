@@ -206,6 +206,10 @@ function scripts(){
                      }
                  }
                  
+                 function getIndex(){
+                    window.location.href="'.$config['page_url'].'";
+                 }
+                 
                  function getEvent(){
                     var type = document.getElementById(\'event_type\').value;
                     window.location.href="'.$config['page_url'].'?page=logs&event="+type;

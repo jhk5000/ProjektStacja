@@ -49,6 +49,9 @@ echo '</tbody></table>';
 
 if(isset($_POST['deleteUser'])){
     $deleted = $entityManager->find('User', $_POST['id']);
+
+    $loged = $entityManager->find('User', $_SESSION['user']);
+
     $entityManager->remove($deleted);
     $entityManager->flush();
     echo '<script type="text/javascript">
