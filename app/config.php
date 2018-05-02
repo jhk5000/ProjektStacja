@@ -29,6 +29,7 @@ $config['pages_groups'] = array(
 	'faq'          => array(0,1,2,3,4),
 	'edituser'     => array(3,4), //edycja konto użytkowników
     'editmanager'     => array(3,4),
+    'editdiscount'     => array(2,3,4),
 	'messages'     => array(1,2,3,4), // kontakt pomiedzy użytkownikami
 	'mystation'    => array(2), // "myworks" - > mystation (moja stacja, dla kierownika)
 	'companies' => array(3,4), // Wyswietlanie firm i ich znizek
