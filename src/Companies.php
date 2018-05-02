@@ -6,7 +6,7 @@
  * Time: 14:19
  */
 /**
- * @Entity @Table(name="discount")
+ * @Entity @Table(name="companies")
  */
 class Companies
 {

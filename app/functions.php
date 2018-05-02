@@ -75,7 +75,7 @@
 				echo '<a href="'.$config['page_url'].'?page=mystation" class="list-group-item active">Moja stacja</a>';
 			else
 				echo '<a href="'.$config['page_url'].'?page=mystation" class="list-group-item">Moja stacja</a>';
-            if ($page == 'Companies')
+            if ($page == 'discount')
                 echo '<a href="' . $config['page_url'] . '?page=discount" class="list-group-item active">Zniżki</a>';
 			else
                 echo '<a href="' . $config['page_url'] . '?page=discount" class="list-group-item">Zniżki</a>';
