@@ -221,7 +221,7 @@ ALTER TABLE `prices`
 ALTER TABLE `stations`
   ADD PRIMARY KEY (`station_id`);
 
---
+-- 
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
