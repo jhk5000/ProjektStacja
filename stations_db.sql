@@ -40,7 +40,7 @@ CREATE TABLE `companies` (
 
 INSERT INTO `companies` (`company_id`, `company_name`, `address`, `discount`) VALUES
 (1, 'Our Company', 'Wierzbowa 3, Rzeszów', '90'),
-(2, 'Firma Testowa 1', 'Baziowa 5, Rzeszów', '10');
+(2, 'Firma Testowa 1', 'Baziowa 5, Rzeszów', '10'),
 (3, 'FirmaTestowa 2', 'Sosnowa 15, Rzeszów', '15');
 -- --------------------------------------------------------
 
