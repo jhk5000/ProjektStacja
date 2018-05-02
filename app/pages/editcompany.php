@@ -11,14 +11,15 @@ if($company) {//Do dostosowania!!!
             if(!empty($_POST['name'])) {
                 $query = $entityManager->getRepository('Companies')
                     ->createQueryBuilder()
-                    ->where('company_id =! :id')
+                    ->where('company_id =! :id AND company_name = :name')
                     ->setParameter('id', $_GET['id'])
-                    ->setParameter('company_name', $_POST['name'])
+                    ->setParameter('address', $_POST['address'])
                     ->orderBy('company_name', 'ASC')
                     ->getQuery();
                 $results = $query->getResult();
                 if(count($results)<1) {
                     $company->setCompanyName($_POST['name']);
+                    $company->setAddress($_POST['address']);
                     $entityManager->flush();
                     alert(1, 'Dane zostały zeedytowane.');
                 } else {
@@ -39,6 +40,10 @@ if($company) {//Do dostosowania!!!
                     <div class="form-group">
                         <label>Nazwa firmy:</label>
                         <input type="text" class="form-control" name="name" value="<?php echo $company->getCompanyName();?>"/>
+                    </div>
+                    <div class="form-group">
+                        <label>Adres firmy:</label>
+                        <input type="text" class="form-control" name="addres" value="<?php echo $company->getAddress();?>"/>
                     </div>
                     <input type="submit" class="btn btn-primary btn-ls" value="Edytuj"/>
                     <a href="?page=companies"><button type="button" class="btn btn-primary">Powrót</button></a>
