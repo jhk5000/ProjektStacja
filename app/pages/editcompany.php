@@ -2,22 +2,22 @@
 
 
 
-$company = $entityManager->find('Company', $_GET['id']);
+$company = $entityManager->find('Companies', $_GET['id']);
 $loged = $entityManager->find('User', $_SESSION['user']);
 if($company) {//Do dostosowania!!!
     echo '<h2>Edycja nazwy firmy</h2><hr class="style-one"></hr>';
     if($loged->getGroupId() == 3 || $loged->getGroupId() == 4) {
         if(!empty($_POST['send'])) {
             if(!empty($_POST['name']) && !empty($_POST['id'])) {
-                $query = $entityManager->getRepository('User')
+                $query = $entityManager->getRepository('Companies')
                     ->createQueryBuilder()
-                    ->where('company != :id')
-                    ->setParameter('company', $_POST['company'])
-                    ->orderBy('company', 'ASC')
+                    ->where('company_id != :id')
+                    ->setParameter('company_name', $_POST['company'])
+                    ->orderBy('company_name', 'ASC')
                     ->getQuery();
                 $results = $query->getResult();
-                if(count($results)) {
-                    $user->setCompany($_POST['company']);
+                if(count($results)<1) {
+                    $company->setCompanyName($_POST['company']);
                     $entityManager->flush();
                     alert(1, 'Dane zostały zeedytowane.');
                 } else {
