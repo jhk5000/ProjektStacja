@@ -95,4 +95,10 @@ class Bug
     {
         $this->status = "CLOSE";
     }
+    public function funkcja()
+    {
+        $this->status = "CLOSE";
+    }
+
+    //  dupa
 }
