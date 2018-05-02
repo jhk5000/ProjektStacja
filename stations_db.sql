@@ -226,7 +226,7 @@ ALTER TABLE `stations`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`user_id`)
-  ADD KEY `Companies_FKIndex1` (`Companies_company_id`);;
+  ADD KEY `Companies_FKIndex8` (`Companies_company_id`);;
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -267,6 +267,12 @@ ALTER TABLE `prices`
 --
 ALTER TABLE `stations`
   MODIFY `station_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT dla tabeli `companies`
+--
+ALTER TABLE `companies`
+  MODIFY `company_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT dla tabeli `users`
