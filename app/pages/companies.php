@@ -2,13 +2,10 @@
 echo '<h2>Nasi klienci:</h2><hr class="style-one"></hr>';
 require_once "bootstrap.php";
 // Trzeba dokonczyc ustawienie znizki!
-
 $companyRepository = $entityManager->getRepository('Companies');
 $companies = $companyRepository->findAll();
 $l=1;
 //$companies = $company->getResult();
-
-
 $l=1;
 echo '<table class="table table-bordered table-hover">
 		<thead>
@@ -37,7 +34,6 @@ foreach ($companies as $company) {
     $l++;
 }//end foreach
 echo '</tbody></table>';
-
 if(isset($_POST['selectDiscount'])){
     $selected = $entityManager->find('Companies', $_POST['id']);
     $selected->setDiscount($_POST['discount']);
@@ -48,5 +44,3 @@ if(isset($_POST['selectDiscount'])){
             window.location.href="'.$config['page_url'].'?page=companies";
           </script>';
 }
-
-

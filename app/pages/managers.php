@@ -1,5 +1,6 @@
 <?php
 echo '<h2>Kierownicy</h2><hr class="style-one"></hr>';
+echo '<a href="'.$config['page_url'].'?page=register"><input type="submit" class="btn btn-primary" value="Dodaj kierownika"/></a><br>';
 require_once "bootstrap.php";
 
 $userRepository = $entityManager->getRepository('User');
@@ -10,7 +11,7 @@ $results = $query->getResult();
 $query1 = $entityManager->createQuery("SELECT u.login, u.name, u.mail, u.register_date, u.user_id FROM User u WHERE u.user_id NOT IN (SELECT m.Users_user_id FROM Managers m) AND u.group_id = 2");
 $results1 = $query1->getResult();
 $l=1;
-	echo '<table class="table table-bordered table-hover">
+	echo '<br><table class="table table-bordered table-hover">
 			<thead>
 			  <tr>
 				<th width="5%">lp.</th>
@@ -86,6 +87,7 @@ foreach ($results1 as $manager) {
     $l++;
 }//end foreach
 echo '</tbody></table>';
+echo '<a href="'.$config['page_url'].'?page=register"><input type="submit" class="btn btn-primary" value="Dodaj kierownika"/></a>';
 
 if(isset($_POST['deleteManager'])){
     $deleted = $entityManager->find('User', $_POST['id']);

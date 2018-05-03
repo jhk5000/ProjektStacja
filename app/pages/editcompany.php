@@ -16,11 +16,9 @@ if($company) {//Do dostosowania!!!
                     ->getQuery();
                 $results = $query->getResult();
                 if(count($results)<1) {
-
                     $changer = $loged->getUserId() . ', ' . $loged->getLogin() . ', ' . $loged->getName();
                     $description = 'Edytowano firmę. ' .  'Nazwa: ' . $_POST['name'] . '(' . $company->getCompanyName() .'), Adres: ' . $_POST['address'] . '(' . $company->getAddress() .'), Zniżka: ' . $_POST['discount'] . '(' . $company->getDiscount() .')';
                     makeLog($entityManager,'Edycja(firma)', $changer, $description);
-
                     $company->setCompanyName($_POST['name']);
                     $company->setAddress($_POST['address']);
                     $company->setDiscount($_POST['discount']);

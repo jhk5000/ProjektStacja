@@ -1,11 +1,12 @@
 <?php
 echo '<h2>Nasi klienci:</h2><hr class="style-one"></hr>';
+echo '<a href="'.$config['page_url'].'?page=register"><input type="submit" class="btn btn-primary" value="Dodaj klienta"/></a><br>';
 require_once "bootstrap.php";
 //pobranie wszystkich uzytkowników z bazy i wyswietlnie ich imion i nazwisk
 $userRepository = $entityManager->getRepository('User');
 $users = $userRepository->findBy(array('group_id' => '1'));
 $l=1;
-echo '<table class="table table-bordered table-hover">
+echo '<br><table class="table table-bordered table-hover">
 		<thead>
 		  <tr>
 		    <th width="5%">lp.</th>
@@ -46,6 +47,7 @@ foreach ($users as $user) {
     $l++;
 }//end foreach
 echo '</tbody></table>';
+echo '<a href="'.$config['page_url'].'?page=register"><input type="submit" class="btn btn-primary" value="Dodaj klienta"/></a>';
 
 if(isset($_POST['deleteUser'])){
     $deleted = $entityManager->find('User', $_POST['id']);

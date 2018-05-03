@@ -103,6 +103,20 @@ var app = {
                 }
             });
     },
+    registerCompany: function() {
+        var name        = document.getElementById('company_name').value;
+        var address        = document.getElementById('address').value;
+        var discount        = document.getElementById('discount').value;
+
+        $.ajax({ type: 'POST', url: app.server, data: {task: 6, name: name, address: address, discount: discount} })
+            .done(function(msg) {
+                if(parseInt(msg) == 1) {
+                    location.reload();
+                } else {
+                    app.modalAlert(msg);
+                }
+            });
+    },
     modalAlert: function(t) {
         alert(t);
     },
