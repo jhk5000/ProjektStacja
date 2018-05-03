@@ -68,11 +68,15 @@ if(isset($_POST['deleteStation'])){
     $entityManager->flush();
 
     $deleted = $entityManager->getRepository('Managers')->findBy(array('Stations_station_id' => $_POST['id']));
-    $entityManager->remove($deleted);
+    foreach ($deleted as $del){
+        $entityManager->remove($del);
+    }
     $entityManager->flush();
 
     $deleted = $entityManager->getRepository('Prices')->findBy(array('Stations_station_id' => $_POST['id']));
-    $entityManager->remove($deleted);
+    foreach ($deleted as $del){
+        $entityManager->remove($del);
+    }
     $entityManager->flush();
 
     echo '<script type="text/javascript">

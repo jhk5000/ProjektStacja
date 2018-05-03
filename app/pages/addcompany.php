@@ -9,7 +9,7 @@ require_once "bootstrap.php";
     <div class="col-lg-6">
         <b>Nazwa:</b> <input onkeypress="app.check_key(event);" type="text" class="form-control" id="company_name" value=""/>
         <b>Adres:</b> <input onkeypress="app.check_key(event);" type="text" class="form-control" id="address" value=""/>
-        <b>Znizka:</b> <input onkeypress="app.check_key(event);" type="text" class="form-control" id="discount" value=""/>
+        <b>Zniżka:</b> <input onkeypress="app.check_key(event);" type="number" step="1" min="0" max="100" class="form-control" id="discount" value=""/>
         <br/>
         <center><input class="btn btn-primary btn-lg" type="submit" onClick="app.registerCompany();" value="Dodaj"/></center>
     </div>

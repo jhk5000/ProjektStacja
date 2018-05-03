@@ -104,7 +104,7 @@ if($user) {
                         <input type="text" class="form-control" name="mail" value="<?php echo $user->getMail();?>"/>
                     </div>
                     <div class="form-group">
-                        <label>Stacja</label>
+                        <label>Stacja:</label>
                         <select name="station" class="form-control">
                             <?php
                                 if($station){

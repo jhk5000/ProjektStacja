@@ -112,6 +112,10 @@
 
 		//Konfiguracja dla administratora
         elseif($group == 4) {
+            if ($page == 'addcompany')
+                echo '<a href="' . $config['page_url'] . '?page=addcompany" class="list-group-item active">Dodaj firmę</a>';
+            else
+                echo '<a href="' . $config['page_url'] . '?page=addcompany" class="list-group-item">Dodaj firmę</a>';
             if ($page == 'companies')
                 echo '<a href="' . $config['page_url'] . '?page=companies" class="list-group-item active">Współpracujące firmy</a>';
             else

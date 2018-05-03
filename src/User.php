@@ -57,22 +57,6 @@ class User
     protected $Companies_company_id;
 
     /**
-     * @return string
-     */
-    public function getCompaniesCompanyId(): string
-    {
-        return $this->Companies_company_id;
-    }
-
-    /**
-     * @param string $Companies_company_id
-     */
-    public function setCompaniesCompanyId(string $Companies_company_id): void
-    {
-        $this->Companies_company_id =$Companies_company_id;
-    }
-
-    /**
      * @OneToMany(targetEntity="Bug", mappedBy="reporter")
      * @var Bug[]
      */
@@ -240,6 +224,22 @@ class User
     public function setToken($token)
     {
         $this->token = $token;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCompaniesCompanyId()
+    {
+        return $this->Companies_company_id;
+    }
+
+    /**
+     * @param string $Companies_company_id
+     */
+    public function setCompaniesCompanyId($Companies_company_id)
+    {
+        $this->Companies_company_id = $Companies_company_id;
     }
 
 

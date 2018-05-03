@@ -164,22 +164,25 @@ if(!empty($_POST['task'])) {
         case 6:
             if(isset($user)) {
                 if (!empty($_POST['name'])) {
-                    $company = $entityManager->getRepository('Companies')->findOneBy(array('company_name' => $_POST['name']));
-                    if ($company !== null) {
-                        echo 'Podana nazwa jest już zajęta!';
-                    } else {
-                        $cp = new Companies();
-                        $cp->setCompanyName($_POST['name']);
-                        $cp->setAddress($_POST['address']);
-                        $cp->setDiscount($_POST['discount']);
-                        $entityManager->persist($cp);
-                        $entityManager->flush();
+                    if($_POST['discount']>=0 && $_POST['discount']<=100) {
+                        $company = $entityManager->getRepository('Companies')->findOneBy(array('company_name' => $_POST['name']));
+                        if ($company !== null) {
+                            echo 'Podana nazwa jest już zajęta!';
+                        } else {
+                            $cp = new Companies();
+                            $cp->setCompanyName($_POST['name']);
+                            $cp->setAddress($_POST['address']);
+                            $cp->setDiscount($_POST['discount']);
+                            $entityManager->persist($cp);
+                            $entityManager->flush();
 
-                        $description = 'Dodano firmę. ' . 'Nazwa: ' . $_POST['name'] . ', Adres: ' . $_POST['address'];
-                        makeLog($entityManager, 'Wprowadzono nową firmę', $description);
-                        echo 1;
+                            $description = 'Dodano firmę. ' . 'Nazwa: ' . $_POST['name'] . ', Adres: ' . $_POST['address'];
+                            makeLog($entityManager, 'Wprowadzono nową firmę', $description);
+                            echo 1;
+                        }
+                    }else{
+                        echo 'Popraw zniżkę';
                     }
-
                 } else {
                     echo 'Uzupełnij wszystkie dane!';
                 }
