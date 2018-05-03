@@ -228,7 +228,14 @@ function compareDates($date1, $logs){
     }
 }
 
-function makeLog($entityManager, $name, $changer, $description){
+function makeLog($entityManager, $name, $description){
+    if($name == 'Logowanie(poprawne)' || $name == 'Logowanie(błędne)'){
+        $changer = '';
+    }else{
+        $loged = $entityManager->find('User', $_SESSION['user']);
+        $changer = $loged->getUserId() . ', ' . $loged->getLogin() . ', ' . $loged->getName();
+    }
+
     $event = new Events();
     $event->setEventName($name);
     $event->setEventDate(date("y-m-d H:i:s"));

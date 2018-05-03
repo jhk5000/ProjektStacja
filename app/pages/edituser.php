@@ -17,9 +17,8 @@
                         ->getQuery();
                     $results = $query->getResult();
 					if(count($results)<1) {
-                        $changer = $loged->getUserId() . ', ' . $loged->getLogin() . ', ' . $loged->getName();
                         $description = 'Edytowano użytkownika. ' .  'Login: ' . $_POST['login'] . '(' . $user->getLogin() .'), Nazwa: ' . $_POST['name'] . '(' . $user->getName() .'), E-mail: ' . $_POST['mail'] . '(' . $user->getMail() .')';
-                        makeLog($entityManager,'Edycja(użytkownik)', $changer, $description);
+                        makeLog($entityManager,'Edycja(użytkownik)', $description);
 
                         $user->setName($_POST['name']);
                         $user->setLogin($_POST['login']);

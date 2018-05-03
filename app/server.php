@@ -52,10 +52,8 @@ if(!empty($_POST['task'])) {
                             $entityManager->persist($user);
                             $entityManager->flush();
 
-                            $loged = $entityManager->find('User', $_SESSION['user']);
-                            $changer = $loged->getUserId() . ', ' . $loged->getLogin() . ', ' . $loged->getName();
                             $description = 'Zarejestrowano użytkownika. ' . 'Login: ' . $_POST['login'] . ', Nazwa: ' . $_POST['name'] . ', E-mail: ' . $_POST['mail'];
-                            makeLog($entityManager, 'Rejestracja', $changer, $description);
+                            makeLog($entityManager, 'Rejestracja', $description);
                             echo 1;
                         }
                     }
@@ -103,7 +101,7 @@ if(!empty($_POST['task'])) {
                     $entityManager->flush();
 
                     $description = 'Zalogowano użytkownika. ' .  'Login: ' . $_POST['login'];
-                    makeLog($entityManager,'Logowanie(poprawne)', '', $description); $entityManager->persist($log);
+                    makeLog($entityManager,'Logowanie(poprawne)', $description); $entityManager->persist($log);
                     echo 1;
                 }else{
                     $log->setValid(0);
@@ -111,7 +109,7 @@ if(!empty($_POST['task'])) {
                     $entityManager->flush();
 
                     $description = 'Błędna próba zalogowania. ' .  'Login: ' . $_POST['login'] . ', IP: ' . getIP();
-                    makeLog($entityManager,'Logowanie(błędne)', '', $description); $entityManager->persist($log);
+                    makeLog($entityManager,'Logowanie(błędne)', $description); $entityManager->persist($log);
 
                     echo "Podano nieporawidłowe hasło!";
                 }
@@ -151,10 +149,8 @@ if(!empty($_POST['task'])) {
                         $entityManager->persist($st);
                         $entityManager->flush();
 
-                        $loged = $entityManager->find('User', $_SESSION['user']);
-                        $changer = $loged->getUserId() . ', ' . $loged->getLogin() . ', ' . $loged->getName();
                         $description = 'Dodano stację. ' . 'Nazwa: ' . $_POST['name'] . ', Adres: ' . $_POST['city'] . ', ' . $_POST['street'] . ', ' . $_POST['voide'];
-                        makeLog($entityManager, 'Wprowadzono nową stację', $changer, $description);
+                        makeLog($entityManager, 'Wprowadzono nową stację', $description);
                         echo 1;
                     }
 
@@ -179,10 +175,8 @@ if(!empty($_POST['task'])) {
                         $entityManager->persist($cp);
                         $entityManager->flush();
 
-                        $loged = $entityManager->find('User', $_SESSION['user']);
-                        $changer = $loged->getUserId() . ', ' . $loged->getLogin() . ', ' . $loged->getName();
                         $description = 'Dodano firmę. ' . 'Nazwa: ' . $_POST['name'] . ', Adres: ' . $_POST['address'];
-                        makeLog($entityManager, 'Wprowadzono nową firmę', $changer, $description);
+                        makeLog($entityManager, 'Wprowadzono nową firmę', $description);
                         echo 1;
                     }
 

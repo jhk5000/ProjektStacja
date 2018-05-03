@@ -76,6 +76,10 @@ $user = $entityManager->find('User', $_SESSION['user']);
 
 if(isset($_POST['deletePrice'])){
     $deleted = $entityManager->find('Prices', $_POST['id']);
+
+    $description = 'Usunięto cenę. ' . 'PB98: ' . $deleted->getPB98() . ', PB95: ' . $deleted->getPB95() . ', ON: ' . $deleted->getOIL() . ', LPG: ' . $deleted->getLPG();
+    makeLog($entityManager, 'Usunięcie(cena)', $description);
+
     $entityManager->remove($deleted);
     $entityManager->flush();
     echo '<script type="text/javascript">

@@ -91,8 +91,17 @@ echo '<a href="'.$config['page_url'].'?page=register"><input type="submit" class
 
 if(isset($_POST['deleteManager'])){
     $deleted = $entityManager->find('User', $_POST['id']);
+
+    $description = 'Usunięto użytkownika. ' . 'Login: ' . $deleted->getLogin() . ', Nazwa: ' . $deleted->getName() . ', E-mail: ' . $deleted->getMail() . ', Grupa: ' . $config['account_types'][$deleted->getGroupId()];
+    makeLog($entityManager, 'Usunięcie(użytkownik)', $description);
+
     $entityManager->remove($deleted);
     $entityManager->flush();
+
+    $deleted = $entityManager->getRepository('Managers')->findBy(array('Users_user_id' => $_POST['id']));
+    $entityManager->remove($deleted);
+    $entityManager->flush();
+
     echo '<script type="text/javascript">
             window.location.href="'.$config['page_url'].'?page=managers";
           </script>';

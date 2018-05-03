@@ -60,8 +60,21 @@ echo '<a href="'.$config['page_url'].'?page=addstation"><input type="submit" cla
 
 if(isset($_POST['deleteStation'])){
     $deleted = $entityManager->find('Stations', $_POST['id']);
+
+    $description = 'Usunięto stację. ' . 'Nazwa: ' . $deleted->getStationName() . ', Adres: ' . $deleted->getCity()  . ', ' . $deleted->getStreet()  . ', ' . $deleted->getVoivodeship() ;
+    makeLog($entityManager, 'Usunięcie(stacja)', $description);
+
     $entityManager->remove($deleted);
     $entityManager->flush();
+
+    $deleted = $entityManager->getRepository('Managers')->findBy(array('Stations_station_id' => $_POST['id']));
+    $entityManager->remove($deleted);
+    $entityManager->flush();
+
+    $deleted = $entityManager->getRepository('Prices')->findBy(array('Stations_station_id' => $_POST['id']));
+    $entityManager->remove($deleted);
+    $entityManager->flush();
+
     echo '<script type="text/javascript">
             window.location.href="'.$config['page_url'].'?page=stations";
           </script>';

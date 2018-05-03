@@ -52,7 +52,8 @@ echo '<a href="'.$config['page_url'].'?page=register"><input type="submit" class
 if(isset($_POST['deleteUser'])){
     $deleted = $entityManager->find('User', $_POST['id']);
 
-    $loged = $entityManager->find('User', $_SESSION['user']);
+    $description = 'Usunięto użytkownika. ' . 'Login: ' . $deleted->getLogin() . ', Nazwa: ' . $deleted->getName() . ', E-mail: ' . $deleted->getMail() . ', Grupa: ' . $config['account_types'][$deleted->getGroupId()];
+    makeLog($entityManager, 'Usunięcie(użytkownik)', $description);
 
     $entityManager->remove($deleted);
     $entityManager->flush();

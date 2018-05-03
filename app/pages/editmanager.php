@@ -30,11 +30,9 @@ if($user) {
                     ->getQuery();
                 $results = $query->getResult();
                 if(count($results)<1) {
-                    $changer = $loged->getUserId() . ', ' . $loged->getLogin() . ', ' . $loged->getName();
-
                     if($user->getName()!=$_POST['name'] || $user->getLogin()!=$_POST['login'] || $user->getMail()!=$_POST['mail']){
                         $description = 'Edytowano kierownika. ' .  'Login: ' . $_POST['login'] . '(' . $user->getLogin() .'), Nazwa: ' . $_POST['name'] . '(' . $user->getName() .'), E-mail: ' . $_POST['mail'] . '(' . $user->getMail() .')';
-                        makeLog($entityManager,'Edycja(kierownik - zmiana danych)', $changer, $description);
+                        makeLog($entityManager,'Edycja(kierownik - zmiana danych)', $description);
                     }
 
                     $user->setName($_POST['name']);
@@ -50,13 +48,13 @@ if($user) {
                                 $newstation = $entityManager->find('Stations', $manager->$_POST['station']);
                                 $description = 'Edytowano kierownika. ' . '(Login: ' . $_POST['login'] . ') Nowa stacja: Nazwa: ' . $newstation->getStationName() . '(' . $station->getStationName() . '), Adres: ' . $newstation->getCity() . ', ' . $newstation->getStreet() . '(' . $station->getCity() . ', ' . $station->getStreet() . ')';
                             }
-                            makeLog($entityManager, 'Edycja(kierownik - zmiana stacji)', $changer, $description);
+                            makeLog($entityManager, 'Edycja(kierownik - zmiana stacji)', $description);
                         }
                     }else{
                         if($_POST['station']!=""){
                             $newstation = $entityManager->find('Stations', $_POST['station']);
                             $description = 'Edytowano kierownika. ' . 'Login: ' . $_POST['login'] . ' Nowa stacja: Nazwa: ' . $newstation->getStationName() . ', Adres: ' . $newstation->getCity() . ', ' . $newstation->getStreet();
-                            makeLog($entityManager, 'Edycja(kierownik - zmiana stacji)', $changer, $description);
+                            makeLog($entityManager, 'Edycja(kierownik - zmiana stacji)', $description);
                         }
                     }
                     if($manager){
