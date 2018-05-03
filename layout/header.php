@@ -26,12 +26,7 @@
         <div id="menu">
             <div class="panel panel-primary">
                 <div class="list-group">
-                    <?php $active = ''; $active2 = ''; ?>
-                    <?php if($page == 'main') $active = 'active';?>
-                    <?php if($page == 'faq') $active2 = 'active';?>
-                    <a href="<?php echo $config['page_url'];?>" class="list-group-item <?php echo $active;?>">Strona Główna</a>
                     <?php if(!empty($user)) getUserMenu($group); ?>
-                    <a href="<?php echo $config['page_url'];?>?page=faq" class="list-group-item <?php echo $active2;?>">Regulamin i FAQ</a>
                 </div>
             </div>
         </div>

@@ -28,7 +28,6 @@ foreach($selectedDiscounts as $discounts) {
             <a href="'.$config['page_url'].'?page=deletediscount&option=1&id='.$station['s.station_id'].'">
         <input type="submit" class="btn btn-danger btn-xs" value="Usuń"/></a></td></tr>');
     $l++;
-    //echo $myStation['s.name']." has " . $productBug['openBugs'] . " open bugs!\n";
 }
 
 echo '</tbody></table>';

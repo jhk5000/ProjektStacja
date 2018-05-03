@@ -72,66 +72,50 @@
 
 		// Konfiguracja dla kierownika
 		elseif($group == 2) {
-			if($page == 'mystation')
-				echo '<a href="'.$config['page_url'].'?page=mystation" class="list-group-item active">Moja stacja</a>';
-			else
-				echo '<a href="'.$config['page_url'].'?page=mystation" class="list-group-item">Moja stacja</a>';
-            if ($page == 'discount')
-                echo '<a href="' . $config['page_url'] . '?page=discount" class="list-group-item active">Zniżki</a>';
-			else
-                echo '<a href="' . $config['page_url'] . '?page=discount" class="list-group-item">Zniżki</a>';
-		}
-
-		//konfiguracja dla własciciela
-		elseif($group == 3) {
-			if($page == 'topics')
-				echo '<a href="'.$config['page_url'].'?page=topics" class="list-group-item active">Tematy</a>';
-			else
-				echo '<a href="'.$config['page_url'].'?page=topics" class="list-group-item">Tematy</a>';
-			if($page == 'archive')
-				echo '<a href="'.$config['page_url'].'?page=archive" class="list-group-item active">Archiwum</a>';
-			else
-				echo '<a href="'.$config['page_url'].'?page=archive" class="list-group-item">Archiwum</a>';
-			if($page == 'promoters')
-				echo '<a href="'.$config['page_url'].'?page=promoters" class="list-group-item active">Dydaktycy</a>';
-			else
-				echo '<a href="'.$config['page_url'].'?page=promoters" class="list-group-item">Dydaktycy</a>';
-			if($page == 'students')
-				echo '<a href="'.$config['page_url'].'?page=students" class="list-group-item active">Studenci</a>';
-			else
-				echo '<a href="'.$config['page_url'].'?page=students" class="list-group-item">Studenci</a>';
-			if($page == 'groups')
-				echo '<a href="'.$config['page_url'].'?page=groups" class="list-group-item active">Grupy</a>';
-			else
-				echo '<a href="'.$config['page_url'].'?page=groups" class="list-group-item">Grupy</a>';
-			if($page == 'departments')
-				echo '<a href="'.$config['page_url'].'?page=departments" class="list-group-item active">Wydziały</a>';
-			else
-				echo '<a href="'.$config['page_url'].'?page=departments" class="list-group-item">Wydziały</a>';
-		}
-
-		//Konfiguracja dla administratora
-        elseif($group == 4) {
+            if ($page == 'register')
+                echo '<a href="' . $config['page_url'] . '?page=register" class="list-group-item active">Dodaj użytkownika</a>';
+            else
+                echo '<a href="' . $config['page_url'] . '?page=register" class="list-group-item">Dodaj użytkownika</a>';
+            if ($page == 'customers')
+                echo '<a href="' . $config['page_url'] . '?page=customers" class="list-group-item1 active">Klienci</a>';
+            else
+                echo '<a href="' . $config['page_url'] . '?page=customers" class="list-group-item1">Klienci</a>';
             if ($page == 'addcompany')
                 echo '<a href="' . $config['page_url'] . '?page=addcompany" class="list-group-item active">Dodaj firmę</a>';
             else
                 echo '<a href="' . $config['page_url'] . '?page=addcompany" class="list-group-item">Dodaj firmę</a>';
             if ($page == 'companies')
-                echo '<a href="' . $config['page_url'] . '?page=companies" class="list-group-item active">Współpracujące firmy</a>';
+                echo '<a href="' . $config['page_url'] . '?page=companies" class="list-group-item1 active">Firmy</a>';
             else
-                echo '<a href="' . $config['page_url'] . '?page=companies" class="list-group-item">Współpracujące firmy</a>';
+                echo '<a href="' . $config['page_url'] . '?page=companies" class="list-group-item1">Firmy</a>';
+            if ($page == 'ourpricesoffuelsales')
+                echo '<a href="' . $config['page_url'] . '?page=ourpricesoffuelsales" class="list-group-item1 active">Ceny paliw</a>';
+            else
+                echo '<a href="' . $config['page_url'] . '?page=ourpricesoffuelsales" class="list-group-item1">Ceny paliw</a>';
+		}
+
+		//konfiguracja dla własciciela
+		elseif($group == 3) {
             if ($page == 'register')
-                echo '<a href="' . $config['page_url'] . '?page=register" class="list-group-item active">Stwórz użytkownika</a>';
+                echo '<a href="' . $config['page_url'] . '?page=register" class="list-group-item active">Dodaj użytkownika</a>';
             else
-                echo '<a href="' . $config['page_url'] . '?page=register" class="list-group-item">Stwórz użytkownika</a>';
+                echo '<a href="' . $config['page_url'] . '?page=register" class="list-group-item">Dodaj użytkownika</a>';
             if ($page == 'customers')
-                echo '<a href="' . $config['page_url'] . '?page=customers" class="list-group-item active">Konta klientów</a>';
+                echo '<a href="' . $config['page_url'] . '?page=customers" class="list-group-item active">Klienci</a>';
             else
-                echo '<a href="' . $config['page_url'] . '?page=customers" class="list-group-item">Konta klientów</a>';
+                echo '<a href="' . $config['page_url'] . '?page=customers" class="list-group-item">Klienci</a>';
             if ($page == 'managers')
-                echo '<a href="' . $config['page_url'] . '?page=managers" class="list-group-item active">Kierownictwo</a>';
+                echo '<a href="' . $config['page_url'] . '?page=managers" class="list-group-item1 active">Kierownicy</a>';
             else
-                echo '<a href="' . $config['page_url'] . '?page=managers" class="list-group-item">Kierwonictwo</a>';
+                echo '<a href="' . $config['page_url'] . '?page=managers" class="list-group-item1">Kierownicy</a>';
+            if ($page == 'addcompany')
+                echo '<a href="' . $config['page_url'] . '?page=addcompany" class="list-group-item active">Dodaj firmę</a>';
+            else
+                echo '<a href="' . $config['page_url'] . '?page=addcompany" class="list-group-item">Dodaj firmę</a>';
+            if ($page == 'companies')
+                echo '<a href="' . $config['page_url'] . '?page=companies" class="list-group-item1 active">Firmy</a>';
+            else
+                echo '<a href="' . $config['page_url'] . '?page=companies" class="list-group-item1">Firmy</a>';
             if ($page == 'addstation')
                 echo '<a href="' . $config['page_url'] . '?page=addstation" class="list-group-item active">Dodaj stację</a>';
             else
@@ -141,9 +125,45 @@
             else
                 echo '<a href="' . $config['page_url'] . '?page=stations" class="list-group-item">Stacje</a>';
             if ($page == 'ourpricesoffuelsales')
-                echo '<a href="' . $config['page_url'] . '?page=ourpricesoffuelsales" class="list-group-item active">Nasze ceny paliw</a>';
+                echo '<a href="' . $config['page_url'] . '?page=ourpricesoffuelsales" class="list-group-item1 active">Ceny paliw</a>';
             else
-                echo '<a href="' . $config['page_url'] . '?page=ourpricesoffuelsales" class="list-group-item">Nasze ceny paliw</a>';
+                echo '<a href="' . $config['page_url'] . '?page=ourpricesoffuelsales" class="list-group-item1">Ceny paliw</a>';
+		}
+
+		//Konfiguracja dla administratora
+        elseif($group == 4) {
+            if ($page == 'register')
+                echo '<a href="' . $config['page_url'] . '?page=register" class="list-group-item active">Dodaj użytkownika</a>';
+            else
+                echo '<a href="' . $config['page_url'] . '?page=register" class="list-group-item">Dodaj użytkownika</a>';
+            if ($page == 'customers')
+                echo '<a href="' . $config['page_url'] . '?page=customers" class="list-group-item active">Klienci</a>';
+            else
+                echo '<a href="' . $config['page_url'] . '?page=customers" class="list-group-item">Klienci</a>';
+            if ($page == 'managers')
+                echo '<a href="' . $config['page_url'] . '?page=managers" class="list-group-item1 active">Kierownicy</a>';
+            else
+                echo '<a href="' . $config['page_url'] . '?page=managers" class="list-group-item1">Kierownicy</a>';
+            if ($page == 'addcompany')
+                echo '<a href="' . $config['page_url'] . '?page=addcompany" class="list-group-item active">Dodaj firmę</a>';
+            else
+                echo '<a href="' . $config['page_url'] . '?page=addcompany" class="list-group-item">Dodaj firmę</a>';
+            if ($page == 'companies')
+                echo '<a href="' . $config['page_url'] . '?page=companies" class="list-group-item1 active">Firmy</a>';
+            else
+                echo '<a href="' . $config['page_url'] . '?page=companies" class="list-group-item1">Firmy</a>';
+            if ($page == 'addstation')
+                echo '<a href="' . $config['page_url'] . '?page=addstation" class="list-group-item active">Dodaj stację</a>';
+            else
+                echo '<a href="' . $config['page_url'] . '?page=addstation" class="list-group-item">Dodaj stację</a>';
+            if ($page == 'stations')
+                echo '<a href="' . $config['page_url'] . '?page=stations" class="list-group-item active">Stacje</a>';
+            else
+                echo '<a href="' . $config['page_url'] . '?page=stations" class="list-group-item">Stacje</a>';
+            if ($page == 'ourpricesoffuelsales')
+                echo '<a href="' . $config['page_url'] . '?page=ourpricesoffuelsales" class="list-group-item1 active">Ceny paliw</a>';
+            else
+                echo '<a href="' . $config['page_url'] . '?page=ourpricesoffuelsales" class="list-group-item1">Ceny paliw</a>';
             if ($page == 'logs')
                 echo '<a href="' . $config['page_url'] . '?page=logs&event=" class="list-group-item active">Logi zdarzeń</a>';
             else

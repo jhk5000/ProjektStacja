@@ -31,12 +31,17 @@ if(!empty($_POST['task'])) {
                     } elseif (!filter_var($_POST['mail'], FILTER_VALIDATE_EMAIL)) {
                         echo 'Podano błędny adres email!';
                     } else {
+                        $loged = $entityManager->find('User', $_SESSION['user']);
                         $user = $entityManager->getRepository('User')->findOneBy(array('login' => $_POST['login']));
                         $mail = $entityManager->getRepository('User')->findOneBy(array('mail' => $_POST['mail']));
                         if ($user !== null) {
                             echo 'Podany login jest już zajęty!';
                         } elseif ($mail !== null) {
                             echo 'Podany mail jest już zajęty!';
+                        } elseif ($_POST['group']!=1 && $_POST['group']!=2 && $_POST['group']!=3){
+                            echo 'Nie znaleziono grupy!';
+                        } elseif ($loged->getGroupId()<=$_POST['group']){
+                            echo 'Nie masz uprawnień do zarejestrwania tego użytkownika!';
                         } else {
                             $password = password_hash($_POST['pass1'], PASSWORD_BCRYPT);
                             $data = date("y-m-d");
