@@ -31,10 +31,10 @@ if(!empty($_SESSION['user'])) {
 }
 
 $title = $config['title'];
-$option = 0;
-if(!empty($_GET['option'])) $option = $_GET['option'];
 $page = 'main';
-if(!empty($_GET['page'])) $page = $_GET['page'];
+if(!empty($_GET['page'])){
+    $page = $_GET['page'];
+}
 checkPageAccess($page, $group, $config['pages_groups'], $config['page_url']);
 require('layout/header.php');
 require('app/pages/'.$page.'.php');

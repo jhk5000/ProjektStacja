@@ -61,6 +61,7 @@
 	function getUserMenu($group) {
 		global $config;
 		global $page;
+
 		//Konfiguracja dla klienta biznesowego
 		if($group == 1) {
 			if($page == 'myprices')
@@ -231,16 +232,34 @@ function scripts(){
                          setTimeout(refresh, refreshtime);
                      }
                  }
-                 
+            </script>
+            
+            <script>
                  function getIndex(){
                     window.location.href="'.$config['page_url'].'";
                  }
-                 
+            </script>
+            
+            <script>  
                  function getEvent(){
                     var type = document.getElementById(\'event_type\').value;
                     window.location.href="'.$config['page_url'].'?page=logs&event="+type;
                  }
-                 
+            </script>
+            
+            <script> 
+                 function getVoivode(){
+                    var type = document.getElementById(\'voivode\').value;
+                    window.location.href="'.$config['page_url'].'?voivode="+type+"&city=";
+                 }
+            </script>
+            
+            <script> 
+                 function getCity(){
+                    var type = document.getElementById(\'voivode\').value;
+                    var type1 = document.getElementById(\'city\').value;
+                    window.location.href="'.$config['page_url'].'?voivode="+type+"&city="+type1;
+                 }
             </script>
             ';
 }
@@ -289,4 +308,124 @@ function getIP() {
         $ipaddress = 'UNKNOWN';
 
     return $ipaddress;
+}
+
+function getIndex(){
+    global $config;
+    echo '   
+        <script>
+            window.location.href="'.$config['page_url'].'";
+	    </script>
+    ';
+ }
+
+function getSearchPanel(){
+    global $config;
+    echo '   
+        <script>
+            window.location.href="'.$config['page_url'].'?voivode=&city=";
+	    </script>
+    ';
+}
+
+function printStations($stations){
+    foreach ($stations as $station){
+        echo '
+            <table class="table1">
+                <tbody style="border: 1px solid #a6e1ec">
+                    <tr>
+                        <td width="70%" height="10%">
+                            <p class="stationName">'.$station['station_name'].'</p>
+                            <p class="stationAddress">'.$station['city'].', '.$station['street'].'</p>
+                        </td>
+                        <th width="30%" height="200px" rowspan="2">
+                ';
+                            if($station['PB98']!=null) echo '<p class="priceValue">PB98: '.$station['PB98'].' PLN</p>';
+                            if($station['PB95']!=null) echo '<p class="priceValue">PB95: '.$station['PB95'].' PLN</p>';
+                            if($station['OIL']!=null) echo '<p class="priceValue">ON: '.$station['OIL'].' PLN</p>';
+                            if($station['LPG']!=null) echo '<p class="priceValue">LPG: '.$station['LPG'].' PLN</p>';
+        echo '
+                        </th>
+                    </tr>
+                    <tr>
+                        <td height="90%"></td>
+                    </tr>	
+                </tbody>
+            </table>
+        ';
+    }
+}
+
+function makeSearch($entityManager){
+    echo '
+        <b>Województwo:</b> 
+        <select id="voivode" onChange="getVoivode()" class="form-control">
+    ';
+    if(empty($_GET['voivode'])){
+        $query = $entityManager->createQuery("SELECT DISTINCT s.voivodeship FROM Stations s ORDER BY s.voivodeship");
+        $results = $query->getResult();
+        echo '
+            <option value=""></option>
+        ';
+        foreach ($results as $voivode){
+            echo '
+                <option value="'.$voivode['voivodeship'].'">'.$voivode['voivodeship'].'</option>
+            ';
+        }
+    }else{
+        $query = $entityManager->createQuery("SELECT DISTINCT s.voivodeship FROM Stations s WHERE s.voivodeship NOT LIKE '".$_GET['voivode']."' ORDER BY s.voivodeship");
+        $results = $query->getResult();
+        echo '
+            <option value="'.$_GET['voivode'].'">'.$_GET['voivode'].'</option>
+            <option value=""></option>
+        ';
+        foreach($results as $voivode){
+            echo '
+                <option value="'.$voivode['voivodeship'].'">'.$voivode['voivodeship'].'</option>
+            ';
+        }
+    }
+    echo '
+        </select>
+        </br>
+    ';
+
+    echo '
+        <b>Miasto:</b> 
+        <select id="city" onChange="getCity()" class="form-control">
+    ';
+    if(empty($_GET['city'])){
+        if(!empty($_GET['voivode']))
+            $query = $entityManager->createQuery("SELECT DISTINCT s.city FROM Stations s WHERE s.voivodeship = '".$_GET['voivode']."' ORDER BY s.city");
+        else
+            $query = $entityManager->createQuery("SELECT DISTINCT s.city FROM Stations s ORDER BY s.city");
+        $results = $query->getResult();
+        echo '
+            <option value=""></option>
+        ';
+        foreach ($results as $city){
+            echo '
+                <option value="'.$city['city'].'">'.$city['city'].'</option>
+            ';
+        }
+    }else{
+        if(!empty($_GET['voivode']))
+            $query = $entityManager->createQuery("SELECT DISTINCT s.city FROM Stations s WHERE s.city NOT LIKE '".$_GET['city']."' AND s.voivodeship = '".$_GET['voivode']."' ORDER BY s.city");
+        else
+            $query = $entityManager->createQuery("SELECT DISTINCT s.city FROM Stations s WHERE s.city NOT LIKE '".$_GET['city']."' ORDER BY s.city");
+        $results = $query->getResult();
+        echo '
+            <option value="'.$_GET['city'].'">'.$_GET['city'].'</option>
+            <option value=""></option>
+        ';
+        foreach($results as $city){
+            echo '
+                <option value="'.$city['city'].'">'.$city['city'].'</option>
+            ';
+        }
+    }
+    echo '
+        </select>
+        </br>
+    ';
 }
