@@ -5,8 +5,6 @@ require_once "bootstrap.php";
 $companyRepository = $entityManager->getRepository('Companies');
 $companies = $companyRepository->findAll();
 $l=1;
-//$companies = $company->getResult();
-$l=1;
 echo '<table class="table table-bordered table-hover">
 		<thead>
 		  <tr>

@@ -4,37 +4,35 @@
 
 <?php
 require_once "bootstrap.php";
-$dql = "SELECT s.station_id, u.user_id. s.name, s.city, s.street FROM Stations s, User u, Managers m 
-        WHERE u.user_id = m.users_user_id AND s.station_id = m.stations_station_id AND u.user_id ='1'";
-$myStations = $entityManager->createQuery($dql)->getScalarResult();
-$l=1;
-echo '<table class="table table-bordered table-hover">
-		<thead>
-		  <tr>
-		  <th>lp.</th>			
-			<th>Nazwa</th>
-			<th>Miasto</th>
-			<th>Ulica</th>
-			<th>Akcja</th>
-		  </tr>
-		</thead>
-		<tbody>';
+
+$query = $entityManager->createQuery("SELECT s.station_id, u.user_id, s.station_name, s.city, s.street FROM Stations s, User u, Managers m WHERE u.user_id = m.Users_user_id AND s.station_id = m.Stations_station_id AND m.Users_user_id=".$_SESSION['user']." ");
+$myStations = $query->getResult();
+echo '
+	<table class="table1">
+		<tbody style="border: 1px solid #a6e1ec">';
 foreach($myStations as $station) {
-    echo sprintf('
+    $price = $entityManager->getRepository('Prices')->findOneBy(array('Stations_station_id' => $station['station_id']));
+    echo '
 		<tr>
-			<td>'.$l. '</td>
-			<td>'.$station['s.name'].'</td>
-			<td>'.$station['s.city'].' </td>
-        	<td>'.$station['s.street'].'</td>
-        	<td>
-        		<a href="'.$config['page_url'].'?page=editstation&id='.$station['s.station_id'].'"><input type="submit" class="btn btn-info btn-xs" value="Edytuj"/></a> 
-            	<a href="'.$config['page_url'].'?page=deletestation&option=1&id='.$station['s.station_id'].'">
-        		<input type="submit" class="btn btn-danger btn-xs" value="Usuń"/></a>
+			<td width="70%" height="10%">
+				<p class="stationName">'.$station['station_name'].'</p>
+				<p class="stationAddress">'.$station['city'].', '.$station['street'].'</p>
 			</td>
+			<th width="30%" height="200px" rowspan="2">
+	';
+				if($price->getPB98()!=null) echo '<p class="priceValue">PB98: '.$price->getPB98().' PLN</p>';
+				if($price->getPB95()!=null) echo '<p class="priceValue">PB95: '.$price->getPB95().' PLN</p>';
+				if($price->getOIL()!=null) echo '<p class="priceValue">ON: '.$price->getOIL().' PLN</p>';
+				if($price->getLPG()!=null) echo '<p class="priceValue">LPG: '.$price->getLPG().' PLN</p>';
+    echo '
+			<a href="'.$config['page_url'].'?page=editprice&id='.$price->getPriceId().'&station='.$station['station_id'].'" style="float: right"><i class=\'glyphicon glyphicon-pencil\' style="font-size: 20px"></i></a>
+			</th>
 		</tr>
-	');
-    $l++;
-    //echo $myStation['s.name']." has " . $productBug['openBugs'] . " open bugs!\n";
+		<tr>
+			<td height="90%"></td>
+		</tr>	
+		
+	';
 }
 
 echo '</tbody></table>';

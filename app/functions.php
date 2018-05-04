@@ -72,6 +72,10 @@
 
 		// Konfiguracja dla kierownika
 		elseif($group == 2) {
+            if ($page == 'mystation')
+                echo '<a href="' . $config['page_url'] . '?page=mystation" class="list-group-item1 active">Moja stacja</a>';
+            else
+                echo '<a href="' . $config['page_url'] . '?page=mystation" class="list-group-item1">Moja stacja</a>';
             if ($page == 'register')
                 echo '<a href="' . $config['page_url'] . '?page=register" class="list-group-item active">Dodaj użytkownika</a>';
             else
@@ -85,13 +89,9 @@
             else
                 echo '<a href="' . $config['page_url'] . '?page=addcompany" class="list-group-item">Dodaj firmę</a>';
             if ($page == 'companies')
-                echo '<a href="' . $config['page_url'] . '?page=companies" class="list-group-item1 active">Firmy</a>';
+                echo '<a href="' . $config['page_url'] . '?page=companies" class="list-group-item active">Firmy</a>';
             else
-                echo '<a href="' . $config['page_url'] . '?page=companies" class="list-group-item1">Firmy</a>';
-            if ($page == 'ourpricesoffuelsales')
-                echo '<a href="' . $config['page_url'] . '?page=ourpricesoffuelsales" class="list-group-item1 active">Ceny paliw</a>';
-            else
-                echo '<a href="' . $config['page_url'] . '?page=ourpricesoffuelsales" class="list-group-item1">Ceny paliw</a>';
+                echo '<a href="' . $config['page_url'] . '?page=companies" class="list-group-item">Firmy</a>';
 		}
 
 		//konfiguracja dla własciciela
@@ -124,10 +124,10 @@
                 echo '<a href="' . $config['page_url'] . '?page=stations" class="list-group-item active">Stacje</a>';
             else
                 echo '<a href="' . $config['page_url'] . '?page=stations" class="list-group-item">Stacje</a>';
-            if ($page == 'ourpricesoffuelsales')
-                echo '<a href="' . $config['page_url'] . '?page=ourpricesoffuelsales" class="list-group-item1 active">Ceny paliw</a>';
+            if ($page == 'prices')
+                echo '<a href="' . $config['page_url'] . '?page=prices" class="list-group-item1 active">Ceny paliw</a>';
             else
-                echo '<a href="' . $config['page_url'] . '?page=ourpricesoffuelsales" class="list-group-item1">Ceny paliw</a>';
+                echo '<a href="' . $config['page_url'] . '?page=prices" class="list-group-item1">Ceny paliw</a>';
 		}
 
 		//Konfiguracja dla administratora
@@ -160,10 +160,10 @@
                 echo '<a href="' . $config['page_url'] . '?page=stations" class="list-group-item active">Stacje</a>';
             else
                 echo '<a href="' . $config['page_url'] . '?page=stations" class="list-group-item">Stacje</a>';
-            if ($page == 'ourpricesoffuelsales')
-                echo '<a href="' . $config['page_url'] . '?page=ourpricesoffuelsales" class="list-group-item1 active">Ceny paliw</a>';
+            if ($page == 'prices')
+                echo '<a href="' . $config['page_url'] . '?page=prices" class="list-group-item1 active">Ceny paliw</a>';
             else
-                echo '<a href="' . $config['page_url'] . '?page=ourpricesoffuelsales" class="list-group-item1">Ceny paliw</a>';
+                echo '<a href="' . $config['page_url'] . '?page=prices" class="list-group-item1">Ceny paliw</a>';
             if ($page == 'logs')
                 echo '<a href="' . $config['page_url'] . '?page=logs&event=" class="list-group-item active">Logi zdarzeń</a>';
             else
@@ -198,6 +198,8 @@ function scripts(){
             <script async="" src="js/jquery.min.js?v=1.72"></script>
             <script async="" src="js/app.js"></script>
             <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+            <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+            <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
             <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
             <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
             <script>

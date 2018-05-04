@@ -180,4 +180,44 @@ body {
 	font-size: 1.05em;
 }
 
+.stationName{
+	font-family: 'Raleway', sans-serif;
+	font-size: 30px;
+	font-weight: bold;
+}
+.stationAddress{
+	font-family: 'Raleway', sans-serif;
+	font-size: 16px;
+	margin-top: -10px;
+}
+
+.priceValue{
+	font-family: 'Montserrat', sans-serif;
+	font-size: 24px;
+	text-align: right;
+}
+
+table1 {
+	background-color: transparent;
+}
+.table1 {
+	width: 100%;
+	max-width: 100%;
+	margin-bottom: 20px;
+}
+.table1 > thead > tr > th,
+.table1 > tbody > tr > th,
+.table1 > tfoot > tr > th,
+.table1 > thead > tr > td,
+.table1 > tbody > tr > td,
+.table1 > tfoot > tr > td {
+	padding: 8px;
+	line-height: 1.42857143;
+	vertical-align: top;
+}
+.table1 > thead > tr > th {
+	vertical-align: bottom;
+	border-bottom: 2px solid #ddd;
+}
+
 hr.style-one { border: 0; height: 1px; background: #333; background-image: linear-gradient(to right, #ccc, #333, #ccc); }

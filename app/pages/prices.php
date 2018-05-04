@@ -83,6 +83,6 @@ if(isset($_POST['deletePrice'])){
     $entityManager->remove($deleted);
     $entityManager->flush();
     echo '<script type="text/javascript">
-            window.location.href="'.$config['page_url'].'?page=ourpricesoffuelsales";
+            window.location.href="'.$config['page_url'].'?page=prices";
           </script>';
 }
