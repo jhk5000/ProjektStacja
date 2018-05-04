@@ -64,11 +64,6 @@
 
 		//Konfiguracja dla klienta biznesowego
 		if($group == 1) {
-			if($page == 'myprices')
-				echo '<a href="'.$config['page_url'].'?page=myprices" class="list-group-item active">Moje Stacje</a>';
-			else
-				echo '<a href="'.$config['page_url'].'?page=myprices" class="list-group-item">Moje Stacje</a>';
-
 		}
 
 		// Konfiguracja dla kierownika
@@ -328,7 +323,7 @@ function getSearchPanel(){
     ';
 }
 
-function printStations($stations){
+function printStations($stations, $discount){
     foreach ($stations as $station){
         echo '
             <table class="table1">
@@ -340,10 +335,10 @@ function printStations($stations){
                         </td>
                         <th width="30%" height="200px" rowspan="2">
                 ';
-                            if($station['PB98']!=null) echo '<p class="priceValue">PB98: '.$station['PB98'].' PLN</p>';
-                            if($station['PB95']!=null) echo '<p class="priceValue">PB95: '.$station['PB95'].' PLN</p>';
-                            if($station['OIL']!=null) echo '<p class="priceValue">ON: '.$station['OIL'].' PLN</p>';
-                            if($station['LPG']!=null) echo '<p class="priceValue">LPG: '.$station['LPG'].' PLN</p>';
+                            if($station['PB98']!=null) echo '<p class="priceValue">PB98: '.round(floatval($station['PB98'])*(1-($discount/100)),2) .' PLN</p>';
+                            if($station['PB95']!=null) echo '<p class="priceValue">PB95: '.round(floatval($station['PB95'])*(1-($discount/100)),2) .' PLN</p>';
+                            if($station['OIL']!=null) echo '<p class="priceValue">ON: '.round(floatval($station['OIL'])*(1-($discount/100)),2) .' PLN</p>';
+                            if($station['LPG']!=null) echo '<p class="priceValue">LPG: '.round(floatval($station['LPG'])*(1-($discount/100)),2) .' PLN</p>';
         echo '
                         </th>
                     </tr>
