@@ -358,8 +358,9 @@ function printStations($stations){
 
 function makeSearch($entityManager){
     echo '
-        <b>Województwo:</b> 
-        <select id="voivode" onChange="getVoivode()" class="form-control">
+        <table class="table1"><tr><td width="50%">
+        <b>Województwo:</b></br>
+        <select id="voivode" onChange="getVoivode()" class="form-control1">
     ';
     if(empty($_GET['voivode'])){
         $query = $entityManager->createQuery("SELECT DISTINCT s.voivodeship FROM Stations s ORDER BY s.voivodeship");
@@ -387,12 +388,12 @@ function makeSearch($entityManager){
     }
     echo '
         </select>
-        </br>
     ';
 
     echo '
-        <b>Miasto:</b> 
-        <select id="city" onChange="getCity()" class="form-control">
+        </td><td width="50%">
+        <b>Miasto:</b></br>
+        <select id="city" onChange="getCity()" class="form-control1">
     ';
     if(empty($_GET['city'])){
         if(!empty($_GET['voivode']))
@@ -425,7 +426,7 @@ function makeSearch($entityManager){
         }
     }
     echo '
+        </td></tr></table>
         </select>
-        </br>
     ';
 }
