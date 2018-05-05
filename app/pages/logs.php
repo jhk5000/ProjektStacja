@@ -1,6 +1,5 @@
 <?php
 $user = $entityManager->find('User', $_SESSION['user']);
-
 if($user->getGroupId()==4){
     echo '
         <b>Typ zdarzenia:</b> 
@@ -41,7 +40,6 @@ if($user->getGroupId()==4){
             ->orderBy('e.event_date', 'DESC')
             ->getQuery()
             ->getResult();
-
         echo '
             <table class="table table-bordered table-hover">
                 <thead>

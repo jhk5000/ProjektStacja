@@ -99,6 +99,5 @@ class Bug
     {
         $this->status = "CLOSE";
     }
-
-    //  dupa
+    
 }

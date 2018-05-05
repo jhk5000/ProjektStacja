@@ -13,7 +13,6 @@ if($manager){
 }else{
     $stations = $entityManager->getRepository('Stations')->createQueryBuilder('s')->getQuery()->getResult();
 }
-
 if($user) {
     //Do dostosowania!!!
     echo '<h2>Edycja Użytkownika</h2><hr class="style-one"></hr>';
@@ -30,18 +29,14 @@ if($user) {
                     ->getQuery();
                 $results = $query->getResult();
                 if(count($results)<1) {
-                    $changer = $loged->getUserId() . ', ' . $loged->getLogin() . ', ' . $loged->getName();
-
                     if($user->getName()!=$_POST['name'] || $user->getLogin()!=$_POST['login'] || $user->getMail()!=$_POST['mail']){
                         $description = 'Edytowano kierownika. ' .  'Login: ' . $_POST['login'] . '(' . $user->getLogin() .'), Nazwa: ' . $_POST['name'] . '(' . $user->getName() .'), E-mail: ' . $_POST['mail'] . '(' . $user->getMail() .')';
-                        makeLog($entityManager,'Edycja(kierownik - zmiana danych)', $changer, $description);
+                        makeLog($entityManager,'Edycja(kierownik - zmiana danych)', $description);
                     }
-
                     $user->setName($_POST['name']);
                     $user->setLogin($_POST['login']);
                     $user->setMail($_POST['mail']);
                     $entityManager->flush();
-
                     if(isset($station)){
                         if($_POST['station']!=$station->getStationName()) {
                             if ($_POST['station'] == "") {
@@ -50,13 +45,13 @@ if($user) {
                                 $newstation = $entityManager->find('Stations', $manager->$_POST['station']);
                                 $description = 'Edytowano kierownika. ' . '(Login: ' . $_POST['login'] . ') Nowa stacja: Nazwa: ' . $newstation->getStationName() . '(' . $station->getStationName() . '), Adres: ' . $newstation->getCity() . ', ' . $newstation->getStreet() . '(' . $station->getCity() . ', ' . $station->getStreet() . ')';
                             }
-                            makeLog($entityManager, 'Edycja(kierownik - zmiana stacji)', $changer, $description);
+                            makeLog($entityManager, 'Edycja(kierownik - zmiana stacji)', $description);
                         }
                     }else{
                         if($_POST['station']!=""){
                             $newstation = $entityManager->find('Stations', $_POST['station']);
                             $description = 'Edytowano kierownika. ' . 'Login: ' . $_POST['login'] . ' Nowa stacja: Nazwa: ' . $newstation->getStationName() . ', Adres: ' . $newstation->getCity() . ', ' . $newstation->getStreet();
-                            makeLog($entityManager, 'Edycja(kierownik - zmiana stacji)', $changer, $description);
+                            makeLog($entityManager, 'Edycja(kierownik - zmiana stacji)', $description);
                         }
                     }
                     if($manager){
@@ -106,18 +101,18 @@ if($user) {
                         <input type="text" class="form-control" name="mail" value="<?php echo $user->getMail();?>"/>
                     </div>
                     <div class="form-group">
-                        <label>Stacja</label>
+                        <label>Stacja:</label>
                         <select name="station" class="form-control">
                             <?php
-                                if($station){
-                                    echo '<option value="'.$station->getStationId().'">'.$station->getStationName().'</option>';
-                                    echo '<option value=""></option>';
-                                }else{
-                                    echo '<option value=""></option>';
-                                }
-                                foreach($stations as $st){
-                                    echo '<option value="'.$st->getStationId().'">'.$st->getStationName().'</option>';
-                                }
+                            if($station){
+                                echo '<option value="'.$station->getStationId().'">'.$station->getStationName().'</option>';
+                                echo '<option value=""></option>';
+                            }else{
+                                echo '<option value=""></option>';
+                            }
+                            foreach($stations as $st){
+                                echo '<option value="'.$st->getStationId().'">'.$st->getStationName().'</option>';
+                            }
                             ?>
                         </select>
                     </div>

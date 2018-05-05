@@ -1,15 +1,11 @@
 <?php
-	//do dostosowania!!!
-
+//do dostosowania!!!
 ?>
 
 <?php
 echo '<h2>Nasze stacje:</h2><hr class="style-one"></hr>';
 echo '<a href="'.$config['page_url'].'?page=addstation"><input type="submit" class="btn btn-primary" value="Dodaj stację"/></a><br>';
-
-
 require_once "bootstrap.php";
-
 $stationRepository = $entityManager->getRepository('Stations');
 $stations = $stationRepository->findAll();
 $l=1;
@@ -54,18 +50,25 @@ foreach ($stations as $station) {
     ');
     $l++;
 }//end foreach
-
 echo '</tbody></table>';
 echo '<a href="'.$config['page_url'].'?page=addstation"><input type="submit" class="btn btn-primary" value="Dodaj stację"/></a>';
-
 if(isset($_POST['deleteStation'])){
     $deleted = $entityManager->find('Stations', $_POST['id']);
+    $description = 'Usunięto stację. ' . 'Nazwa: ' . $deleted->getStationName() . ', Adres: ' . $deleted->getCity()  . ', ' . $deleted->getStreet()  . ', ' . $deleted->getVoivodeship() ;
+    makeLog($entityManager, 'Usunięcie(stacja)', $description);
     $entityManager->remove($deleted);
+    $entityManager->flush();
+    $deleted = $entityManager->getRepository('Managers')->findBy(array('Stations_station_id' => $_POST['id']));
+    foreach ($deleted as $del){
+        $entityManager->remove($del);
+    }
+    $entityManager->flush();
+    $deleted = $entityManager->getRepository('Prices')->findBy(array('Stations_station_id' => $_POST['id']));
+    foreach ($deleted as $del){
+        $entityManager->remove($del);
+    }
     $entityManager->flush();
     echo '<script type="text/javascript">
             window.location.href="'.$config['page_url'].'?page=stations";
           </script>';
 }
-
-
-

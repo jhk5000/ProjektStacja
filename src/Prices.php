@@ -39,7 +39,6 @@ class Prices
      * @var string
      */
     protected $date_of_change;
-
     /**
      * @return string
      */
@@ -47,7 +46,6 @@ class Prices
     {
         return $this->price_id;
     }
-
     /**
      * @param string $price_id
      */
@@ -55,7 +53,6 @@ class Prices
     {
         $this->price_id = $price_id;
     }
-
     /**
      * @return string
      */
@@ -63,7 +60,6 @@ class Prices
     {
         return $this->Stations_station_id;
     }
-
     /**
      * @param string $Stations_station_id
      */
@@ -71,7 +67,6 @@ class Prices
     {
         $this->Stations_station_id = $Stations_station_id;
     }
-
     /**
      * @return string
      */
@@ -79,7 +74,6 @@ class Prices
     {
         return $this->PB98;
     }
-
     /**
      * @param string $PB98
      */
@@ -87,7 +81,6 @@ class Prices
     {
         $this->PB98 = $PB98;
     }
-
     /**
      * @return string
      */
@@ -95,7 +88,6 @@ class Prices
     {
         return $this->PB95;
     }
-
     /**
      * @param string $PB95
      */
@@ -103,7 +95,6 @@ class Prices
     {
         $this->PB95 = $PB95;
     }
-
     /**
      * @return string
      */
@@ -111,7 +102,6 @@ class Prices
     {
         return $this->OIL;
     }
-
     /**
      * @param string $OIL
      */
@@ -119,7 +109,6 @@ class Prices
     {
         $this->OIL = $OIL;
     }
-
     /**
      * @return string
      */
@@ -127,7 +116,6 @@ class Prices
     {
         return $this->LPG;
     }
-
     /**
      * @param string $LPG
      */
@@ -135,7 +123,6 @@ class Prices
     {
         $this->LPG = $LPG;
     }
-
     /**
      * @return string
      */
@@ -143,7 +130,6 @@ class Prices
     {
         return $this->date_of_change;
     }
-
     /**
      * @param string $date_of_change
      */
@@ -151,7 +137,4 @@ class Prices
     {
         $this->date_of_change = $date_of_change;
     }
-
-
-
 }

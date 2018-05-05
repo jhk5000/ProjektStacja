@@ -1,6 +1,7 @@
 <?php
 echo '<h2>Dodaj użytkownika:</h2><hr class="style-one"></hr>';
 require_once "bootstrap.php";
+$loged = $entityManager->find('User', $_SESSION['user']);
 ?>
 
 <div class="row">
@@ -13,7 +14,14 @@ require_once "bootstrap.php";
         <b>Typ konta:</b>
         <select id="user_type" class="form-control">
             <option value="1">Klient</option>
-            <option value="2">Kierownik</option>
+            <?php
+            if($loged->getGroupId()>2){
+                echo '<option value="2">Kierownik</option>';
+            }
+            if($loged->getGroupId()>3){
+                echo '<option value="3">Właściciel</option>';
+            }
+            ?>
         </select>
         <br/>
         <center><input class="btn btn-primary btn-lg" type="submit" onClick="app.register();" value="Zarejestruj"/></center>

@@ -30,7 +30,6 @@ class Companies
      * @var string
      */
     protected $discount;
-
     /**
      * @return string
      */
@@ -38,7 +37,6 @@ class Companies
     {
         return $this->company_id;
     }
-
     /**
      * @param string $company_id
      */
@@ -46,7 +44,6 @@ class Companies
     {
         $this->company_id = $company_id;
     }
-
     /**
      * @return string
      */
@@ -54,7 +51,6 @@ class Companies
     {
         return $this->company_name;
     }
-
     /**
      * @param string $company_name
      */
@@ -62,7 +58,6 @@ class Companies
     {
         $this->company_name = $company_name;
     }
-
     /**
      * @return string
      */
@@ -70,7 +65,6 @@ class Companies
     {
         return $this->address;
     }
-
     /**
      * @param string $address
      */
@@ -78,7 +72,6 @@ class Companies
     {
         $this->address = $address;
     }
-
     /**
      * @return string
      */
@@ -86,7 +79,6 @@ class Companies
     {
         return $this->discount;
     }
-
     /**
      * @param string $discount
      */
@@ -94,7 +86,4 @@ class Companies
     {
         $this->discount = $discount;
     }
-
-
-
 }

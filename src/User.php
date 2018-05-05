@@ -55,23 +55,6 @@ class User
      * @var string
      */
     protected $Companies_company_id;
-
-    /**
-     * @return string
-     */
-    public function getCompaniesCompanyId(): string
-    {
-        return $this->Companies_company_id;
-    }
-
-    /**
-     * @param string $Companies_company_id
-     */
-    public function setCompaniesCompanyId(string $Companies_company_id): void
-    {
-        $this->Companies_company_id =$Companies_company_id;
-    }
-
     /**
      * @OneToMany(targetEntity="Bug", mappedBy="reporter")
      * @var Bug[]
@@ -87,7 +70,6 @@ class User
         $this->reportedBugs = new ArrayCollection();
         $this->assignedBugs = new ArrayCollection();
     }
-
     /**
      * @return string
      */
@@ -96,8 +78,6 @@ class User
         $dane = $this->getLogin() . ' | ' . $this->getName(). ' | ' . $this->getMail(). ' | '  . $this->getRegisterDate();
         return $dane;
     }
-
-
     /**
      * @return string
      */
@@ -105,7 +85,6 @@ class User
     {
         return $this->user_id;
     }
-
     /**
      * @param string $user_id
      */
@@ -113,7 +92,6 @@ class User
     {
         $this->user_id = $user_id;
     }
-
     /**
      * @return string
      */
@@ -121,7 +99,6 @@ class User
     {
         return $this->login;
     }
-
     /**
      * @param string $login
      */
@@ -129,7 +106,6 @@ class User
     {
         $this->login = $login;
     }
-
     /**
      * @return string
      */
@@ -137,7 +113,6 @@ class User
     {
         return $this->passwd;
     }
-
     /**
      * @param string $passwd
      */
@@ -145,7 +120,6 @@ class User
     {
         $this->passwd = $passwd;
     }
-
     /**
      * @return string
      */
@@ -153,7 +127,6 @@ class User
     {
         return $this->name;
     }
-
     /**
      * @param string $name
      */
@@ -161,7 +134,6 @@ class User
     {
         $this->name = $name;
     }
-
     /**
      * @return string
      */
@@ -169,7 +141,6 @@ class User
     {
         return $this->mail;
     }
-
     /**
      * @param string $mail
      */
@@ -177,7 +148,6 @@ class User
     {
         $this->mail = $mail;
     }
-
     /**
      * @return string
      */
@@ -185,7 +155,6 @@ class User
     {
         return $this->register_date;
     }
-
     /**
      * @param string $register_date
      */
@@ -193,7 +162,6 @@ class User
     {
         $this->register_date = $register_date;
     }
-
     /**
      * @return string
      */
@@ -201,7 +169,6 @@ class User
     {
         return $this->group_id;
     }
-
     /**
      * @param string $group_id
      */
@@ -209,7 +176,6 @@ class User
     {
         $this->group_id = $group_id;
     }
-
     /**
      * @return string
      */
@@ -217,7 +183,6 @@ class User
     {
         return $this->info;
     }
-
     /**
      * @param string $info
      */
@@ -225,7 +190,6 @@ class User
     {
         $this->info = $info;
     }
-
     /**
      * @return string
      */
@@ -233,7 +197,6 @@ class User
     {
         return $this->token;
     }
-
     /**
      * @param string $token
      */
@@ -241,7 +204,18 @@ class User
     {
         $this->token = $token;
     }
-
-
-
+    /**
+     * @return string
+     */
+    public function getCompaniesCompanyId()
+    {
+        return $this->Companies_company_id;
+    }
+    /**
+     * @param string $Companies_company_id
+     */
+    public function setCompaniesCompanyId($Companies_company_id)
+    {
+        $this->Companies_company_id = $Companies_company_id;
+    }
 }

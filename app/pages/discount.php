@@ -1,13 +1,8 @@
-
-
-
 <h3>Przyznane znizki</h3><hr class="style-one"></hr>
 
 <?php
-    use Doctrine\ORM\EntityRepository;
-
+use Doctrine\ORM\EntityRepository;
 require_once "bootstrap.php";
-
 $dql = "SELECT u.user_id. u.name, d.discount, d.Users_user_id FROM discount d, user u 
         WHERE u.user_id = d.Users_user_id";
 $selectedDiscount = $entityManager->createQuery($dql)->getScalarResult();
@@ -28,10 +23,7 @@ foreach($selectedDiscounts as $discounts) {
             <a href="'.$config['page_url'].'?page=deletediscount&option=1&id='.$station['s.station_id'].'">
         <input type="submit" class="btn btn-danger btn-xs" value="Usuń"/></a></td></tr>');
     $l++;
-    //echo $myStation['s.name']." has " . $productBug['openBugs'] . " open bugs!\n";
 }
-
 echo '</tbody></table>';
 echo '<a href="'.$config['page_url'].'?page=discount&option=8&id="><input type="submit" class="btn btn-primary" value="Dodaj żniżkę"/></a>';
-
 ?>

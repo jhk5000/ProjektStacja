@@ -8,7 +8,6 @@ require('functions.php');
 if(!empty($_POST['task'])) {
     $time_now = time();
     //$db = new DB($config['db']['host'], $config['db']['username'], $config['db']['password'], $config['db']['database']);
-
     if(!empty($_SESSION['user'])) {
         if(empty($_SESSION['token'])) {
             session_destroy();
@@ -31,12 +30,17 @@ if(!empty($_POST['task'])) {
                     } elseif (!filter_var($_POST['mail'], FILTER_VALIDATE_EMAIL)) {
                         echo 'Podano błędny adres email!';
                     } else {
+                        $loged = $entityManager->find('User', $_SESSION['user']);
                         $user = $entityManager->getRepository('User')->findOneBy(array('login' => $_POST['login']));
                         $mail = $entityManager->getRepository('User')->findOneBy(array('mail' => $_POST['mail']));
                         if ($user !== null) {
                             echo 'Podany login jest już zajęty!';
                         } elseif ($mail !== null) {
                             echo 'Podany mail jest już zajęty!';
+                        } elseif ($_POST['group']!=1 && $_POST['group']!=2 && $_POST['group']!=3){
+                            echo 'Nie znaleziono grupy!';
+                        } elseif ($loged->getGroupId()<=$_POST['group']){
+                            echo 'Nie masz uprawnień do zarejestrwania tego użytkownika!';
                         } else {
                             $password = password_hash($_POST['pass1'], PASSWORD_BCRYPT);
                             $data = date("y-m-d");
@@ -51,11 +55,8 @@ if(!empty($_POST['task'])) {
                             $user->setInfo('');
                             $entityManager->persist($user);
                             $entityManager->flush();
-
-                            $loged = $entityManager->find('User', $_SESSION['user']);
-                            $changer = $loged->getUserId() . ', ' . $loged->getLogin() . ', ' . $loged->getName();
                             $description = 'Zarejestrowano użytkownika. ' . 'Login: ' . $_POST['login'] . ', Nazwa: ' . $_POST['name'] . ', E-mail: ' . $_POST['mail'];
-                            makeLog($entityManager, 'Rejestracja', $changer, $description);
+                            makeLog($entityManager, 'Rejestracja', $description);
                             echo 1;
                         }
                     }
@@ -98,21 +99,17 @@ if(!empty($_POST['task'])) {
                     $token = password_hash($token, PASSWORD_BCRYPT);
                     $user->setToken($token);
                     $entityManager->flush();
-
                     $log->setValid(1);
                     $entityManager->flush();
-
                     $description = 'Zalogowano użytkownika. ' .  'Login: ' . $_POST['login'];
-                    makeLog($entityManager,'Logowanie(poprawne)', '', $description); $entityManager->persist($log);
+                    makeLog($entityManager,'Logowanie(poprawne)', $description); $entityManager->persist($log);
                     echo 1;
                 }else{
                     $log->setValid(0);
                     $entityManager->persist($log);
                     $entityManager->flush();
-
                     $description = 'Błędna próba zalogowania. ' .  'Login: ' . $_POST['login'] . ', IP: ' . getIP();
-                    makeLog($entityManager,'Logowanie(błędne)', '', $description); $entityManager->persist($log);
-
+                    makeLog($entityManager,'Logowanie(błędne)', $description); $entityManager->persist($log);
                     echo "Podano nieporawidłowe hasło!";
                 }
             } else {
@@ -150,14 +147,10 @@ if(!empty($_POST['task'])) {
                         $st->setStreet($_POST['street']);
                         $entityManager->persist($st);
                         $entityManager->flush();
-
-                        $loged = $entityManager->find('User', $_SESSION['user']);
-                        $changer = $loged->getUserId() . ', ' . $loged->getLogin() . ', ' . $loged->getName();
                         $description = 'Dodano stację. ' . 'Nazwa: ' . $_POST['name'] . ', Adres: ' . $_POST['city'] . ', ' . $_POST['street'] . ', ' . $_POST['voide'];
-                        makeLog($entityManager, 'Wprowadzono nową stację', $changer, $description);
+                        makeLog($entityManager, 'Wprowadzono nową stację', $description);
                         echo 1;
                     }
-
                 } else {
                     echo 'Uzupełnij wszystkie dane!';
                 }
@@ -168,24 +161,24 @@ if(!empty($_POST['task'])) {
         case 6:
             if(isset($user)) {
                 if (!empty($_POST['name'])) {
-                    $company = $entityManager->getRepository('Companies')->findOneBy(array('company_name' => $_POST['name']));
-                    if ($company !== null) {
-                        echo 'Podana nazwa jest już zajęta!';
-                    } else {
-                        $cp = new Companies();
-                        $cp->setCompanyName($_POST['name']);
-                        $cp->setAddress($_POST['address']);
-                        $cp->setDiscount($_POST['discount']);
-                        $entityManager->persist($cp);
-                        $entityManager->flush();
-
-                        $loged = $entityManager->find('User', $_SESSION['user']);
-                        $changer = $loged->getUserId() . ', ' . $loged->getLogin() . ', ' . $loged->getName();
-                        $description = 'Dodano firmę. ' . 'Nazwa: ' . $_POST['name'] . ', Adres: ' . $_POST['address'];
-                        makeLog($entityManager, 'Wprowadzono nową firmę', $changer, $description);
-                        echo 1;
+                    if($_POST['discount']>=0 && $_POST['discount']<=100) {
+                        $company = $entityManager->getRepository('Companies')->findOneBy(array('company_name' => $_POST['name']));
+                        if ($company !== null) {
+                            echo 'Podana nazwa jest już zajęta!';
+                        } else {
+                            $cp = new Companies();
+                            $cp->setCompanyName($_POST['name']);
+                            $cp->setAddress($_POST['address']);
+                            $cp->setDiscount($_POST['discount']);
+                            $entityManager->persist($cp);
+                            $entityManager->flush();
+                            $description = 'Dodano firmę. ' . 'Nazwa: ' . $_POST['name'] . ', Adres: ' . $_POST['address'];
+                            makeLog($entityManager, 'Wprowadzono nową firmę', $description);
+                            echo 1;
+                        }
+                    }else{
+                        echo 'Popraw zniżkę';
                     }
-
                 } else {
                     echo 'Uzupełnij wszystkie dane!';
                 }

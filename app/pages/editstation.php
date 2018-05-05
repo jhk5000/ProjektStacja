@@ -15,10 +15,8 @@ if($station) {
                     ->getQuery();
                 $results = $query->getResult();
                 if(count($results)<1) {
-                    $changer = $loged->getUserId() . ', ' . $loged->getLogin() . ', ' . $loged->getName();
                     $description = 'Edytowano stacje. ' .  'Nazwa: ' . $_POST['name'] . '(' . $station->getStationName() .'), Adres: ' . $_POST['city'] . ', ' . $_POST['street'] . ', ' . $_POST['voivodeship'] . '(' . $station->getCity() . ', ' . $station->getStreet() .', ' . ', ' . $station->getVoivodeship() .')';
-                    makeLog($entityManager,'Edycja(stacja)', $changer, $description);
-
+                    makeLog($entityManager,'Edycja(stacja)', $description);
                     $station->setStationName($_POST['name']);
                     $station->setVoivodeship($_POST['voivodeship']);
                     $station->setCity($_POST['city']);

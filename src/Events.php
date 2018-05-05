@@ -29,7 +29,6 @@ class Events
      * @var string
      */
     protected $description;
-
     /**
      * @return string
      */
@@ -37,7 +36,6 @@ class Events
     {
         return $this->event_id;
     }
-
     /**
      * @param string $event_id
      */
@@ -45,7 +43,6 @@ class Events
     {
         $this->event_id = $event_id;
     }
-
     /**
      * @return string
      */
@@ -53,7 +50,6 @@ class Events
     {
         return $this->changer;
     }
-
     /**
      * @param string $changer
      */
@@ -61,8 +57,6 @@ class Events
     {
         $this->changer = $changer;
     }
-
-
     /**
      * @return string
      */
@@ -70,7 +64,6 @@ class Events
     {
         return $this->event_name;
     }
-
     /**
      * @param string $event_name
      */
@@ -78,7 +71,6 @@ class Events
     {
         $this->event_name = $event_name;
     }
-
     /**
      * @return string
      */
@@ -86,7 +78,6 @@ class Events
     {
         return $this->event_date;
     }
-
     /**
      * @param string $event_date
      */
@@ -94,7 +85,6 @@ class Events
     {
         $this->event_date = $event_date;
     }
-
     /**
      * @return string
      */
@@ -102,7 +92,6 @@ class Events
     {
         return $this->description;
     }
-
     /**
      * @param string $description
      */
@@ -110,6 +99,4 @@ class Events
     {
         $this->description = $description;
     }
-
-
 }
