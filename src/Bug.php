@@ -99,5 +99,5 @@ class Bug
     {
         $this->status = "CLOSE";
     }
-    
+
 }
