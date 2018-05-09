@@ -4,22 +4,19 @@ require_once "bootstrap.php";
 // Trzeba dokonczyc ustawienie znizki!
 $companyRepository = $entityManager->getRepository('Companies');
 $companies = $companyRepository->findAll();
-$l=1;
-echo '<table class="table table-bordered table-hover">
+echo '<table class="table table-bordered table-hover fixed">
 		<thead>
 		  <tr>
-		    <th width="5%">lp.</th>
 			<th width="40%">Nazwa firmy</th>
 			<th width="40%">Adres</th>
 			<th width="10%">Zniżka</th>
-			<th width="5%">Edytuj firmę</th>
+			<th width="8%">Edytuj firmę</th>
 		  </tr>
 		</thead>
 		<tbody>';
 foreach ($companies as $company) {
     echo '
         <tr>
-            <td>'.$l. '</td>
             <td>'.$company->getCompanyName().'</td>    
             <td>'.$company->getAddress().'</td>
             <td>'.$company->getDiscount().'<td>
@@ -40,7 +37,6 @@ foreach ($companies as $company) {
             </td>
         </tr>
         ';
-    $l++;
 }//end foreach
 echo '</tbody></table>';
 if(isset($_POST['deleteCompany'])){

@@ -6,25 +6,22 @@ $query = $entityManager->createQuery("SELECT u.login, u.name, u.mail, u.register
 $results = $query->getResult();
 $query1 = $entityManager->createQuery("SELECT u.login, u.name, u.mail, u.register_date, u.user_id FROM User u WHERE u.Companies_company_id IS NULL AND u.group_id = 1");
 $results1 = $query1->getResult();
-$l=1;
-echo '<br><table class="table table-bordered table-hover">
+echo '<br><table class="table table-bordered table-hover fixed">
 		<thead>
 		  <tr>
-		    <th width="5%">lp.</th>
 			<th width="15%">Login</th>
 			<th width="15%">Nazwa</th>
 			<th width="15%">Mail</th>
 			<th width="15%">Data rejestracji</th>
 			<th width="15%">Firma</th>
             <th width="15%">Adres</th>
-			<th width="5%">Akcja</th>
+			<th width="8%">Akcja</th>
 		  </tr>
 		</thead>
 		<tbody>';
 foreach ($results as $user) {
     echo '
         <tr>
-            <td>'.$l. '</td>
             <td>'.$user['login'].'</td>
             <td>'.$user['name'].' </td>
             <td>'.$user['mail'].'</td>
@@ -49,12 +46,10 @@ foreach ($results as $user) {
             </td>
         </tr>
         ';
-    $l++;
 }//end foreach
 foreach ($results1 as $user) {
     echo '
         <tr>
-            <td>'.$l. '</td>
             <td>'.$user['login'].'</td>
             <td>'.$user['name'].' </td>
             <td>'.$user['mail'].'</td>
@@ -79,7 +74,6 @@ foreach ($results1 as $user) {
             </td>
         </tr>
         ';
-    $l++;
 }//end foreach
 echo '</tbody></table>';
 echo '<a href="'.$config['page_url'].'?page=register"><input type="submit" class="btn btn-primary" value="Dodaj klienta"/></a>';

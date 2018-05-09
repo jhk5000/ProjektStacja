@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="pl">
 <head>
-    <meta charset="utf-8">
+    <meta charset="utf-8" />
     <title><?php echo $title;?></title>
     <link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="screen">
     <link href="css/basic.css" rel="stylesheet" type="text/css" media="screen">

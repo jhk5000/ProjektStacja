@@ -8,23 +8,20 @@ echo '<a href="'.$config['page_url'].'?page=addstation"><input type="submit" cla
 require_once "bootstrap.php";
 $stationRepository = $entityManager->getRepository('Stations');
 $stations = $stationRepository->findAll();
-$l=1;
-echo '<br><table class="table table-bordered table-hover">
+echo '<br><table class="table table-bordered table-hover fixed">
 		<thead>
 		  <tr>
-		    <th width="5%">lp.</th>
 			<th width="25%">Nazwa</th>
 			<th width="20%">Województwo</th>
 			<th width="20%">Miasto</th>
 			<th width="25%">Ulica</th>
-			<th width="5%">Akcja</th>
+			<th width="8%">Akcja</th>
 		  </tr>
 		</thead>
 		<tbody>';
 foreach ($stations as $station) {
     echo sprintf('
         <tr>
-            <td>'.$l. '</td>
             <td>'.$station->getStationName().'</td>
             <td>'.$station->getVoivodeship().'</td>
             <td>'.$station->getCity().'</td>
@@ -48,7 +45,6 @@ foreach ($stations as $station) {
             </td>
         </tr>
     ');
-    $l++;
 }//end foreach
 echo '</tbody></table>';
 echo '<a href="'.$config['page_url'].'?page=addstation"><input type="submit" class="btn btn-primary" value="Dodaj stację"/></a>';

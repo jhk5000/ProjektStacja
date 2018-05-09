@@ -10,18 +10,16 @@ $query = $entityManager->createQuery("SELECT u.login, u.name, u.mail, u.register
 $results = $query->getResult();
 $query1 = $entityManager->createQuery("SELECT u.login, u.name, u.mail, u.register_date, u.user_id FROM User u WHERE u.user_id NOT IN (SELECT m.Users_user_id FROM Managers m) AND u.group_id = 2");
 $results1 = $query1->getResult();
-$l=1;
-	echo '<br><table class="table table-bordered table-hover">
+	echo '</br><table class="table table-bordered table-hover fixed">
 			<thead>
 			  <tr>
-				<th width="5%">lp.</th>
-                <th width="15%">Login</th>
+                <th width="10%">Login</th>
                 <th width="15%">Nazwa</th>
-                <th width="15%">Mail</th>
+                <th width="20%">Mail</th>
                 <th width="15%">Data rejestracji</th>
                 <th width="15%">Stacja</th>
                 <th width="15%">Miejscowość</th>
-                <th width="5%">Akcja</th>
+                <th width="8%">Akcja</th>
 			  </tr>
 			</thead>
 			<tbody>';
@@ -29,7 +27,6 @@ $l=1;
 foreach ($results as $manager) {
     echo '
         <tr>
-            <td>'.$l. '</td>
             <td>'.$manager['login'].'</td>
             <td>'.$manager['name'].' </td>
             <td>'.$manager['mail'].'</td>
@@ -54,7 +51,6 @@ foreach ($results as $manager) {
             </td>
         </tr>
         ';
-    $l++;
 }//end foreach
 foreach ($results1 as $manager) {
     echo '

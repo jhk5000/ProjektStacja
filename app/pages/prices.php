@@ -5,31 +5,24 @@ $user = $entityManager->find('User', $_SESSION['user']);
 echo '<h2>Ceny paliw na naszych stacjach:</h2><hr class="style-one"></hr>';
 $stationsRepository = $entityManager->getRepository('Stations');
 $stations = $stationsRepository->findAll();
-$l = 1;
-echo '<table class="table table-bordered table-hover">
+echo '<table class="table table-bordered table-hover fixed">
 	<thead>
 		 <tr>
-		  <th>lp.</th>
-			<th>Nazwa</th>
-			<th>Województwo</th>
-			<th>Miasto</th>
-			<th>Ulica</th>
-			<th>PB98</th>
-			<th>PB95</th>
-			<th>ON</th>
-			<th>LPG</th>
-			<th>Akcja</th>
+			<th width="15%">Nazwa</th>
+			<th width="35%">Adres</th>
+			<th width="10%">PB98</th>
+			<th width="10%">PB95</th>
+			<th width="10%">ON</th>
+			<th width="10%">LPG</th>
+			<th width="8%">Akcja</th>
 		  </tr>
 	</thead>
 	<tbody>';
 foreach ($stations as $station) {
     echo sprintf('
         <tr>
-            <td>' . $l . '</td>
             <td>' . $station->getStationName() . '</td>
-            <td>' . $station->getVoivodeship() . '</td>
-            <td>' . $station->getCity() . '</td>
-            <td>' . $station->getStreet() . '</td>
+            <td>' . $station->getCity() . ', ' . $station->getStreet() . ', ' . $station->getVoivodeship() . '</td>
             ');
     $priceRepository = $entityManager->getRepository('Prices');
     $price = $priceRepository->findOneBy(array('Stations_station_id' => $station->getStationId()));
@@ -67,7 +60,6 @@ foreach ($stations as $station) {
                     ');
     }
     echo '</tr>';
-    $l++;
 }//end foreach
 if(isset($_POST['deletePrice'])){
     $deleted = $entityManager->find('Prices', $_POST['id']);

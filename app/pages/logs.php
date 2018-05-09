@@ -41,10 +41,9 @@ if($user->getGroupId()==4){
             ->getQuery()
             ->getResult();
         echo '
-            <table class="table table-bordered table-hover">
+            <table class="table table-bordered table-hover fixed">
                 <thead>
                   <tr>
-                    <th width="5%">lp.</th>
                     <th width="20%">Zmienione przez</th>
                     <th width="60%">Opis</th>
                     <th width="15%">Data</th>
@@ -52,17 +51,14 @@ if($user->getGroupId()==4){
                 </thead>
                 <tbody>
         ';
-        $l = 1;
         foreach($events as $event){
             echo '
                 <tr>
-                    <td>'.$l. '</td>
                     <td>'.$event->getChanger().'</td>
                     <td>'.$event->getDescription().'</td>
                     <td>'.$event->getEventDate().'</td>
                 </tr>
             ';
-            $l++;
         }
         echo '</tbody></table>';
     }

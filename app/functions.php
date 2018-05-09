@@ -303,11 +303,11 @@ function printStations($stations, $discount){
             <table class="table1">
                 <tbody style="border: 1px solid #a6e1ec">
                     <tr>
-                        <td width="70%" height="10%">
+                        <td width="60%" height="10%">
                             <p class="stationName">'.$station['station_name'].'</p>
                             <p class="stationAddress">'.$station['city'].', '.$station['street'].'</p>
                         </td>
-                        <th width="30%" height="200px" rowspan="2">
+                        <th width="40%" height="200px" rowspan="2">
                 ';
         if($station['PB98']!=null) echo '<p class="priceValue">PB98: '.round(floatval($station['PB98'])*(1-($discount/100)),2) .' PLN</p>';
         if($station['PB95']!=null) echo '<p class="priceValue">PB95: '.round(floatval($station['PB95'])*(1-($discount/100)),2) .' PLN</p>';

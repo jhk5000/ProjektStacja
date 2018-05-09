@@ -42,7 +42,7 @@ if($user) {
                             if ($_POST['station'] == "") {
                                 $description = 'Kierownika ' . '(Login: ' . $_POST['login'] . ') usunięto ze stacji (Nazwa: ' . $station->getStationName() . ', Adres: ' . $station->getCity() . ', ' . $station->getStreet() . ')';
                             } else {
-                                $newstation = $entityManager->find('Stations', $manager->$_POST['station']);
+                                $newstation = $entityManager->find('Stations', $_POST['station']);
                                 $description = 'Edytowano kierownika. ' . '(Login: ' . $_POST['login'] . ') Nowa stacja: Nazwa: ' . $newstation->getStationName() . '(' . $station->getStationName() . '), Adres: ' . $newstation->getCity() . ', ' . $newstation->getStreet() . '(' . $station->getCity() . ', ' . $station->getStreet() . ')';
                             }
                             makeLog($entityManager, 'Edycja(kierownik - zmiana stacji)', $description);

@@ -76,7 +76,7 @@ if(!empty($_POST['task'])) {
                     echo "Podano nieprawidłowy login!";
                     exit(1);
                 }
-                $dql = "SELECT l FROM logdata l WHERE l.Users_user_id = ".$user->getUserId()." AND l.valid = 0 ORDER BY l.log_date DESC";
+                $dql = "SELECT l FROM Logdata l WHERE l.Users_user_id = ".$user->getUserId()." AND l.valid = 0 ORDER BY l.log_date DESC";
                 $query = $entityManager->createQuery($dql);
                 $query->setMaxResults(3);
                 $logs = $query->getResult();

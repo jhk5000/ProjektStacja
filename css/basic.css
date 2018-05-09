@@ -1,6 +1,6 @@
 body {
-	background-image: url(images/bg.jpg);
-	height:100%;
+	background-image: url(../images/bg.jpg);
+	height: 100%;
 	margin:0;
 	padding:0;
 }
@@ -17,7 +17,7 @@ body {
 }
 
 #top_menu .text {
-	width: 1000px;
+	width: 900px;
 	margin: 0 auto;
 	position: relative;
 	font-size: 20px;
@@ -60,14 +60,14 @@ body {
 #content {
 	top: 130px;
 	position: absolute;
-	width: 1100px;
+	width: 900px;
 	min-height: 100px;
 	left: 50%;
-	margin-left: -550px;
+	margin-left: -450px;
 }
 
 #view {
-	width: 870px;
+	width: 690px;
 	min-height: 300px;
 	position: relative;
 	padding-left: 15px;
@@ -82,7 +82,7 @@ body {
 
 #menu {
 	position: relative;
-	width: 200px;
+	width: 180px;
 	float: left;
 }
 

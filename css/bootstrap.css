@@ -2488,6 +2488,10 @@ table th[class*="col-"] {
     border-bottom: 0;
   }
 }
+
+table.fixed { table-layout:fixed; }
+table.fixed td { word-wrap:break-word; }
+
 fieldset {
   min-width: 0;
   padding: 0;
