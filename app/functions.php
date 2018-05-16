@@ -324,6 +324,24 @@ function printStations($stations, $discount){
         ';
     }
 }
+
+function printAverages($averages, $discount){
+    foreach ($averages as $average){
+        echo '
+            <table width="100%">
+                <tbody>
+                    <tr>';
+                            echo '<td>PB98: ' . round(floatval($average['PB98'])*(1-($discount/100)),2) . ' PLN' . '</td>';
+                            echo '<td>PB95: ' . round(floatval($average['PB95'])*(1-($discount/100)),2) . ' PLN' . '</td>';
+                            echo '<td>ON: ' . round(floatval($average['OIL'])*(1-($discount/100)),2) . ' PLN' . '</td>';
+                            echo '<td>LPG: ' . round(floatval($average['LPG'])*(1-($discount/100)),2) . ' PLN' . '</td>';
+        echo'       </tr>
+                </tbody>
+            </table>
+        ';
+    }
+}
+
 function makeSearch($entityManager){
     echo '
         <table class="table1"><tr><td width="50%">
