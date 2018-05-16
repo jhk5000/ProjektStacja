@@ -2,7 +2,7 @@
 require_once "bootstrap.php";
 $user = $entityManager->find('User', $_SESSION['user']);
 
-	if($option == 1) {
+	if($_GET['option'] == 1) {
 		echo '<h2>Zmiana Hasła</h2><hr class="style-one"></hr>';
 		if(!empty($_POST['send'])) {
 			if(!empty($_POST['old']) && !empty($_POST['pass1']) && !empty($_POST['pass2'])) {

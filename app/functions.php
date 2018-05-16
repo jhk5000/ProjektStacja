@@ -13,7 +13,7 @@ function getLoginWindow() {
 				<h2>Logowanie</h2><hr class="style-one"></hr>
 				<b>Login:</b> <input onkeypress="app.check_key(event);" type="text" class="form-control" id="login_name" value=""/>
 				<b>Hasło:</b> <input onkeypress="app.check_key(event);" type="password" class="form-control" id="login_password" value=""/></br>
-				<center><input class="btn btn-primary btn-ls" type="submit" onClick="app.login();" value="Zaloguj"/> 
+				<center><input class="btn btn-primary btn-ls" type="submit" id="login_button" onClick="app.login();" value="Zaloguj"/> 
 				<a href="'.$config['page_url'].'?page=lostpassword"><input class="btn btn-info btn-ls" type="submit" value="Przypominj Hasło"/></a></center>
 				</div>';
 }
