@@ -55,7 +55,7 @@ foreach ($results as $manager) {
 foreach ($results1 as $manager) {
     echo '
         <tr>
-            <td>'.$l. '</td>
+            
             <td>'.$manager['login'].'</td>
             <td>'.$manager['name'].' </td>
             <td>'.$manager['mail'].'</td>
@@ -80,7 +80,7 @@ foreach ($results1 as $manager) {
             </td>
         </tr>
         ';
-    $l++;
+
 }//end foreach
 echo '</tbody></table>';
 echo '<a href="'.$config['page_url'].'?page=register"><input type="submit" class="btn btn-primary" value="Dodaj kierownika"/></a>';
