@@ -12,7 +12,7 @@
 <div id="page">
     <div id="top_menu">
         <div class="text">
-            <a href="www.mrcin.pl/stacja/index.php"><img src="images/logos.png" style=" margin-top:-20px; margin-left:5px;" width="300px" height="65px" alt="logo" /></a>
+            <a href="www.mrcin.pl/stacja/images/logos.png"><img src="images/logos.png" style=" margin-top:-20px; margin-left:5px;" width="300px" height="65px" alt="logo" /></a>
             <div class="left"><a href="www.mrcin.pl/stacja/index.php echo $config['www.mrcin.pl/stacja/index.php'];?>"><?php echo $config['logo_title'];?></a></div>
             <div class="right">
                 <?php if(empty($user)) { ?>
