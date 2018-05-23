@@ -12,8 +12,8 @@
 <div id="page">
     <div id="top_menu">
         <div class="text">
-            <a href="www.mrcin.pl/stacja/images/logos.png"><img src="images/logos.png" style=" margin-top:-20px; margin-left:5px;" width="300px" height="65px" alt="logo" /></a>
-            <div class="left"><a href="www.mrcin.pl/stacja/index.php echo $config['www.mrcin.pl/stacja/index.php'];?>"><?php echo $config['logo_title'];?></a></div>
+            <a href="images/logos.png"><img src="images/logos.png" style=" margin-top:-20px; margin-left:5px;" width="300px" height="65px" alt="logo" /></a>
+            <div class="left"><a href="<?php echo $config['localhost/ProjektStacja/index.php'];?>"><?php echo $config['logo_title'];?></a></div>
             <div class="right">
                 <?php if(empty($user)) { ?>
                     <span name="login" class="top pointer" onClick="app.openWindow(1);">Zaloguj</span>
