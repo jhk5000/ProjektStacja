@@ -13,7 +13,7 @@ foreach($myStations as $station) {
     $price = $entityManager->getRepository('Prices')->findOneBy(array('Stations_station_id' => $station['station_id']));
     echo '
 		<tr>
-			<td width="70%" height="10%">
+			<td width="60%" height="10%">
 				<p class="stationName">'.$station['station_name'].'</p>
 				<p class="stationAddress">'.$station['city'].', '.$station['street'].'</p>
 			</td>

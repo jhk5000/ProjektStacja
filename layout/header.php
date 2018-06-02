@@ -26,7 +26,7 @@
         <div id="menu">
             <div class="panel panel-primary">
                 <div class="list-group">
-                    <?php if(!empty($user)) getUserMenu($group); ?>
+                    <?php getUserMenu($group); ?>
                 </div>
             </div>
         </div>

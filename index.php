@@ -1,7 +1,7 @@
 <?php
 session_start();
-error_reporting(E_ALL);
-ini_set('display_errors',1);
+error_reporting(0);
+ini_set('display_errors',0);
 require('bootstrap.php');
 require('app/config.php');
 require('app/functions.php');
@@ -14,7 +14,6 @@ if(!empty($_SESSION['user'])) {
         header('Location: '.$config['page_url']);
         die;
     }
-//	$user = $db->select_single('SELECT * FROM users WHERE id = '.(int)$_SESSION['user']);
     $user = $entityManager->find('User', $_SESSION['user']);
     if($user === null || !password_verify($_SESSION['token'], $user->getToken())) {
         session_destroy();

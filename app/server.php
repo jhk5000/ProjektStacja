@@ -1,13 +1,12 @@
 <?php
 session_start();
-error_reporting(E_ALL);
-ini_set('display_errors',1);
+error_reporting(0);
+ini_set('display_errors',0);
 require('../bootstrap.php');
 require('config.php');
 require('functions.php');
 if(!empty($_POST['task'])) {
     $time_now = time();
-    //$db = new DB($config['db']['host'], $config['db']['username'], $config['db']['password'], $config['db']['database']);
     if(!empty($_SESSION['user'])) {
         if(empty($_SESSION['token'])) {
             session_destroy();
@@ -108,7 +107,7 @@ if(!empty($_POST['task'])) {
                     $log->setValid(0);
                     $entityManager->persist($log);
                     $entityManager->flush();
-                    $description = 'Błędna próba zalogowania. ' .  'Login: ' . $_POST['login'] . ', IP: ' . getIP();
+                    $description = 'Błędna próba zalogowania. ' .  'Login: ' . $_POST['login'];
                     makeLog($entityManager,'Logowanie(błędne)', $description); $entityManager->persist($log);
                     echo "Podano nieporawidłowe hasło!";
                 }

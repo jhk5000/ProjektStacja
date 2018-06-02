@@ -6,6 +6,7 @@ function alert($type, $text) {
         echo '<div class="alert alert-warning"><strong>Błąd:</strong> '.$text.'</div>';
     }
 }
+
 function getLoginWindow() {
     global $config;
     return '<div id="loginBox" class="modalWindow">
@@ -13,25 +14,10 @@ function getLoginWindow() {
 				<h2>Logowanie</h2><hr class="style-one"></hr>
 				<b>Login:</b> <input onkeypress="app.check_key(event);" type="text" class="form-control" id="login_name" value=""/>
 				<b>Hasło:</b> <input onkeypress="app.check_key(event);" type="password" class="form-control" id="login_password" value=""/></br>
-				<center><input class="btn btn-primary btn-ls" type="submit" id="login_button" onClick="app.login();" value="Zaloguj"/> 
-				<a href="'.$config['page_url'].'?page=lostpassword"><input class="btn btn-info btn-ls" type="submit" value="Przypominj Hasło"/></a></center>
+				<center><input class="btn btn-primary btn-ls" type="submit" id="login_button" onClick="app.login();" value="Zaloguj"/></center>
 				</div>';
 }
-// To służyło do edytowania tematów prac dyplomowych. Można zmienić na edytowanie np stacji
-function getSubjectWindow($subjects) {
-    $output = '<div id="subjectBox" class="modalWindow">
-				<div id="blackX" onClick="app.closeModal();"></div>
-				<h2>Wybierz Kierunki</h2><hr class="style-one"></hr>
-				<div class="row">
-				<div class="col-lg-6">';
-    if($subjects)
-        foreach($subjects as $s)
-            $output .= '<input type="checkbox" onChange="app.onSubjectChange('.$s['id'].');" id="subject_'.$s['id'].'" value="0"> '.$s['name'].'<br/>';
-    $output .= '</div></div><br/>
-				<center><input class="btn btn-primary btn-lg" type="submit" onClick="app.closeModal();" value="Zamknij"/></center>
-				</div>';
-    return $output;
-}
+
 function checkPageAccess($page, $group, $access, $url) {
     if($access[$page])
         foreach($access[$page] as $a)
@@ -39,6 +25,7 @@ function checkPageAccess($page, $group, $access, $url) {
                 return;
     header('Location: '.$url);
 }
+
 //generowanie tokenu
 function generateToken() {
     $newcode = NULL;
@@ -49,8 +36,8 @@ function generateToken() {
     }
     return $newcode;
 }
-//utworzenie menu użytkownika
 
+//utworzenie menu użytkownika
 function getUserMenu($group) {
     global $config;
     global $page;
@@ -76,9 +63,9 @@ function getUserMenu($group) {
         else
             echo '<a href="' . $config['page_url'] . '?page=addcompany" class="list-group-item">Dodaj firmę</a>';
         if ($page == 'companies')
-            echo '<a href="' . $config['page_url'] . '?page=companies" class="list-group-item active">Firmy</a>';
+            echo '<a href="' . $config['page_url'] . '?page=companies" class="list-group-item1 active">Firmy</a>';
         else
-            echo '<a href="' . $config['page_url'] . '?page=companies" class="list-group-item">Firmy</a>';
+            echo '<a href="' . $config['page_url'] . '?page=companies" class="list-group-item1">Firmy</a>';
     }
     //konfiguracja dla własciciela
     elseif($group == 3) {
@@ -150,26 +137,20 @@ function getUserMenu($group) {
         else
             echo '<a href="' . $config['page_url'] . '?page=prices" class="list-group-item1">Ceny paliw</a>';
         if ($page == 'logs')
-            echo '<a href="' . $config['page_url'] . '?page=logs&event=" class="list-group-item active">Logi zdarzeń</a>';
+            echo '<a href="' . $config['page_url'] . '?page=logs&event=" class="list-group-item1 active">Logi zdarzeń</a>';
         else
-            echo '<a href="' . $config['page_url'] . '?page=logs&event=" class="list-group-item">Logi zdarzeń</a>';
+            echo '<a href="' . $config['page_url'] . '?page=logs&event=" class="list-group-item1">Logi zdarzeń</a>';
     }
-    if($page == 'messages')
-        echo '<a href="'.$config['page_url'].'?page=messages" class="list-group-item active">Wiadomości</a>';
+    if ($page == 'faq')
+        echo '<a href="' . $config['page_url'] . '?page=faq" class="list-group-item active">FAQ</a>';
     else
-        echo '<a href="'.$config['page_url'].'?page=messages" class="list-group-item">Wiadomości</a>';
+        echo '<a href="' . $config['page_url'] . '?page=faq" class="list-group-item">FAQ</a>';
+    if ($page == 'contact')
+        echo '<a href="' . $config['page_url'] . '?page=contact" class="list-group-item active">Kontakt</a>';
+    else
+        echo '<a href="' . $config['page_url'] . '?page=contact" class="list-group-item">Kontakt</a>';
 }
-// pobieranie imienia i nazwiska
-function getName(array $array) {
-    $string = '';
-    if (empty($array['name']) === false && $array['name'] !== null) {
-        $string .= $array['name'];
-    }//end if
-    if (empty($array['lastname']) === false && $array['lastname'] !== null) {
-        $string .= ' '.$array['lastname'];
-    }//end if
-    return trim($string);
-}
+
 function scripts(){
     global $config;
     echo '  
@@ -240,6 +221,7 @@ function scripts(){
             </script>
             ';
 }
+
 function compareDates($date1, $logs){
     $date2 = date("y-m-d H:i:s");
     if (count($logs) > 2 && strtotime($date2) < strtotime($date1)+300){
@@ -248,12 +230,13 @@ function compareDates($date1, $logs){
         return 0;
     }
 }
+
 function makeLog($entityManager, $name, $description){
     if($name == 'Logowanie(poprawne)' || $name == 'Logowanie(błędne)'){
-        $changer = '';
+        $changer = 'IP: ' . getIP();
     }else{
         $loged = $entityManager->find('User', $_SESSION['user']);
-        $changer = $loged->getUserId() . ', ' . $loged->getLogin() . ', ' . $loged->getName();
+        $changer = $loged->getUserId() . ', ' . $loged->getLogin() . ', ' . $loged->getName() . ', IP: ' . getIP();
     }
     $event = new Events();
     $event->setEventName($name);
@@ -263,6 +246,7 @@ function makeLog($entityManager, $name, $description){
     $entityManager->persist($event);
     $entityManager->flush();
 }
+
 function getIP() {
     $ipaddress = '';
     if (getenv('HTTP_CLIENT_IP'))
@@ -331,10 +315,13 @@ function printAverages($averages, $discount){
             <table width="100%">
                 <tbody>
                     <tr>';
-                            echo '<td>PB98: ' . round(floatval($average['PB98'])*(1-($discount/100)),2) . ' PLN' . '</td>';
-                            echo '<td>PB95: ' . round(floatval($average['PB95'])*(1-($discount/100)),2) . ' PLN' . '</td>';
-                            echo '<td>ON: ' . round(floatval($average['OIL'])*(1-($discount/100)),2) . ' PLN' . '</td>';
-                            echo '<td>LPG: ' . round(floatval($average['LPG'])*(1-($discount/100)),2) . ' PLN' . '</td>';
+                        echo '<td colspan="4"><p class="priceAvgValue">Średnie ceny paliw w '.$_GET['city'].'</p></td>';
+        echo '      </tr>
+                    <tr>';
+                            echo '<td><p class="priceAvgValue">PB98: ' . round(floatval($average['PB98'])*(1-($discount/100)),2) . ' PLN' . '</p></td>';
+                            echo '<td><p class="priceAvgValue">PB95: ' . round(floatval($average['PB95'])*(1-($discount/100)),2) . ' PLN' . '</p></td>';
+                            echo '<td><p class="priceAvgValue">ON: ' . round(floatval($average['OIL'])*(1-($discount/100)),2) . ' PLN' . '</p></td>';
+                            echo '<td><p class="priceAvgValue">LPG: ' . round(floatval($average['LPG'])*(1-($discount/100)),2) . ' PLN' . '</p></td>';
         echo'       </tr>
                 </tbody>
             </table>

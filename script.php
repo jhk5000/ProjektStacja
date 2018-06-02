@@ -1,5 +1,5 @@
 <?php
-$db = new mysqli('localhost', 'user1', 'haslo', 'stations_db');
+$db = new mysqli('cinmarr.nazwa.pl', 'cinmarr_stacja', 'Stacja01', 'cinmarr_stacja');
 if ($db->connect_error) {
     die("Connection failed: " . $db->connect_error);
 } 
